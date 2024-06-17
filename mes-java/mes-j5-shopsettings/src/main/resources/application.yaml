@@ -1,0 +1,5 @@
+server:
+  port: ${sp.shopsettings}
+spring:
+  application:
+    name: ${sn.shopsettings}

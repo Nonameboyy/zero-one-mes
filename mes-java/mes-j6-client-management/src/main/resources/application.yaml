@@ -1,0 +1,7 @@
+server:
+  port: ${sp.client}
+spring:
+  application:
+    name: ${sn.client}
+fastdfs:
+  nginx-servers: ${fastdfs.nginx-servers}

@@ -1,0 +1,22 @@
+{
+	"recommendations": [
+		// vue3的 .vue SFCs 的 LSP 语言支持服务
+		"Vue.volar",
+		// 使用 prettier 实现格式化
+		"esbenp.prettier-vscode",
+		// 使用 eslint 实现代码检查
+		"dbaeumer.vscode-eslint",
+		// 使用 gitlens 插件 实现git代码管理
+		"eamodio.gitlens",
+		// 使用 git-graph 插件 实现git提交分支图的查看
+		"mhutchie.git-graph",
+		"streetsidesoftware.code-spell-checker",
+		"christian-kohler.npm-intellisense",
+		"sdras.vue-vscode-snippets",
+		"hollowtree.vue-snippets"
+	],
+	"unwantedRecommendations": [
+		// 不使用该插件 该插件事实上被官方弃用了
+		"Vue.vscode-typescript-vue-plugin"
+	]
+}

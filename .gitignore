@@ -1,0 +1,87 @@
+# Compiled class file
+*.class
+*.classpath
+*.factorypath
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.exe
+!documents/05、环境搭建/06、Docker部署Sentinel/资源/sentinel-dashboard/*.jar
+!documents/05、环境搭建/07、Docker部署RocketMQ/资源/*.zip
+!documents/05、环境搭建/09、Docker部署FastDFS/资源/*.zip
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# IDE Files #
+*.iml
+.idea
+.idea/
+.project
+.settings
+target
+.DS_Store
+
+# temp ignore
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# Maven ignore
+.flattened-pom.xml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+
+# Visual Studio 2017 auto generated files
+Generated\ Files/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+[Ll]og/
+[Ll]ogs/
+oatpp.lib
+
+# Compile
+auto-imports.d.ts
+components.d.ts
+node_modules
+
+# 忽略自动生成的依赖锁文件 不提供包管理器的依赖锁文件
+pnpm-lock.yaml
+package-lock.json

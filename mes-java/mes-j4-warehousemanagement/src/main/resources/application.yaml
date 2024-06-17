@@ -1,0 +1,6 @@
+server:
+  port: ${sp.warehousemanagement}
+spring:
+  application:
+    name: ${sn.warehousemanagement}
+

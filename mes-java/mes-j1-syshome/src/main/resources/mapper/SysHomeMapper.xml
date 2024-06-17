@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeroone.star.syshome.mapper.SysHomeMapper">
+    <resultMap type="com.zeroone.star.syshome.entity.Facility" id="FacilityResult">
+        <result property="facilityRun"    column="client_id"    />
+        <result property="facilityAwait"    column="client_code"    />
+        <result property="facilityFault"    column="client_name"    />
+        <result property="facilitySum"    column="client_nick"    />
+    </resultMap>
+
+
+<!--    <select id="selectMdClientList" parameterType="MdClient" resultMap="MdClientResult">-->
+<!--        <include refid="selectMdClientVo"/>-->
+<!--        <where>-->
+<!--            <if test="contact1Tel != null  and contact1Tel != ''"> and contact1_tel = #{contact1Tel}</if>-->
+<!--            <if test="contact1Email != null  and contact1Email != ''"> and contact1_email = #{contact1Email}</if>-->
+<!--            <if test="contact2 != null  and contact2 != ''"> and contact2 = #{contact2}</if>-->
+<!--            <if test="contact2Tel != null  and contact2Tel != ''"> and contact2_tel = #{contact2Tel}</if>-->
+<!--            <if test="contact2Email != null  and contact2Email != ''"> and contact2_email = #{contact2Email}</if>-->
+<!--            <if test="creditCode != null  and creditCode != ''"> and credit_code = #{creditCode}</if>-->
+<!--            <if test="enableFlag != null  and enableFlag != ''"> and enable_flag = #{enableFlag}</if>-->
+<!--            and client_id != 0-->
+<!--        </where>-->
+<!--    </select>-->
+
+    <select id="selectFacility" resultType="com.zeroone.star.project.j1.syshome.dto.facility.FacilityDTO" resultMap="FacilityResult">
+        SELECT COUNT(*) FROM `dv_machinery` WHERE `status` = 'STOP';
+
+
+
+
+
+    </select>
+
+
+
+
+    <select id="selectQuality" resultType="com.zeroone.star.project.j1.syshome.dto.quality.QualityDTO">
+
+
+
+
+
+    </select>
+
+
+
+    <select id="selectRepertory" resultType="com.zeroone.star.project.j1.syshome.dto.repertory.RepertoryDTO">
+
+
+
+
+
+    </select>
+</mapper>

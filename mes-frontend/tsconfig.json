@@ -1,0 +1,96 @@
+/**
+	参考资料
+	https://juejin.cn/post/7043723576121229342
+*/
+{
+	// 集成基础配置
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "ES2020",
+		"useDefineForClassFields": true,
+		"module": "ESNext",
+		"esModuleInterop": true,
+		// Web 应用需要 DOM 环境
+		"lib": [
+			"ESNext",
+			"ES2020",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"paths": {
+			"@/*": [
+				"src/*"
+			],
+			"components/*": [
+				"src/components/*"
+			],
+			"types/*": [
+				"src/types/*"
+			],
+			"views/*": [
+				"src/views/*"
+			],
+			"api/*": [
+				"src/apis/*"
+			],
+			"stores/*": [
+				"src/stores/*"
+			],
+			"router/*": [
+				"src/router/*"
+			],
+			"utils/*": [
+				"src/utils/*"
+			],
+		},
+		"skipLibCheck": true,
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "preserve",
+		/* Linting */
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"types": [
+			/** https://juejin.cn/post/7262322846252613693 */
+			"element-plus/global",
+			"vite/client",
+			"node",
+			"qs",
+			"unplugin-auto-import",
+		],
+		"allowJs": true
+	},
+	/** https://www.typescriptlang.org/tsconfig#include */
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.d.ts",
+		"src/**/*.tsx",
+		"src/**/*.vue",
+		"src",
+		"typings",
+		// 测试文件集
+		"tests/**/*.ts",
+		// 导入自动生成的类型声明文件
+		"auto-imports.d.ts",
+		"components.d.ts",
+		"src/vite-env.d.ts",
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"public",
+		"src/assets"
+	],
+	"references": [
+		{
+			"path": "./tsconfig.node.json"
+		}
+	]
+}

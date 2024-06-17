@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeroone.star.productManagement.mapper.MdItemMapper">
+
+    <insert id="insertMdItem" useGeneratedKeys="true" keyProperty="itemId">
+        insert into md_item (item_code, item_name, specification, unit_of_measure, item_or_product, item_type_id, item_type_code, item_type_name, enable_flag, safe_stock_flag, min_stock, max_stock, remark, create_by, create_time)
+        values
+            (#{itemCode}, #{itemName}, #{specification}, #{unitOfMeasure}, #{itemOrProduct},
+            #{itemTypeId}, #{itemTypeCode}, #{itemTypeName}, #{enableFlag},
+            #{safeStockFlag}, #{minStock}, #{maxStock}, #{remark},
+            #{createBy}, #{createTime})
+    </insert>
+
+    <update id="updateMdItem">
+        update md_item
+        <set>
+            <if test="itemCode != null">item_code = #{itemCode},</if>
+            <if test="itemName != null">item_name = #{itemName},</if>
+            <if test="specification != null">specification = #{specification},</if>
+            <if test="unitOfMeasure != null">unit_of_measure = #{unitOfMeasure},</if>
+            <if test="itemOrProduct != null">item_or_product = #{itemOrProduct},</if>
+            <if test="itemTypeId != null">item_type_id = #{itemTypeId},</if>
+            <if test="itemTypeCode != null">item_type_code = #{itemTypeCode},</if>
+            <if test="itemTypeName != null">item_type_name = #{itemTypeName},</if>
+            <if test="enableFlag != null">enable_flag = #{enableFlag},</if>
+            <if test="safeStockFlag != null">safe_stock_flag = #{safeStockFlag},</if>
+            <if test="minStock != null">min_stock = #{minStock},</if>
+            <if test="maxStock != null">max_stock = #{maxStock},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime}</if>
+        </set>
+        where item_code = #{itemCode}
+    </update>
+
+    <select id="selectMdItemList" parameterType="com.zeroone.star.project.j6.product_management.query.MdItemQuery" resultType="com.zeroone.star.productManagement.entity.ExportMdItem">
+        select item_id, item_code, item_name, specification, unit_of_measure, item_or_product,
+        item_type_id,item_type_code,item_type_name,enable_flag,safe_stock_flag,min_stock,max_stock, create_by, create_time, remark
+        from md_item
+        WHERE 1=1
+        <if test="itemCode != null and itemCode != ''">
+            AND item_code LIKE CONCAT('%', #{itemCode}, '%')
+        </if>
+        <if test="itemName != null and itemName != ''">
+            AND item_name LIKE CONCAT('%', #{itemName}, '%')
+        </if>
+        <if test="itemTypeId != null and itemName != 0">
+            AND (item_type_id = #{itemTypeId} OR item_type_id in (select item_type_id from md_item_type where find_in_set(#{itemTypeId},ancestors)))
+        </if>
+    </select>
+
+    <select id="checkItemCodeUnique" parameterType="com.zeroone.star.productManagement.entity.MdItem" resultType="com.zeroone.star.productManagement.entity.MdItem">
+        select *
+        from md_item
+        WHERE item_code = #{itemCode};
+    </select>
+
+</mapper>

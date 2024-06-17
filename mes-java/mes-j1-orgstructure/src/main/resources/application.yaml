@@ -1,0 +1,5 @@
+server:
+  port: ${sp.orgstructurej1}
+spring:
+  application:
+    name: ${sn.orgstructurej1}

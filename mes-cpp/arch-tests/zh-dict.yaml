@@ -1,0 +1,29 @@
+mysql:
+ zh1: 姓
+ zh2: 名
+ zh3: 小
+ zh4: 大
+ zh5: 妖精
+ zh6: 火子
+ zh7: 李
+ zh8: 明
+excel:
+ sheet:
+  s1: 数据表1
+  s2: 数据表2
+ header:
+  h1: 表头1
+  h2: 表头2
+  h3: 表头3
+  h4: 表头4
+  h5: 表头5
+ content:
+  info: 坐标
+mail:
+ topic: 测试主题
+ body1: <html><meta charset=\"UTF-8\"><body><p>我是<b>中文</b></p><p><font color=red>我是红色的中文</font></p></body></html>
+ body2: 我是中文，文字消息内容。
+pdf:
+ title: 测试标题
+ content: 测试内容
+ foot: 测试底部

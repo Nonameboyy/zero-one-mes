@@ -1,0 +1,19 @@
+defect:
+ field:
+  defect_name: 缺陷描述
+  index_type: 检测项类型
+  defect_level: 缺陷等级
+  defectId: 缺陷ID
+  defectName: 缺陷描述
+  indexType: 缺陷类型
+  defectLevel: 缺陷等级
+ get:
+  summary: 获取缺陷列表（条件+分页）
+ post:
+  summary: 添加缺陷
+ remove:
+  summary: 删除缺陷
+ export:
+  summary: 导出缺陷
+ modify:
+  summary: 修改缺陷

@@ -1,0 +1,92 @@
+
+return:
+ query-all: 
+  summary: 查询所有供应商退货单
+ query-detail:
+  summary: 查询退货单据详细信息
+ add-detail:
+  summary: 新增单据详细信息
+ modify:
+  summary: 修改单据
+ execute:
+  summary: 执行退货
+ remove:
+  summary: 删除单据
+ download:
+  summary: 导出单据
+ fields: 
+  rtcode: 退货单编号
+  rtname: 退货单名称 
+  pucode: 采购订单编号 
+  vecode: 供应商编码
+  vename: 供应商名称 
+  rtdate: 退货日期 
+  status: 单据状态
+  action: 操作
+  filename: 退货单文件名
+  remark: 备注
+  batchcode: 批次号
+  rt_id: 退货单ID
+  rt_code: 退货单编号
+  rt_name: 退货单名称 
+  po_code: 采购订单编号 
+  vendor_id: 供应商ID
+  vendor_code: 供应商编码
+  vendor_name: 供应商名称 
+  vendor_nick: 供应商简称
+  batch_code: 批次号
+  rt_date: 退货日期 
+  attr1: 预留字段1
+  attr2: 预留字段2
+  attr3: 预留字段3
+  attr4: 预留字段4
+  create_by: 创建者
+  create_time: 创建时间
+  update_by: 更新者
+  update_time: 更新时间
+
+material: 
+ get:
+  summary: 获取供应商退货行列表
+ add:
+  summary: 添加供应商退货行
+ alter:
+  summary: 修改供应商退货行
+ delete:
+  summary: 删除供应商退货行
+ rtcode: 退货单编号
+ rtname: 退货单名称
+ pocode: 采购订单编号
+ vendorcode: 供应商编码
+ vendorname: 供应商名称
+ rtdate: 退货日期
+ status: 单据状态
+ batchcode: 批次号
+ remark: 备注
+ lineid: 退货行id
+ rtid: 退货单id
+ itemcode: 产品物料编码
+ itemname: 产品物料名称
+ quantityrted: 退货数量
+ specification: 规格型号
+ unitofmeasure: 单位
+ warehouseid: 仓库ID
+ warehousename: 仓库名称
+ locationid: 库区ID
+ locationname: 库区名称
+ areaid: 库位ID
+ areaname: 库位名称
+
+excel:
+ return:
+  path: ./public/excel/ExportReturn.xlsx
+  sheet:
+   s1: table1
+  header:
+   h1: 退货单编号
+   h2: 退货单名称
+   h3: 采购订单编号
+   h4: 供应商编号
+   h5: 供应商名称
+   h6: 退货日期
+   h7: 单据状态

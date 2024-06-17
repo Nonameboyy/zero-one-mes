@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeroone.star.login.mapper.CurrUserMapper">
+    <!--部门-->
+    <select id="selectDept" resultType="com.zeroone.star.login.entity.DeptDO">
+        select d.dept_name
+        from sys_user as u
+                 left join sys_dept as d on u.dept_id = d.dept_id
+        where u.user_id = #{useId} and d.dept_name is not null;
+    </select>
+    <!--角色-->
+    <select id="selectRole" resultType="com.zeroone.star.login.entity.RoleDO">
+        select r.role_name
+        from sys_user as u
+                 left join sys_user_role as ur on u.user_id = ur.user_id
+                 left join sys_role as r on ur.role_id = r.role_id
+        where u.user_id = #{useId};
+    </select>
+    <!--岗位-->
+    <select id="selectPost" resultType="com.zeroone.star.login.entity.PostDO">
+        select p.post_name
+        from sys_user as u
+                 left join sys_user_post as up on u.user_id = up.user_id
+                 left join sys_post as p on up.post_id = p.post_id
+        where u.user_id = #{useId};
+    </select>
+
+    <!--菜单,已在别处经实现-->
+    <!--<select id="selectMenu" resultType="com.zeroone.star.login.entity.MenuDO">
+        select m.menu_id,m.menu_name,m.icon,m.path,m.parent_id
+        from sys_user as u
+                 left join sys_user_role as ur on u.user_id = ur.user_id
+                 left join sys_role as r on r.role_id = ur.role_id
+                 left join sys_role_menu as rm on r.role_id = rm.role_id
+                 left join sys_menu as m on rm.menu_id = m.menu_id
+        where u.user_id = #{useId} ;
+    </select>-->
+</mapper>

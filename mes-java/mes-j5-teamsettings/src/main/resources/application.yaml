@@ -1,0 +1,5 @@
+server:
+  port: ${sp.teamsettings}
+spring:
+  application:
+    name: ${sn.teamsettings}

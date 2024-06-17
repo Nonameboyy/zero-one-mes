@@ -1,0 +1,210 @@
+processinspection:
+ queryProcessInspectionList:
+  summary: 获取过程检验单行列表
+ queryProcessInspectionDefectList:
+  summary: 获取过程检验单行缺陷列表
+ addProcessInspection:
+  summary: 添加过程检验
+ export:
+  summary: 导出过程检验
+ delete:
+  summary: 删除过程检验列表
+ get:
+  summary: 获取过程检验列表(条件+分页)
+  inspection_details: 获取过程检验详情
+ modify:
+  confirm_orders: 确认检验单
+  finish_orders: 完成检验单
+ put:
+  summary: 修改过程检测项
+ field:
+  id: 编号
+  ipqc_code: 检验单编号
+  ipqc_name: 检验单名称
+  ipqc_type: 检验类型
+  workorder_code: 工单编号
+  workorder_name: 工单名称
+  workstation_id: 工作站编号
+  workstation_code: 工作站编码
+  workstation_name: 工作站名称
+  item_code: 产品物料编码
+  item_name: 产品物料名称
+  specification: 规格型号
+  process_code: 工序编码
+  process_name: 工序名称
+  task_code: 任务编号
+  task_name: 任务名称
+  unit_of_measure: 单位
+  quantity_check: 检测数量
+  quantity_unqualified: 不合格数
+  quantity_qualified: 合格数
+  cr_quantity: 致命缺陷数量
+  maj_quantity: 严重缺陷数量
+  min_quantity: 轻微缺陷数量
+  inspect_date: 检测日期
+  check_result: 检测结果
+  inspector: 检测人员
+  status: 单据状态
+  remark: 备注
+DetectionTemplate: 
+ get:
+  title: 获取检测模板列表
+ post:
+  summary: 添加检测模板
+ delete: 
+  summary: 删除检测项
+ querydetectempdetails:
+  summary: 获取检验模板详情
+ modify: 
+  summary: 修改检测模板
+ export:
+  summary: 文件导出
+ field:
+  template_id: 检测模板ID
+  template_code: 检测模板编号
+  template_name: 检测模板名称
+  qc_types: 检测种类
+  enable_flag: 是否启用
+  remark: 备注
+  item_code: 产品编码
+  item_name: 产品名称
+qualitycontrol:
+ defect:
+  addre: 质量管理过程检验添加检验单行缺陷记录
+  delre: 质量管理过程检验删除检验单行缺陷记录
+  setre: 质量管理过程检验修改检验单行陷记录
+  record_id: 缺陷ID
+  qc_type: 检验单类型
+  qc_id : 检验单ID
+  line_id : 检验单行ID
+  defect_name : 检验单行ID
+  defect_level : 缺陷等级
+  remark : 备注
+  defect_quantity : 缺陷数量
+ detectionitemsettings:
+  controller:
+   query:
+    summary: 分页查询检测项设置
+    code: 检测项编码
+    def_code: 10001
+    name: 检测项名称
+    def_name: 长度
+    type: 检测项类型
+    def_type: 重量
+   add:
+    summary: 添加一个检测项
+   modify: 
+    summary: 修改一个检测项
+  domain:
+    id: id号
+    code: 检测项编码
+    name: 检测项名称
+    type: 检测项类型
+    tool: 检测工具
+    remark: 备注
+materialproducts:
+ get:
+  summary: 获取模板关联产品列表（条件+分页）
+ put:
+  summary: 修改模板关联产品数据
+ post:
+  summary: 增加模板关联产品数据
+ delete:
+  summary: 删除模板关联产品数据
+ field:
+  record_id: 记录id（主键）
+  template_id: 检测模板ID
+  item_id: 产品物料ID
+  item_code: 产品物料编码
+  item_name: 产品物料名称
+  specification: 规格型号
+  unit_of_measure: 单位
+  quantity_check: 最低检测数
+  quantity_unqualified: 最大不合格数
+  cr_rate: 最大致命缺陷率
+  maj_rate: 最大严重缺陷率
+  min_rate:  最大轻微缺陷率
+  remark: 备注
+  attr1: 预留字段1
+  attr2: 预留字段2
+  attr3: 预留字段3
+  attr4: 预留字段4
+templatedetectitem:
+ get:
+  summary: 检测模板检测项分页查询
+ put:
+  summary: 检测模板检测项修改数据
+ post:
+  summary: 检测模板检测项增加数据
+ delete:
+  summary: 检测模板检测项删除数据
+ field:
+  record_id: 记录ID
+  template_id: 检测模板ID
+  index_id: 检测项ID
+  index_code: 检测项编码
+  index_name: 检测项名称
+  index_type: 检测项类型
+  qc_tool: 检测工具
+  check_method: 检测方法
+  stander_val: 标准值
+  unit_of_measure: 单位
+  threshold_max: 误差上限
+  threshold_min: 误差下限
+  doc_url: 说明图
+  remark: 备注
+  attr1: 预留字段1
+  attr2: 预留字段2
+  attr3: 预留字段3
+  attr4: 预留字段4
+  create_by: 创建者
+  createtime: 创建时间
+  update_by: 更新者
+  update_time: 更新时间
+Pending_inspection:
+ get:
+  summary: 获取待检任务列表
+ fields:
+  code: 单据编码
+  material: 物料名称
+  detectionType: 检测类型
+detection_template:
+ delete:
+  summary: 删除检测模板
+ fields:
+  id: 编号   
+detectionitemsettings:
+ delete:
+  summary: 删除检测项（支持批量删除）
+ export:
+  summary: 导出检测项
+excel:
+ sheet:
+  s1: 数据表1
+  s2: 数据表2
+  s3: 数据表3
+ ProcessInspection: 
+  path: ./public/excel/ExportProcessInspection.xlsx
+  header:
+   h1: 检验单ID
+   h2: 检验单编号
+   h3: 检验类型
+   h4: 工单编码
+   h5: 产品物料编码
+   h6: 产品物料名称
+   h7: 规格型号
+   h8: 单位
+   h9: 检测数量
+   h10: 检测结果
+   h11: 检测日期
+   h12: 检测人员
+   h13: 单据状态
+ DetectionItemSettings:
+  path: ./public/excel/ExportDetectionItemSettings.xlsx
+  header:
+   h1: 检测项ID
+   h2: 检测项编码
+   h3: 检测项名称
+   h4: 检测项类型
+   h5: 检测工具
+   h6: 描述

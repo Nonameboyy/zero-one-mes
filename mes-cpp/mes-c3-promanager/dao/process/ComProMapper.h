@@ -1,0 +1,50 @@
+#pragma once
+/*
+ Copyright Zero One Star. All rights reserved.
+
+ @Author: awei
+ @Date: 2022/10/25 14:21:55
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+	  https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+*/
+#ifndef _COMPRO_MAPPER_
+#define _COMPRO_MAPPER_
+
+#include "Mapper.h"
+#include "../../domain/do/pro/ProRouteProcessDO.h"
+
+/**
+ * ×é³É¹¤Ðò±í×Ö¶ÎÆ¥ÅäÓ³Éä
+ */
+class ComProMapper : public Mapper<ProRouteProcessDO>
+{
+public:
+	ProRouteProcessDO mapper(ResultSet* resultSet) const override
+	{
+		ProRouteProcessDO data;
+		data.setProcessId(resultSet->getUInt64(1));
+		data.setProcessCode(resultSet->getString(2));
+		data.setProcessName(resultSet->getString(3));
+		data.setKeyFlag(resultSet->getString(4));
+		data.setNextProcessName(resultSet->getString(5));
+		data.setLinkType(resultSet->getString(6));
+		data.setIsCheck(resultSet->getString(7));
+		data.setDefaultPreTime(resultSet->getInt(8));
+		data.setDefaultSufTime(resultSet->getInt(9));
+		data.setColorCode(resultSet->getString(10));
+
+		return data;
+	}
+};
+
+#endif // !_COMPRO_MAPPER_

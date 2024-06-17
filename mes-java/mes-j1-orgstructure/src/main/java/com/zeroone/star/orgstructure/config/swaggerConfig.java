@@ -1,0 +1,24 @@
+package com.zeroone.star.orgstructure.config;
+
+import com.zeroone.star.project.config.swagger.SwaggerCore;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
+
+/**
+ * @author twelve
+ * @version 1.0.0
+ * @Description: TODO
+ */
+@Configuration
+@EnableSwagger2WebMvc
+public class swaggerConfig {
+
+    @Bean
+    Docket DepartmentApis() {
+        return SwaggerCore.defaultDocketBuilder("组织架构模块","com.zeroone.star.orgstructure.controller","orgstructure");
+}
+
+
+}

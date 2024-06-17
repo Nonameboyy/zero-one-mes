@@ -1,0 +1,5 @@
+server:
+  port: ${sp.messageservice}
+spring:
+  application:
+    name: ${sn.messageservice}

@@ -1,0 +1,73 @@
+materialinformation:
+ get:
+  summary: 获取生产退料单行列表（条件+分页）
+ post:
+  summary: 添加生产退料单行
+ put:
+  summary: 修改生产退料单行
+ delete:
+  summary: 删除生产退料单行（支持批量删除）
+ field:
+  rt_id: 生产退料ID
+  rt_code: 退料单编号
+  rt_name: 退料单名称
+  workororder_id: 生产工单id
+  workororder_code: 生产工单编码
+  warehouse_id: 仓库id
+  warehouse_code: 仓库编码
+  warehouse_name: 仓库名称
+  location_id: 库区id
+  location_code: 库区编码
+  location_name: 库区名称
+  area_id: 库位id
+  area_code: 库位编码
+  area_name: 库位名称
+  rt_date: 退料日期
+  remark: 备注
+ 
+RawMaterialOp:
+ get:
+  summary: 导出单据
+ post:
+  summary: 添加生产退料单行列表
+ put:
+  summary: 执行退料
+ delete:
+  summary: 删除单据（支持批量删除）
+ field:
+  id: 生产退料编号
+  name: 退料单名称
+  order: 生产工单
+  warehouse: 接收仓库
+  date: 退料日期
+  common: 备注
+ file: 
+  download: 
+   summary: 退料单据导出
+   filename: 导出文件名称和格式
+
+reject: 
+ fields:
+  rt_code: 退料单编号
+  workorder_id: 生产工单id
+  warehouse_name: 仓库名称
+  rt_id: 退料单id
+  rt_name: 退料单名称
+  location_name: 库区名称
+  area_name: 库位名称
+  rt_date: 退料日期
+  status: 单据状态
+  receivedstorage: 接收仓库
+  remark: 备注
+  summary: 获取单据列表（条件+分页）
+  detail: 获取单据详情
+  add: 添加单据
+  modify: 修改单据
+  workorder_code: 生产工单编码
+  warehouse_id: 仓库id
+  warehouse_code: 仓库编码
+  location_id: 库区id
+  location_code: 库区编码
+  area_id: 库位id
+  area_code: 库位编码
+

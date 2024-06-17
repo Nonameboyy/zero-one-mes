@@ -1,0 +1,5 @@
+server:
+  port: ${sp.scheduleplan}
+spring:
+  application:
+    name: ${sn.scheduleplan}

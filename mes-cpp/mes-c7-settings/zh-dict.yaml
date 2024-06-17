@@ -1,0 +1,88 @@
+warehouse-area:
+ query:
+  summary: 获取库区列表（条件+分页）
+ post:
+  summary: 添加库区
+ put:
+  summary: 修改库区
+ delete:
+  summary: 删除库区（支持批量删除）
+ field:
+  id: 库区ID
+  code: 库区编码
+  name: 库区名称
+  warehouse-id: 仓库ID
+  area: 面积
+  remark: 备注
+add-del-mod:
+ query-dto:
+  warehouse_id: 编号
+  warehouse_code: 仓库编码
+  warehouse_name: 仓库名称
+  location: 位置
+  area: 面积
+  charge: 负责人
+  remark: 备注
+ controller:
+  post:
+   summary: 添加仓库
+  put:
+   summary: 修改仓库
+  delete:
+   summary: 删除仓库（支持批量删除）
+   warehouse_id: 编号
+warehouse:
+ get:
+  details: 获取仓库详情
+  page: 获取仓库列表（条件+分页）
+ field:
+  warehouse_code: 仓库编码
+  warehouse_name: 仓库名称
+  location: 位置
+  area: 面积
+  charge: 负责人
+  remark: 备注
+  attr1: 预留字段1
+  attr2: 预留字段2
+  attr3: 预留字段3
+  attr4: 预留字段4
+  create_by: 创建者
+  create_time: 创建时间
+  update_by: 更新者
+  update_time: 更新时间
+storagearea:
+ query-menu:
+  summary: 获取仓库位名称数据
+ query:
+  summary: 获取库位列表（条件+分页）
+ mulit:
+  summary: 删除库位集合
+ count:
+  counts: 获取统计值
+ add: 
+  insert: 添加库位
+ modify: 
+  update: 修改库位
+ remove: 
+  delete: 删除库位（支持批量删除）
+  mulitremove: 批量删除库区 
+ fields:
+  areaId: 库位ID
+  areacode: 库位编码
+  areaname: 库位名称
+  locationId: 库区ID
+  positionx: 库位位置X
+  positiony: '库位位置y'
+  positionz: '库位位置z'
+  enableFlag: '是否启用'
+  area: '库位面积'
+  maxLoa: '最大载重量'
+  remark: '备注'
+  attr_one: '预留字段1'
+  attr_two: '预留字段2'
+  attr_three: '预留字段3'
+  attr_four: '预留字段4'
+  createBy: '创建者'
+  createTime: '创建时间'
+  updateBy: '更新者'
+  updateTime: '更新时间'

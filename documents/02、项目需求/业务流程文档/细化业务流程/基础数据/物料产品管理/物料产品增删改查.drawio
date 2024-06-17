@@ -1,0 +1,132 @@
+<mxfile host="Electron" modified="2024-05-16T11:34:10.974Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.4.0 Chrome/112.0.5615.204 Electron/24.5.1 Safari/537.36" etag="-LJRHFLnhBqSsFePbLm1" version="21.4.0" type="device">
+  <diagram name="第 1 页" id="2oMLdnz3fTbLttpIWInL">
+    <mxGraphModel dx="1204" dy="809" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-1" target="ug5BLrvYeyJBSdmcTfPj-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-1" value="获取物料列表（条件+分页）" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-2" target="ug5BLrvYeyJBSdmcTfPj-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-2" value="新增物料" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-3" target="ug5BLrvYeyJBSdmcTfPj-32" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-3" value="修改物料" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="720" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-4" target="ug5BLrvYeyJBSdmcTfPj-50" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-4" value="删除物料（支持批量）" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-5" target="ug5BLrvYeyJBSdmcTfPj-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="450" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="150" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-5" value="两个实体类接受前端参数。实体参数一：当前页码，每页的展示条数。实体参数二（查询条件）：物料编码，物料名称" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="65" y="310" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-10" target="ug5BLrvYeyJBSdmcTfPj-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-10" value="条件查询，使用mybatisPlus的自动判断参数是否为空，不为空才执行相对于的查询" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="70" y="430" width="160" height="75.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-12" value="构造返回参数" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="540" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-16" target="ug5BLrvYeyJBSdmcTfPj-17" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-16" value="自动生成物料编码" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="414" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-17" value="后端生成编码并返回给前端渲染" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="414" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-19" target="ug5BLrvYeyJBSdmcTfPj-21" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-19" value="填写一系列消息，前端验证是否已经填写必填项" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="595" y="325" width="130" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-21" target="ug5BLrvYeyJBSdmcTfPj-19" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-21" target="ug5BLrvYeyJBSdmcTfPj-26" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-21" value="验证物料编码是否唯一" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="470" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-25" value="否" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=19;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="740" y="440" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-26" value="插入到数据库中" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="620" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-28" value="是" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="660" y="570" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-31" value="打开" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="474" y="325" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-32" target="ug5BLrvYeyJBSdmcTfPj-35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-32" value="前端提供该物料消息的id，后端根据id查询信息返回给前端渲染" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-35" target="ug5BLrvYeyJBSdmcTfPj-37" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-35" value="用户修改数据，点击确认修改键后" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-37" target="ug5BLrvYeyJBSdmcTfPj-41" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-48" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-37" target="ug5BLrvYeyJBSdmcTfPj-47" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-37" value="后端验证物料编码是否唯一" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="95" y="1030" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-41" value="提示物料编码重复" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="890" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-46" value="否" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="980" width="60" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-47" value="根据id修改数据" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="1150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-49" value="是" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="150" y="1110" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ug5BLrvYeyJBSdmcTfPj-50" target="ug5BLrvYeyJBSdmcTfPj-52" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-50" value="用户确认删除后，前端发送批量id给后端" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="930" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ug5BLrvYeyJBSdmcTfPj-52" value="根据ids批量删除" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+          <mxGeometry x="570" y="1040" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

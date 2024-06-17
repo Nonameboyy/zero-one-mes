@@ -1,0 +1,25 @@
+warehousemanagement:
+ get:
+  summary: 获取库存列表（条件+分页）
+ export:
+  summary: 导出库存表
+ field:
+  item_id: 产品物料ID
+  item_code: 产品物料编码
+  item_name: 产品物料名称
+  specification: 规格型号
+  unit_of_measure: 单位
+  batch_code: 入库批次号
+  warehouse_name: 仓库名称
+  location_name: 库区名称
+  area_name: 库位名称
+  vendor_code: 供应商编号
+  vendor_name: 供应商名称
+  vendor_nick: 供应商简称
+  workorder_code: 生产工单编号
+  recpt_date: 接收日期
+  expire_date: 库存有效期
+exportwm:
+ excel:
+  filePath: ./public/execl/wm-project
+  sheetName: 库存量

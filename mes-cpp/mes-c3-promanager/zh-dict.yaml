@@ -1,0 +1,158 @@
+process:
+ route:
+  delete1: 删除工艺流程
+  delete2: 删除工艺关联产品
+  output: 导出工艺关联产品
+  id: 工艺流程编号
+  corproductid: 工艺关联产品编号
+ fields:
+  processId: 唯一标识
+  processCode: 工序编码
+  processName: 工序名称
+  processStatus: "状态 0不启用 1启用"
+  remark: 备注
+  describe: 工序说明
+ field:
+  id: 唯一编号
+  record_id: 记录id
+  code: 工艺路线编号 
+  name: 工艺路线名称
+  desc: 工艺路线说明
+  flag: 是否启用
+  remark: 备注
+  example: 组装
+  BOMid: 产品物料id
+ get:
+  summary1: 获取工艺列表 
+  summary2: 获取工艺详情
+  summary3: 获取关联产品列表
+  summary4: 获取组成工序列表
+ post:
+  summary1: 添加工艺   
+  summary2: 添加产品制程物料BOM
+ put:
+  summary1: 修改工艺
+  summary2: 修改产品制程BOM
+ delete:
+  summary1: 删除组成工序
+  summary2: 删除产品制程物料BOM
+ get_field:
+  summary: 导出工艺
+ add:
+  summary: 添加组成工序
+ modify:
+  summary: 修改组成工序
+
+pro:
+ get:
+  summary: 获取组成工序列表
+ modify:
+  summary: 修改组成工序
+ add:
+  summary: 新增组成工序
+ fields:
+  proId: 序号
+  record_id: 记录id
+  routeId: 工艺id
+  nextprocess_id: 下一道工序id
+  proName: 工序名称
+  proCode: 工序编码
+  key_flag: 关键工序
+  type: 与下一段工序的关系
+  check: 质检
+  preTime: 准备时间
+  sufTime: 等待时间
+  color: 甘特图颜色
+  remark: 备注
+
+set:  
+ query:
+  summary: 获取工序步骤列表(条件+分页)
+  summary1: 获取工序列表
+  summary2: 获取工序名称列表
+  summary3: 获取工序详情
+ fields:
+  processcode: 工序编码
+  processname: 工序名称
+  enableflag: 是否启用
+  attention: 工序说明
+  remark: 备注
+  processid: 工序ID
+  ordernum: 顺序编码
+  device: 辅助设备
+  material: 辅助材料
+  docurl: 材料URL
+  contentid: 内容ID
+  code: 工序步骤编码
+  name: 工序步骤名称
+  flag: 是否是关键步骤
+ add:
+  summary: 添加工序
+ modify:
+  summary: 修改工序
+  summary1: 修改工序步骤
+  summary2: 删除工序步骤
+  summary3: 删除工序
+ addstep: 
+  summary: 添加工序步骤
+ export:
+  summary: 导出工序
+  summary1: 导出工序步骤
+ delete:
+  summary1: 删除工序步骤
+  summary2: 删除工序
+
+product:
+ field:
+  id: 工艺路线id
+  name: 产品物料名称
+  size: 规格型号
+  unit: 单位
+  routeid: 唯一标识
+
+RelatePro:
+ summary: 
+  AddRelatePro: 新增关联产品
+  ModRelatePro: 修改关联产品
+  ProMaterial: 获取产品制程物料BOM表
+ DTO:
+  record_id: 记录ID
+  item_id: 产品物料ID
+  item_code: 产品物料编码
+  item_name: 产品物料名称
+  unit_of_measure: 产品物料单位
+  specification: 产品规格型号
+  RPmodels: 备注
+  #Ratio_of_materials_used: 用料比例
+ ProMaterialDTO:
+  item_id: 物料ID
+  item_code: 物料编码
+  item_name: 物料名称
+  unit_of_measure: 物料单位
+  specification: 规格型号
+  quantity: 用料比例
+  RPmodels: 备注
+  route_id: 工艺id
+  process_id: 工序id
+  product_id: 产品物料id
+  #Ratio_of_materials_used: 用料比例
+excel:
+ sheet:
+  s1: 生产工序数据表
+  s2: 导出工艺数据表
+  s3: 生产工序内容数据
+ header:
+  h1: 工序编码
+  h2: 工序名称
+  h3: 工艺要求
+  h4: 是否启用
+  h5: 路线编号
+  h6: 路线名称
+  h7: 路线说明
+  h8: 是否启用
+  h9: 工序ID
+  h10: 顺序编号
+  h11: 内容说明
+  h12: 辅助设备
+  h13: 辅助材料
+  h14: 材料URL

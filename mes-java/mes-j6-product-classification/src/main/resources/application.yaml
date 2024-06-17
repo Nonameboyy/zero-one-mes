@@ -1,0 +1,11 @@
+server:
+  port: ${sp.product-classification}
+spring:
+  cloud:
+    nacos:
+      discovery:
+        ip: 47.99.157.191
+  application:
+    name: ${sn.product-classification}
+
+

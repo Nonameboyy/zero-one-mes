@@ -1,0 +1,7 @@
+server:
+  port: ${sp.product-management}
+spring:
+  application:
+    name: ${sn.product-management}
+
+

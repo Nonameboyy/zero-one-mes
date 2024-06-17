@@ -1,0 +1,90 @@
+Material:
+ get:
+  summary: 分页查询物料信息
+ post:
+  summary: 新增一条物料信息
+ put:
+  summary: 修改一条物料信息
+ delete:
+  summary: 删除一条物料信息
+ 
+ field:
+  id: 编号
+  issue_code: 领料单编号
+  issue_id: 领料单ID
+  item_code: 产品物料编码
+  item_name: 产品物料名称
+  specification: 规格型号
+  unit_of_measure: 单位
+  quantity_issued: 领料数量
+  batch_code: 批次号
+  warehouse_name: 仓库名称
+  location_name: 库区名称
+  area_name: 库位名称
+  remark: 备注
+
+
+product:
+ summary: "获取领料单列表"
+ summary1: "获取领料单详情"
+ fields:
+  issue_id: "领料单id"
+  issue_code: "领料单编号"
+  issue_name: "领料单名称"
+  workstation_id: "工作站id"
+  workstation_code: "工作站编号"
+  workstation_name: "工作站名称"
+  workorder_id: "生产工单id"
+  workorder_code: "生产工单编码"
+  task_id: "生产任务id"
+  task_code: "生产任务编码"
+  client_id: "客户id"
+  client_code: "客户编码"
+  client_name: "客户名称"
+  client_nick: "客户简称"
+  warehouse_id: "仓库id"
+  warehouse_code: "仓库编码"
+  warehouse_name: "仓库名称"
+  location_id: "库区id"
+  location_code: "库区编码"
+  location_name: "库区名称"
+  area_id: "库位id"
+  area_code: "库位编码"
+  area_name: "库位名称"
+  issue_date: "领料日期"
+  status: "单据状态"
+  remark: "备注"
+  attr1: "预留字段1"
+  attr2: "预留字段2"
+  attr3: "预留字段3"
+  attr4: "预留字段4"
+  create_by: "创建者"
+  create_time: "创建时间"
+  update_by: "更新者"
+  update_time: "更新时间"
+
+pick:
+ post:
+  summary: 添加单据
+ put: 
+  summary: 修改单据
+ execute-get:
+  summary: 执行领取物料单
+ delete:
+  summary: 删除领取物料单
+ download: 
+  summary: 导出领取物料单
+
+ field:
+  id: 领料单ID
+  icode: 领料单编码
+  iname: 领料单名称
+  ctime: 领料日期
+  whname: 领料仓库
+  status: 单据状态
+  wocode: 生产工单
+  cltcode: 客户编号
+  cltname: 客户名称
+  remark: 备注
+ 
+

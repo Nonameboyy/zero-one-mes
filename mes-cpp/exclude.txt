@@ -1,0 +1,10 @@
+\Debug\
+\Release\
+\x64\
+\sample\
+\user\
+\file\
+\ws\
+\public\
+.vcxproj
+zh-dict.yaml

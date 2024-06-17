@@ -1,0 +1,166 @@
+maintenanceplan:
+ summary: 修改点检保养计划
+ fields: 
+  planid: 计划ID
+  plancode: 计划编码
+  planname: 计划名称
+  plantype: 计划类型
+  cycletype: 频率
+  cyclecount: 次数
+  startdate: 开始时间
+  enddata: 结束时间
+  status: 状态
+  remark: 备注
+  updateby: 更新者
+  updatetime: 更新时间
+modifyplanstatus:
+ summary: 修改点检计划状态
+ fields:
+  planid: 计划ID
+  status: 状态（启用或停用）   
+  updateby: 更新者
+  updatetime: 更新时间
+plan:
+ export-plan:
+  summary: 导出计划
+  plan-code: 计划编号
+  plan-name: 计划名称
+  plan-type: 计划类型
+  state: 状态
+machinery-list:
+ field:
+  record-id: 流水号
+  machinery-code: 设备编码
+  machinery-name: 设备名称
+  machinery-brand: 品牌
+  machinery-spec: 规格型号
+  remark: 备注
+  plan-id: 计划ID
+  machinery-id: 设备ID
+ query:
+  summary: 获取点检/保养设备列表（条件+分页）
+machinery-plan:
+ field:
+  plan-id: 计划ID
+  plan-code: 计划编码
+  plan-name: 计划名称
+  plan-type: 计划类型
+  start-date: 开始日期
+  end-date: 结束日期
+  cycle-type: 频率
+  cycle-count: 次数
+  status: 状态
+  remark: 备注
+ query:
+  summary: 获取计划列表（条件+分页）
+ query-details:
+  summary: 获取计划详情
+machinery-subject:
+ field:
+  record-id: 流水号
+  plan-id: 计划ID
+  subject-id: 设备ID
+  subject-code: 项目编码
+  subject-name: 项目名称
+  subject-type: 项目类型
+  subject-content: 项目内容
+  subject-standard: 标准
+  remark: 备注
+ query:
+  summary: 获取计划点检/保养项目列表（条件+分页）
+planSubject:
+ query:
+  summaryTable: 获取计划要处理的项目列表
+  summaryDetailPage: 获取计划要处理的项目列表（分页）
+ fields:
+  subId: 项目ID
+  subCode: 项目编码
+  subName: 项目名称
+  subType: 项目类型
+  subContent: 项目内容
+  subStandard: 项目标准
+  enable: 是否启用
+  remark: 备注
+  ccreateby: 创建者
+  createtime: 创建时间
+  updateby: 更新者
+  updatetime: 更新时间
+ fieldsDesc:
+  subType:
+   inspection: 设备点检
+   maintenance: 设备保养
+ op:
+  deleteT: 普通的删除操作
+  deleteOneToMany: 联表下，多主键时的删除操作
+ inputDESC:
+  delOneToMany:
+   primaryKey: 双主键一对多删除时的主要主键
+deleteTemplate:
+ summary:
+  deleteUnique: 单一主键的批量删除（示例模板1）
+  deleteShared: 多个主键的批量删除（示例模板2）
+ DESC:
+  tableName: 表名
+  tableNamePri: 主表表名
+  tableNameSec: 次表表名
+  keyPri: 主表主键
+deleteOP:
+ summary:
+  plan: "删除点检/保养计划（参数为主键列表，例如：[1,2]）"
+  planDelete: 删除计划前的存在性检测
+  machiner: "删除计划里要点检/保养的机器（参数为主键列表，例如：[1,2]）"
+  subject: "删除计划里要点检/保养的项目（参数为主键列表，例如：[1,2]）"
+device-list:
+ summary:
+  add-proj: 添加点检/保养设备
+ field:
+  planId: 计划ID
+  machineryId: 设备ID列表(多个ID)
+
+maintain-proj:
+ summary:
+  add-proj: 添加计划点检/保养项目
+ field:
+  planId: 计划ID
+  machineryId: 项目ID列表(多个ID)
+ 
+   
+   
+     
+add-mj:
+ add:
+  summary: 添加计划
+ fields:
+  pid: 计划编码
+  pname: 计划名称
+  ptype: 计划类型
+  ctype: 频率(年，月，日...)
+  sdate: 开始日期
+  edate: 结束日期
+  status: 状态
+  remark: 备注
+  ccount: 次数
+
+maintenance:
+ fields:
+  planid: 计划ID
+  plancode: 计划编码
+  planname: 计划名称
+  plantype: 计划类型
+  circletype: 频率类型（天，时，分）
+  circlecount: 频率次数
+  startdate: 计划开始时间
+  enddata: 计划结束时间
+  remark: 备注
+
+deleteQuery:
+ planSubject:
+  recordId: 流水号
+  planId: 计划id
+  subjectId: 项目id
+  subjectCode: 项目编码
+  subjectName: 项目名称
+  machineryId: 项目id
+  machineryCode: 项目编码
+  machineryName: 项目名称
+   

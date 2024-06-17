@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeroone.star.productClassification.mapper.ItemTypeMapper">
+
+    <resultMap type="com.zeroone.star.productClassification.entity.ItemType" id="ItemTypeResult">
+        <id property="itemTypeId" column="item_type_id"/>
+        <result property="itemTypeCode" column="item_type_code"/>
+        <result property="itemTypeName" column="item_type_name"/>
+        <result property="parentTypeId" column="parent_type_id"/>
+        <result property="ancestors" column="ancestors"/>
+        <result property="itemOrProduct" column="item_or_product"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="enableFlag" column="enable_flag"/>
+        <result property="remark" column="remark"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectItemTypeVo">
+        select d.item_type_id as itemTypeId, d.item_type_code as itemTypeCode, d.item_type_name as itemTypeName,
+               d.parent_type_id as parentTypeId, d.ancestors, d.item_or_product as itemOrProduct,
+               d.order_num as orderNum, d.enable_flag as enableFlag, d.remark, d.create_by as createBy,
+               d.create_time as createTime, d.update_by as updateBy, d.update_time as updateTime
+        from md_item_type d
+    </sql>
+
+    <select id="selectItemTypeList" parameterType="com.zeroone.star.project.j6.product_classification.query.ItemTypeQuery" resultMap="ItemTypeResult">
+        <include refid="selectItemTypeVo"/>
+        where 1=1
+        <if test="itemTypeId != null">
+            AND d.item_type_id = #{itemTypeId}
+        </if>
+        <if test="parentTypeId != null">
+            AND d.parent_type_id = #{parentTypeId}
+        </if>
+        <if test="itemTypeCode != null and itemTypeCode != ''">
+            AND d.item_type_code like concat('%', #{itemTypeCode}, '%')
+        </if>
+        <if test="itemTypeName != null and itemTypeName != ''">
+            AND d.item_type_name like concat('%', #{itemTypeName}, '%')
+        </if>
+        <if test="enableFlag != null and enableFlag != ''">
+            AND d.enable_flag = #{enableFlag}
+        </if>
+        <if test="itemOrProduct != null and itemOrProduct != ''">
+            AND d.item_or_product = #{itemOrProduct}
+        </if>
+        order by d.parent_type_id, d.order_num
+    </select>
+
+    <select id="selectItemTypeById" parameterType="Long" resultMap="ItemTypeResult">
+        <include refid="selectItemTypeVo"/>
+        where d.item_type_id = #{itemTypeId}
+    </select>
+
+    <select id="checkItemTypeCodeUnique" resultMap="ItemTypeResult">
+        <include refid="selectItemTypeVo"/>
+        where d.item_type_code = #{itemTypeCode} and d.parent_type_id = #{parentTypeId} limit 1
+    </select>
+
+    <select id="checkItemTypeNameUnique" resultMap="ItemTypeResult">
+        <include refid="selectItemTypeVo"/>
+        where d.item_type_name = #{itemTypeName} and d.parent_type_id = #{parentTypeId} limit 1
+    </select>
+
+    <select id="hasChildByItemTypeId" parameterType="Long" resultType="int">
+        select count(1) from md_item_type where parent_type_id = #{parentTypeId} limit 1
+    </select>
+
+    <select id="hasItemByItemTypeId" parameterType="Long" resultType="int">
+        select count(1) from md_item where item_type_id = #{itemTypeId} limit 1
+    </select>
+
+    <insert id="insertItemType" parameterType="com.zeroone.star.productClassification.entity.ItemType">
+        insert into md_item_type(
+            item_type_id, parent_type_id, ancestors, item_type_code, item_type_name, order_num, item_or_product, enable_flag, remark, create_by, create_time, update_by, update_time
+        ) values (
+                     #{itemTypeId}, #{parentTypeId}, #{ancestors}, #{itemTypeCode}, #{itemTypeName}, #{orderNum}, #{itemOrProduct}, #{enableFlag}, #{remark}, #{createBy}, sysdate(), #{updateBy}, sysdate()
+                 )
+    </insert>
+
+    <update id="updateItemType" parameterType="com.zeroone.star.productClassification.entity.ItemType">
+        update md_item_type
+        <set>
+            <if test="parentTypeId != null">parent_type_id = #{parentTypeId},</if>
+            <if test="itemTypeCode != null">item_type_code = #{itemTypeCode},</if>
+            <if test="itemTypeName != null">item_type_name = #{itemTypeName},</if>
+            <if test="orderNum != null">order_num = #{orderNum},</if>
+            <if test="itemOrProduct != null">item_or_product = #{itemOrProduct},</if>
+            <if test="enableFlag != null">enable_flag = #{enableFlag},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </set>
+        where item_type_id = #{itemTypeId}
+    </update>
+
+    <delete id="deleteItemTypeById" parameterType="Long">
+        delete from md_item_type where item_type_id = #{itemTypeId}
+    </delete>
+</mapper>

@@ -1,0 +1,220 @@
+receipt:
+ query:
+  fields:
+   recptId: 入库单ID
+   recptCode: 入库单编号
+   recptName: 入库单名称
+   vendorName: 供应商名称
+   poCode: 订单编号
+   recptDate: 入库日期
+   status: 单据状态
+   warehouseName: 入库仓库
+   remark: 备注
+ describe:
+  query1: 获取单据列表（条件+分页）
+  query2: 获取单据详情
+
+  
+
+productionorder:
+ query:
+  summary: 生产工单
+  fields:
+     workorder_code: 工单编号
+     workorder_name: 工单名称
+     workorder_type: 工单类型
+     order_source: 来源类型
+     source_code: 来源单据
+     product_id: 产品ID
+     product_code: 产品编号
+     product_name: 产品名称
+     product_spc: 产品规格型号
+     batch_code: 批次号
+     pquantity: 生产数量
+     quantity_produced: 已生产数量
+     quantity_changed: 调整数量
+     quantity_scheduled: 已排产数量
+     client_id: 客户ID
+     client_code: 客户编号
+     client_name: 客户名称
+     vendor_id : 供应商ID
+     vendor_code: 供应商编号
+     vendor_name: 供应商名称
+     finish_date: 完成时间
+     request_date: 需求时间
+     status: 单据状态
+     item_id: BOM物料ID
+     workorder_id: 生产工单ID
+     item_code: BOM物料编号
+     item_name: BOM物料名称
+     item_spc: 物料规格型号
+     unit_of_measure: 单位
+     item_or_product: 物料产品标识
+     quantity: 物料预计使用量
+productionprocess:
+ query:
+  summary: 生产排查
+  fields:
+    process_name: 工序名称
+    process_id:  工序ID
+    process_code: 工序编号  
+whstorageorder:
+ field:
+  item_id: 物料ID
+  item_code: 物料编码
+  item_name: 物料名称
+  specification: 规格型号
+  unit_of_measure: 单位
+  quantity_recived: 入库数量
+  batch_code: 入库批次号
+  expire_date: 有效期
+  warehouse_id: 仓库ID
+  warehouse_code: 仓库编码
+  warehouse_name: 仓库名称
+  location_id: 库区ID
+  location_code: 库区编码
+  location_name: 库区名称
+  area_id: 库位ID
+  area_code: 库位编码
+  area_name: 库位名称
+  iqc_check: 是否检验
+  iqc_code: 来料检验单编码
+  iqc_id: 来料检验单ID
+  remark: 备注
+  line_id: 行ID
+ default: 
+  item_code: IF2022082437
+  item_name: PCB颗粒
+  specification: 黑色
+  unit_of_measure: g
+  warehouse_code: WH155
+  warehouse_name: 原料仓
+  location_code: L039
+  location_name: 注塑原料区
+  area_code: A0029
+  area_name: 默认库位
+  iqc_check: N
+ add: 
+  summary: 添加入库单行
+ modify:
+  summary: 修改入库单行
+ delete: 
+  summary: 删除入库单行（支持批量删除）
+addlist:
+ field:
+  recptcode: 入库单编号
+  recptname: 入库单名称
+  recptdate: 入库日期
+  pocode: 采购订单号
+  status: 单据状态
+  vendorid: 供应商
+  warehousename: 入库仓库
+  remark: 备注
+ post:
+  summary: 添加单据
+modifylist:
+ field:
+  recptid: 入库单id
+  recptcode: 入库单编号
+  recptname: 入库单名称
+  recptdate: 入库日期
+  pocode: 采购订单号
+  status: 单据状态
+  vendorid: 供应商
+  warehousename: 入库仓库
+  remark: 备注
+ put:
+  summary: 修改单据
+getlist:
+ field:
+  recptcode: 入库单编码
+  recptname: 入库单名称
+  vendorname: 供应商名称
+  recptdate: 入库日期
+  pocode: 订单编号
+ get:
+  summary: 分页查询数据
+  
+user:
+ query-all: 
+  summary: 查询所有用户
+ modify-user:
+  summary: 修改用户信息
+ query-menu:
+  summary: 查询所有菜单
+ field:
+  age: 年龄
+  nickname: 昵称
+  idCard: 身份证号码
+  menuname: 菜单名称
+  menuicon: 图标名称
+  menuhref: 路由地址
+  menusub: 子菜单
+sample:
+ get:
+  summary: 分页查询示例数据
+ post:
+  summary: 新增一条示例数据
+ put:
+  summary: 修改一条示例数据
+ delete:
+  summary: 删除一条示例数据
+ query-one:
+  summary: 使用声明式服务查询一条数据
+ query-all:
+  summary: 使用声明式服务查询多条数据
+ field:
+  id: 编号
+  age: 年龄
+  name: 姓名
+  sex: 性别，如：男
+file:
+ upload: 
+  summary: 单文件上传
+ upload-more:
+  summary: 多文件上传
+ download:
+  summary: 下载文件
+ html:
+  summary: HTML静态页面访问
+ editor-upload-image:
+  summary: editor上传图片示例接口
+ field:
+  filename: 文件名
+  img-url: 图片src
+  img-alt: 图片文字描述
+  img-href: 图片链接地址
+
+wm_item_recpt:
+  put:
+    summary: 执行入库
+  delete:
+    summary: 删除单据（支持批量删除）
+  export:
+    summary: 导出单据
+    sheet: 物料入库单数据
+  field:
+    recpt_id: 入库单编号
+    recpt_code: 入库单编号
+    recpt_name: 入库单名称
+    iqc_id: 来料检验单ID
+    iqc_code: 来料检验单编号
+    po_code: 采购订单编号
+    vendor_id: 供应商ID
+    vendor_code: 供应商编码
+    vendor_name: 供应商名称
+    vendor_nick: 供应商简称
+    warehouse_id: 仓库ID
+    warehouse_code: 仓库编码
+    warehouse_name: 仓库名称
+    location_id: 库区ID
+    location_code: 库区编码
+    location_name: 库区名称
+    area_id: 库位ID
+    area_code: 库位编码
+    area_name: 库位名称
+    recpt_date: 入库日期
+    status: 单据状态
+    filename: 导出文件名称
+    format: 导出格式
+    update_time: 更新时间

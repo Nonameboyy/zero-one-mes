@@ -1,0 +1,47 @@
+﻿workfixture:
+ query:
+  summary: 获取工装夹具列表
+  detail: 获取工装夹具详情
+ add:
+  summary: 添加工装夹具
+ modify:
+  summary: 修改工装夹具信息
+ remove:
+  summary: 删除工装夹具
+ export:
+  summary: 导出工装夹具
+ fields:
+  id: 唯一标识
+  code: 工装夹具编号
+  name: 工装夹具名称
+  brand: 品牌
+  spec: 型号
+  quantity: 数量
+  aquantity: 可用数量
+  mtype: 保养维护类型
+  nmperiod: 下次保养周期
+  nmdate: 下次保养日期
+  status: 状态
+  remark: 备注
+ type:
+  query:
+   summaryT: 获取工装夹具类型列表
+   summaryTN: 获取工装夹具类型名称列表
+   create: 工装夹具类型设置新增
+   delete: 工装夹具类型设置删除
+   export: 工装夹具类型设置导出
+   update: 工装夹具类型设置修改
+  fields:
+   id: 工装夹具类型ID
+   code: 工装夹具类型编号
+   name: 工装夹具类型名称
+   codeflag: 工装夹具类型是否编码管理N/Y
+   mtype: 工装夹具类型保养维护类型
+   mperiod: 工装夹具类型保养周期
+   remark: 工装夹具类型备注
+   excel: excel文件
+   deleteid: 需要删除数据的唯一编码
+   url: 文件url
+   alt: 文件文字描述
+   href: 文件下载地址
+   list: 类型名称列表

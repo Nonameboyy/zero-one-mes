@@ -1,0 +1,5 @@
+server:
+  port: ${sp.holidaysettings}
+spring:
+  application:
+    name: ${sn.holidaysettings}

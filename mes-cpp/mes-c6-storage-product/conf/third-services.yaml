@@ -1,0 +1,13 @@
+rocket-mq:
+  name-server: 192.168.220.128:9876
+fastdfs:
+  charset: UTF-8
+  connect-timeout: 5
+  network-timeout: 30
+  http-secret-key: FastDFS1234567890
+  http-anti-steal-token: true
+  connection-pool-max-idle: 20
+  connection-pool-max-total: 20
+  connection-pool-min-idle: 2
+  nginx-servers: 192.168.220.128:8888
+  tracker-servers: 192.168.220.128:22122

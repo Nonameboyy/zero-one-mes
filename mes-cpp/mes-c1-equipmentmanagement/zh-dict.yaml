@@ -1,0 +1,27 @@
+﻿devicet:
+ query:
+  summary: 获取设备类型列表
+  type: 添加设备类型
+  tree: 获取设备类型名称树
+ fields:
+  tname: 设备类型名称
+  status: 是否启用
+  encoding: 设备类型编码
+  remake: 备注
+  unique: 唯一标识
+  fname: 父类型
+  subdevtype: 子设备类型
+﻿equipment-type:
+  delete:
+   summary: 删除一个设备类型
+   message: 
+    contain-son: 该类型拥有子类型，删除失败
+  put: 
+   summary: 修改一个类型
+  field:
+   id: 设备类型id
+   parent-id: 父类型id
+   name: 设备类型名称
+   enable: 是否启用
+   remark: 备注
+   update-time: 修改时间

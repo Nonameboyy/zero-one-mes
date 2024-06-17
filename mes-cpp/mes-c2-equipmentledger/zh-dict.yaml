@@ -1,0 +1,47 @@
+equipment:
+ query:
+  summary: 获取设备列表（条件+分页）
+  summary1: 获取设备详情
+  summary2: 新增设备
+  summary3: 修改设备
+  summary4: 设备分类
+ fields:
+  ecode: 设备编码
+  ename: 设备名称
+  tname: 设备类型名称
+  tid: 设备类型id
+  tcode: 设备类型编码
+  id: 设备ID
+  brand: 品牌
+  spec: 规格型号
+  workshopid: 所属车间Id
+  workshopcode: 所属车间编码
+  workshopname: 所属车间名称
+  status: 状态
+  ct: 创建时间
+  note: 备注
+  
+list-dtO: 列表DTO
+equipmentledger:
+ remove-device:
+  summary: 删除设备（支持批量删除）
+  device-code: 设备编码
+ export-device:
+  summary: 导出设备
+  device-code: 设备编码
+  device-name: 设备名称
+ import-device:
+  summary: 导入模板
+  success-count: 成功条数
+  fail_count: 失败条数
+ upload-file:
+  summary: 上传文件（将导入模板上传至服务器）
+ download-template:
+  summary: 下载导入模板
+ 
+  
+add-mj:
+ add:
+  summary: 添加设备模块
+ fields:
+  status: 状态

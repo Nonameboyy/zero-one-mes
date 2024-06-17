@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeroone.star.basicdata.mapper.MdVendorMapper">
+
+    <select id="listVendor" resultType="com.zeroone.star.basicdata.entity.MdVendor"
+            parameterType="com.zeroone.star.project.dto.j4.basicdata.VendorExcelSelectDTO">
+        select * from md_vendor
+        <where>
+            <if test="vendorCode != null and vendorCode != ''"> and vendor_code like concat('%', #{vendorCode}, '%')</if>
+            <if test="vendorName != null and vendorName != ''">and vendor_name like concat('%', #{vendorName}, '%')</if>
+            <if test="vendorNick != null and vendorNick != ''"> and vendor_nick like concat('%', #{vendorNick}, '%')</if>
+            <if test="enableFlag != null and enableFlag != ''">and enable_flag = #{enableFlag}</if>
+            <if test="vendorEn != null and vendorEn != ''"> and vendor_en like concat('%', #{vendorEn}, '%')</if>
+        </where>
+    </select>
+</mapper>

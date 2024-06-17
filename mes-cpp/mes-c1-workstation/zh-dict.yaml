@@ -1,0 +1,91 @@
+equipment:
+ getEquipmentById:
+  summary: 根据设备id获取设备(Path参数)
+ getEquipment:
+  summary: 根据设备id获取设备(Query参数)
+ getEquipmentPage:
+  summary: 获取设备列表(条件 + 分页)
+ getEquipmentTypeTree:
+  summary: 获取设备类型名称树
+ getEquipmentList:
+  summary: 获取设备列表(条件 + 分页) 
+ params:
+  equipmentId:
+   desc: 设备id
+   default: 1
+ equipmentTypeTreeDto:
+  machineryTypeId: 设备id
+  machineryTypeCode: 设备类型编码   
+  machineryTypeName: 设备类型名称
+  enableFlag: 是否启动
+  remark: 备注
+  parentTypeId: 父id
+  child: 子设备类型名称列表
+ equipmentQuery:
+  equimentCode: 设备编码  
+  equimentName: 设备名称
+ equipmentDto:
+  equipmentCode: 设备编码  
+  equipmentName: 设备名称
+  brand: 品牌
+  specificationsAndModels: 规格型号
+  equipmentStatus: 设备状态
+  createTime: 创建时间
+deviceResource:
+ getDeviceResourcetList:
+  summary: 获取资源列表(条件 + 分页)
+ addDeviceResource:
+  summary: 添加资源
+ modifyDeviceResource:
+  summary: 修改资源
+ deleteDeviceResource:
+  summary: 删除资源
+ deviceResourceDTO:
+  deviceResourceId: 设备资源id
+  equipmentCode: 设备编号
+  equipmentName: 设备名称
+  count: 数量
+workstation:
+ fields:
+  workstationId: 工作站ID
+  workstationCode: 工作站编码
+  workstationName: 工作站名称
+  workshopName: 所在车间名称
+  processName: 所属工序
+  enableFlag: 是否启用
+  remark: 备注
+ get:
+  summary: 获取工作站列表
+ delete:
+  summary: 删除工作站
+ add:
+  summary: 增加工作站
+ modify:
+  summary: 修改工作站
+ export:
+  summary: 导出工作站   
+post:
+ query:
+  summary: 获取岗位列表
+ fields:
+  pname: 岗位名称 
+  quantity: 岗位数量
+  recordid: 记录id
+  postid: 岗位id
+  ctime: 创建时间
+  workstationid: 工作站id
+ add:
+  summary: 新增一条岗位数据
+modify:
+ summary: 修改岗位列表
+remove:
+ summary: 删除岗位列表   
+wf_for_ws:
+ fields:
+  typename: 类型名称
+  account: 数量
+ post:
+  summary: 添加资源
+ get:
+  summary: 获得资源
+daoju: 刀具

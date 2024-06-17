@@ -1,0 +1,63 @@
+repaircontent:
+ get:
+  summary: 维修内容详情
+  query_repaircontent: 维修内容分页查询
+  add_repaircontent: 添加维修内容
+  modify_repaircontent: 修改维修内容
+  remove_repaircontent: 删除维修内容
+  repair_id: 维修单id（唯一标识）
+  repair_name: 项目名称
+ field:
+  subject_name: 项目名称
+  malfunction: 故障描述
+  malfunction_url: 故障描述资源
+  repair_des: 维修情况
+  repair_id: 维修单id(唯一标识)
+  subject_id: 项目id
+  subject_code: 项目编码
+  subject_type: 项目类型
+  subject_content: 项目内容
+  subject_standard: 标准
+  create_by: 创建者
+  create_time: 创建时间
+  update_by: 更新者
+  update_time: 更新时间
+  remark: 备注
+  attr1: 预留字段(string)
+  attr2: 预留字段(int)
+  line_id: 行id
+ default:
+  subject_name: 润滑
+  malfunction: 冲床无明显摩擦声
+  malfunction_url: 冲床无明显摩擦声
+  repair_des: 无
+  create_by: hhh
+  update_by: hhh
+repairorder:
+ summary: 
+  page_query_table: 维修单分页查询
+  details: 维修单详情查询
+  add_repairorder: 添加维修单
+  modify_repairorder: 修改维修单
+  remove_repairorder: 删除维修单
+ query:
+  fields:
+   repair_id: 维修单ID
+   repair_code: 维修单编号
+   repair_name: 维修单名称
+   machinery_id: 设备ID
+   machinery_code: 设备编码
+   machinery_name: 设备名称
+   machinery_type_id: 设备类型ID
+   machinery_brand: 品牌
+   require_date: 报修日期
+   finish_date: 维修完成日期
+   confirm_date: 验收日期
+   repair_result: "维修结果 (SUCCESS: 维修成功; SCRAP: 报废)"
+   accepted_by: 维修人员
+   confirm_by: 验收人员
+   status: "单据状态 (PREPARE: 草稿; CONFIRMED: 已确认; APPROVING: 审批中; APPROVED: 已审批; FINISHED: 已完成)"
+   remark: 备注
+  example: 
+   machinery_name: WG-A1型纺织机
+   machinery_brand: 万国

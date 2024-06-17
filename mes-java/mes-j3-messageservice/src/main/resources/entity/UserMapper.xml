@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.zeroone.star.messageservice.mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.zeroone.star.messageservice.entity.User">
+        <id column="user_id" property="userId"/>
+        <result column="dept_id" property="deptId"/>
+        <result column="user_name" property="userName"/>
+        <result column="nick_name" property="nickName"/>
+        <result column="user_type" property="userType"/>
+        <result column="email" property="email"/>
+        <result column="phone_number" property="phoneNumber"/>
+        <result column="sex" property="sex"/>
+        <result column="avatar" property="avatar"/>
+        <result column="password" property="password"/>
+        <result column="status" property="status"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="login_ip" property="loginIp"/>
+        <result column="login_date" property="loginDate" javaType="org.joda.time.DateTime" jdbcType="DATETIME"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime" javaType="org.joda.time.DateTime" jdbcType="DATETIME"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="update_time" property="updateTime" javaType="org.joda.time.DateTime" jdbcType="DATETIME"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
+        <select id="findByUsername" resultType="com.zeroone.star.messageservice.entity.User">
+            SELECT * FROM sys_user WHERE user_name = #{username}
+        </select>
+    </mapper>
+

@@ -1,0 +1,22 @@
+server:
+  port: ${sp.mycenter}
+spring:
+  application:
+    name: ${sn.mycenter}
+  datasource:
+    url: jdbc:mysql://192.168.107.130:3306/ktgmes
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+fastdfs:
+  charset: UTF-8
+  connect-timeout: 5
+  http-secret-key: your key
+  network-timeout: 30
+  http-anti-steal-token: true
+  http-tracker-http-port: 8080
+  connection-pool-max-idle: 20
+  connection-pool-max-total: 20
+  connection-pool-min-idle: 2
+  nginx-servers: 192.168.80.2:8000,192.168.80.3:8000,192.168.80.4:8000
+  tracker-servers: 192.168.107.130:22122

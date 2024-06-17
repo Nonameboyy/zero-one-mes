@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zeroone.star.sysmanagement.mapper.CodeRuleMapper">
+
+    <resultMap type="com.zeroone.star.sysmanagement.entity.CodeRule" id="SysAutoCodeRuleResult">
+        <id     property="ruleId"     column="rule_id"     />
+        <result property="ruleCode"     column="rule_code"   />
+        <result property="ruleName"    column="rule_name"   />
+        <result property="ruleDesc"   column="rule_desc"   />
+        <result property="maxLength" column="max_length"   />
+        <result property="isPadded"     column="is_padded"  />
+        <result property="paddedChar"    column="padded_char" />
+        <result property="paddedMethod"    column="padded_method" />
+        <result property="enableFlag"    column="enable_flag" />
+        <result property="remark"   column="remark"   />
+        <result property="createBy"   column="create_by"   />
+        <result property="createTime" column="create_time" />
+        <result property="updateBy"   column="update_by"   />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <sql id="selectSysAutoCodeRuleVo">
+        select d.rule_id, d.rule_code, d.rule_name, d.rule_desc, d.max_length,
+               is_padded,padded_char,padded_method,enable_flag,remark,create_by,create_time
+        from sys_auto_code_rule d
+    </sql>
+
+    <select id="selectSysAutoCodeResultList" resultType="com.zeroone.star.sysmanagement.entity.CodeRule">
+        <include refid="selectSysAutoCodeRuleVo"/>
+        where 1=1
+        <if test="ruleId != null and ruleId != 0">
+            AND rule_id = #{ruleId}
+        </if>
+        <if test="ruleCode != null and ruleCode != ''">
+            AND rule_code like concat('%', #{ruleCode}, '%')
+        </if>
+
+        <if test="ruleName != null and ruleName != ''">
+            AND rule_name like concat('%', #{ruleName}, '%')
+        </if>
+    </select>
+</mapper>

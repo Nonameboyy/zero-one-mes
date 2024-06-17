@@ -1,0 +1,305 @@
+addprodworkorder:
+ workorder:
+  workorder_id: 工单ID
+  workorder_code: 工单编号
+  workorder_name: 工单名称
+  order_source: 来源类型（工单来源）
+  source_code: 来源单据
+  status: 单据状态
+  workorder_type: 工单类型
+  product_code: 产品编号
+  product_name: 产品名称
+  product_spc: 规格型号
+  unit_of_measure: 单位
+  quantity: 工单数量（生产数量）
+  request_date: 需求日期
+  batch_code: 批次号
+  remark: 备注
+  client_code: 客户编码
+  client_name: 客户名称
+  menuname: 菜单名称
+  quantity_produced: 已生产数量
+  quantity_changed: 调整数量
+  vendor_name: 供应商名称
+  vendor_code: 供应商编码
+  product_id: 产品ID
+  ancestors: 所有父节点ID
+ post:
+  summary: 新增一条生产工单数据 
+
+getprodworkorderlist:
+ get:
+  summary: 获取生产工单列表（条件+分页）
+
+prodworkorderinfo:
+ get:
+  summary: 获取生产工单详情
+
+bom:
+ field: 
+  line_id: BOM行ID
+  item_code: BOM物料编号
+  item_name: BOM物料名称
+  item_spc: 规格型号
+  unit_of_measure: 单位
+  item_or_product: 物料/产品
+  quantity: 预计使用量
+ get:
+  summary: 获取生产工单BOM列表
+  
+prodmgmt:
+ delete:
+  fields:
+   recordId: 生产工单的记录Id
+  describe:
+   name: 删除报工
+
+Approval:
+ post:
+  id: 生产工单编号
+  draft: 草稿
+  remark: 状态
+  name: 审批相关
+  submi: 提交审批
+  passed: 审批通过
+  denied: 审批不通过
+
+ProdWorkorder:
+ field:
+  workorderId: 编号
+  workorderCode: 工单编号
+  workorderName: 工单名称
+  orderSource: 来源类型
+  sourceCode: 订单编号
+  status: 单据状态
+  workorderType: 工单类型
+  productId: 产品ID
+  productCode: 产品编号
+  productName: 产品名称
+  productSpc: 规格型号
+  unitOfMeasure: 单位
+  quantity: 生产数量
+  requestDate: 需求日期
+  batchCode: 批次号
+  clientId: 客户ID
+  clientCode: 客户编码
+  clientName: 客户名称
+  remark: 备注
+ put:
+  summary: 修改生产工单
+ delete:
+  summary: 删除生产工单
+ confirm: 
+  summary: 确认生产工单
+ complete:
+  summary: 完成生产工单
+
+productionorder:
+ query:
+  summary: 导出生产工单BOM组成
+  summary-another: 导出生产工单
+  fields:
+    workorder_code: 工单编号
+    workorder_name: 工单名称
+    workorder_type: 工单类型
+    order_source: 来源类型
+    source_code: 来源单据
+    product_id: 产品ID
+    product_code: 产品编号
+    product_name: 产品名称
+    product_spc: 产品规格型号
+    batch_code: 批次号
+    pquantity: 生产数量
+    quantity_produced: 已生产数量
+    quantity_changed: 调整数量
+    quantity_scheduled: 已排产数量
+    client_id: 客户ID
+    client_code: 客户编号
+    client_name: 客户名称
+    vendor_id : 供应商ID
+    vendor_code: 供应商编号
+    vendor_name: 供应商名称
+    finish_date: 完成时间
+    request_date: 需求时间
+    status: 单据状态
+    item_id: BOM物料ID
+    workorder_id: 生产工单ID
+    item_code: BOM物料编号
+    item_name: BOM物料名称
+    item_spc: 物料规格型号
+    unit_of_measure: 单位
+    item_or_product: 物料产品标识
+    quantity: 物料预计使用量
+ excel:
+  sheet:
+   s1: 生产工单数据
+   s2: 生产工单BOM组成数据
+  header:
+   h1: 工单编码
+   h2: 工单名称
+   h3: 工单类型
+   h4: 来源类型
+   h5: 来源单据
+   h6: 产品ID
+   h7: 产品编号
+   h8: 产品名称
+   h9: 规格型号
+   h10: 单位
+   h11: 批次号
+   h12: 生产数量
+   h13: 已生产数量
+   h14: 调整数量
+   h15: 已排产数量
+   h16: 客户ID
+   h17: 客户编码
+   h18: 客户名称
+   h19: 供应商ID
+   h20: 供应商编号
+   h21: 供应商名称
+   h22: 需求日期
+   h23: 完成时间
+   h24: 单据状态
+   h25: 生产工单ID
+   h26: BOM物料ID
+   h27: BOM物料编号
+   h28: BOM物料名称
+   h29: 规格型号
+   h30: 单位
+   h31: 物料产品标识
+   h32: 预计使用量
+productionprocess:
+ query:
+  summary: 获取产品/物料对应的工艺流程
+  fields:
+   process_name: 工序名称
+   process_id:  工序ID
+   process_code: 工序编号  
+prod:
+ query:
+  summary:
+   taskName: 任务名
+   workstationName: 工作站
+   processName: 工序
+   startTime: 开始时间
+   endTime: 结束时间
+ field:
+  taskName: 任务名
+  workstationName: 工作站
+  processName: 工序
+  startTime: 开始时间
+  endTime: 结束时间
+  menusub: 子菜单
+ get:
+  summary: 获取生产任务列表
+ getTree:
+  summary: 获取生产任务列表树
+ post:
+  summary: 添加生产任务
+ put:
+  summary: 修改一条生产任务
+ delete:
+  summary: 删除一条生产任务
+ query-one:
+  summary: 使用声明式服务查询一条生产任务
+ query-all:
+  summary: 使用声明式服务查询多条生产任务
+
+ #以下字典为尛孩子使用，大家不要动哦！
+ProduceWork:
+ query:
+  summary: 获取报工详情查询
+ post:
+  summary: 添加报工
+ put:
+  summary: 修改报工
+ fields:
+   workstation_name: 工作站名称
+   feedback_type: 报工类型
+   workorder_code: 生产工单编号
+   item_code: 产品物料编码
+   item_name: 产品物料名称
+   user_name: 报工人
+   record_user: 记录人
+   status: "状态 0正常 1停用" 
+   specification: 规格型号
+   quantity_feedback: 报工数量
+   feedback_time: 报工时间
+   record_id: 记录id
+   quantity_uncheck: 待检测质量
+   record_nick: 审核人
+ moren:
+   workstation_name: 默认工作站名称
+   feedback_type: 自行报工
+   workorder_code: 默认生产工单编号
+   item_code: 默认产品物料编码
+   item_name: 默认产品物料名称
+   user_name: 默认报工人
+   record_user: 默认记录人
+   status: "默认状态 0正常 1停用" 
+   specification: 默认规格型号
+   quantity_feedback: 默认报工数量
+   feedback_time: 默认报工时间
+   record_id: 默认记录id
+   quantity_uncheck: 待检测质量
+ add:
+   text: 增加功能
+   feedback_type: 报工类型
+   feedback_code: 生产工单
+   task_code: 生产任务
+   product_code: 产号编码
+   product_name: 产品名称
+   unit_of_measure: 单位
+   product_spc: 规格类型
+   quantity_feedback: 报工数量
+   quantity_uncheck: 待检测数量
+   feedback_time: 报工时间
+   remark: 备注
+   nick_nameA: 报工人
+   nick_nameB: 审核人
+ xg:
+    test: 修改功能  
+prod1:
+  field:
+    feedback_type : "报工类型"
+    workstation_name : "工作站名称"
+    workorder_code : "生产工单编号"
+    item_code : "产品物料编码"
+    item_name :  "产品物料名"
+    specification : "规格型号"
+    quantity_feedback : "报工数量"
+    user_name : "报工人"
+    feedback_time : "报工时间"
+    record_user : "审核人"
+    status : "状态"
+    startTime : "开始时间"
+    endTime : "结束时间"
+    processName : "工序"
+    id: "任务ID"
+  query:
+    summary:
+     feedback_type : "报工类型"
+     workstation_name : "工作站名称"
+     workorder_code : "生产工单编号"
+     item_code : "产品物料编码"
+     item_name :  "产品物料名"
+     specification : "规格型号"
+     quantity_feedback : "报工数量"
+     user_name : "报工人"
+     feedback_time : "报工时间"
+     record_user : "审核人"
+     status : "状态"
+  put:
+   summary: "修改一条生产任务"
+  delete:
+   summary: "删除一条生产任务"
+  get:
+   summary: "获取报工列表"  
+   process_name: 工序名称
+   process_id:  工序ID
+   process_code: 工序编号
+   item_code: 物料编号
+   route_id: 工艺路线ID
+   next_process_code: 下一个工序编号
+   next_process_name: 下一个工序的名称
+   test: 修改功能 
+   hq: 获取报工详情
