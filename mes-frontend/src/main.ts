@@ -15,7 +15,7 @@ import installHttp from "./plugins/http";
 import installElIcon from "./plugins/el-icon";
 
 import App from "./App.vue";
-import router from "./router";
+import router from "./router/index";
 
 // 定义特性标志
 /* 解决__VUE_PROD_HYDRATION_MISMATCH_DETAILS__警告

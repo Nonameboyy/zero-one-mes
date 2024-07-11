@@ -2,16 +2,18 @@ import { createRouter, createWebHistory } from "vue-router";
 import { ElMessage } from "element-plus";
 import { userStore } from "../stores/user";
 
+import { isConditionsSome } from "utils/index";
+
 const routes = [];
 routes.push(
-  // {
+	// {
 	// 	path: "/__devtools__",
 	// 	beforeEnter: (to, from, next) => {
 	// 		// 这里可以根据需要进行重定向或其他操作
-  //     // 例如，重定向到首页
+	//     // 例如，重定向到首页
 	// 		next({ path: "/" });
 	// 	},
-  // },
+	// },
 	{
 		path: "/:pathMatch(.*)*",
 		name: "NotFound",
@@ -57,12 +59,14 @@ const router = createRouter({
 router.beforeEach(async function (to, from, next) {
 	// 判断是否是登录页面
 	if (
-		to.name === "Login" ||
-    || to.name === "NotFound"
-		to.name === "Forbidden" ||
-		to.name === "Error" ||
-		// TODO[TEST_CODE]: 放行示例模块访问
-		to.path.indexOf("sample") !== -1
+		isConditionsSome([
+			() => to.name === "Login",
+			() => to.name === "NotFound",
+			() => to.name === "Forbidden",
+			() => to.name === "Error",
+			// TODO[TEST_CODE]: 放行示例模块访问
+			() => to.path.indexOf("sample") !== -1,
+		])
 	) {
 		next();
 		return;

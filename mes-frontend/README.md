@@ -1,6 +1,6 @@
 # `mes-frontend`
 
-下面说明能够帮助在基于Vite构建工具环境下开发`Vue3`。
+下面说明能够帮助在基于 Vite 构建工具环境下开发`Vue3`。
 
 ## `IDE`设置要求
 
@@ -54,7 +54,7 @@ npm run lint
   - `src/stores`：状态管理文件目录
   - `src/views`：存放页面目录
   - `src/App.vue`：程序入口`vue`文件
-  - `src/main.js`：程序入口挂载以及插件装配文件
+  - `src/main.ts`：程序入口挂载以及插件装配文件
 - .`env.XXX`：为环境变量文件
 - `.eslintrc.cjs`：为`eslint`配置文件
 - `.gitignore`：忽略配置文件
