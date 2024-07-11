@@ -69,18 +69,18 @@
 	},
 	/** https://www.typescriptlang.org/tsconfig#include */
 	"include": [
+		"src",
+		"typings",
 		"src/**/*.ts",
 		"src/**/*.d.ts",
 		"src/**/*.tsx",
 		"src/**/*.vue",
-		"src",
-		"typings",
 		// 测试文件集
 		"tests/**/*.ts",
 		// 导入自动生成的类型声明文件
 		"auto-imports.d.ts",
 		"components.d.ts",
-		"src/vite-env.d.ts",
+		"eslint.config.js"
 	],
 	"exclude": [
 		"node_modules",

@@ -4,6 +4,14 @@ import { userStore } from "../stores/user";
 
 const routes = [];
 routes.push(
+  // {
+	// 	path: "/__devtools__",
+	// 	beforeEnter: (to, from, next) => {
+	// 		// 这里可以根据需要进行重定向或其他操作
+  //     // 例如，重定向到首页
+	// 		next({ path: "/" });
+	// 	},
+  // },
 	{
 		path: "/:pathMatch(.*)*",
 		name: "NotFound",
@@ -50,7 +58,7 @@ router.beforeEach(async function (to, from, next) {
 	// 判断是否是登录页面
 	if (
 		to.name === "Login" ||
-		to.name === "NotFound" ||
+    || to.name === "NotFound"
 		to.name === "Forbidden" ||
 		to.name === "Error" ||
 		// TODO[TEST_CODE]: 放行示例模块访问

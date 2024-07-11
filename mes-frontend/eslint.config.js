@@ -13,8 +13,16 @@ export default antfu(
 		},
 
 		// TypeScript and Vue are auto-detected, you can also explicitly enable them:
+		/**
+		 * @see https://stackoverflow.com/questions/65137939/typescript-eslint-throws-cannot-read-file-tsconfig-json-in-every-project-i-s
+		 */
 		typescript: {
-			tsconfigPath: "tsconfig.json",
+			tsconfigPath: "./tsconfig.json",
+			parserOptions: {
+				project: "tsconfig.json",
+				sourceType: "module",
+				tsconfigRootDir: __dirname,
+			},
 		},
 
 		vue: true,
