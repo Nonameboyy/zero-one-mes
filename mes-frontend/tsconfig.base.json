@@ -35,9 +35,6 @@
 		// 默认引入的模块类型声明
 		"types": [],
 		// 路径别名设置
-		"paths": {
-			"@openx-rc/*": ["packages/*/src"],
-			"@input/components/*": ["packages/input/src/components/*"]
-		}
+		"paths": {}
 	}
 }
