@@ -67,6 +67,7 @@
 		"unplugin-vue-components": "^0.22.12",
 		"vite": "^5.2.11",
 		"vite-plugin-html": "^3.2.0",
+		"vite-plugin-vue-devtools": "^7.3.5",
 		"vue-tsc": "^2.0.19"
 	}
 }
