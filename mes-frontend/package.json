@@ -10,6 +10,11 @@
 		"vscode": "^1.22.0",
 		"pnpm": ">=9.5.0"
 	},
+	"config": {
+		"commitizen": {
+			"path": "mes-frontend/node_modules/cz-git"
+		}
+	},
 	"scripts": {
 		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
 		"corepack:pnpm": "corepack enable && corepack install",
@@ -19,7 +24,8 @@
 		"build:vue-tsc": "vue-tsc && vite build",
 		"preview": "vite preview --port 4173",
 		"lint:eslint": "eslint . --fix",
-		"format:prettier": "prettier --write ."
+		"format:prettier": "prettier --write .",
+		"rm:node_modules": "rimraf node_modules pnpm-lock.yaml"
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.0.9",
@@ -54,6 +60,8 @@
 		"@types/qs": "^6.9.15",
 		"@vitejs/plugin-vue": "^5.0.4",
 		"@vue/eslint-config-prettier": "^7.0.0",
+		"commitizen": "^4.3.1",
+		"cz-git": "^1.10.1",
 		"eslint": "^9.3.0",
 		"eslint-config-flat-gitignore": "^0.1.5",
 		"eslint-config-prettier": "^9.1.0",
