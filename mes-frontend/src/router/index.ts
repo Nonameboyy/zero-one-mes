@@ -2,18 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import { ElMessage } from "element-plus";
 import { userStore } from "../stores/user";
 
-import { isConditionsSome } from "utils/index";
+import { isConditionsSome } from "@ruan-cat/utils";
 
 const routes = [];
 routes.push(
-	// {
-	// 	path: "/__devtools__",
-	// 	beforeEnter: (to, from, next) => {
-	// 		// 这里可以根据需要进行重定向或其他操作
-	//     // 例如，重定向到首页
-	// 		next({ path: "/" });
-	// 	},
-	// },
 	{
 		path: "/:pathMatch(.*)*",
 		name: "NotFound",
