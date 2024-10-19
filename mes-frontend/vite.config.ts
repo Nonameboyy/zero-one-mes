@@ -133,7 +133,7 @@ export default ({ mode }: ConfigEnv) =>
 					pattern: ["**/*.vue"],
 
 					// 监听的文件夹
-					dir: pathResolve("src"),
+					dir: pathResolve("src/components"),
 
 					// 生成的文件
 					// FIXME: 当不包含文件路径时，就出现错误 如果没有预先准备好文件夹，就会生成失败。
@@ -166,8 +166,9 @@ export default ({ mode }: ConfigEnv) =>
 			AutoImport({
 				imports: [VueRouterAutoImports],
 				ignore: ["vue-router"],
-				resolvers: [ElementPlusResolver()],
+				dirs: ["src/**/*"],
 				dts: "./types/auto-imports.d.ts",
+				resolvers: [ElementPlusResolver()],
 			}),
 
 			Components({
