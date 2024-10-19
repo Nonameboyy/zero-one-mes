@@ -1,3 +1,5 @@
+import { fileURLToPath, URL } from "node:url";
+
 import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
@@ -7,7 +9,7 @@ import { VueRouterAutoImports } from "unplugin-vue-router";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
-import { fileURLToPath, URL } from "node:url";
+import { visualizer } from "rollup-plugin-visualizer";
 
 import { getRouteName } from "./src/plugins/unplugin-vue-router";
 
@@ -97,6 +99,15 @@ export default ({ mode }) =>
 					},
 				],
 				getRouteName,
+			}),
+
+			/**
+			 * 打包体积分析插件
+			 */
+			visualizer({
+				filename: "./dist/visualizer/index.html",
+				title: "visualizer打包分析报告",
+				template: "network",
 			}),
 
 			vue(),
