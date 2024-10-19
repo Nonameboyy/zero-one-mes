@@ -1,11 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { ElMessage } from "element-plus";
-import { userStore } from "../stores/user";
+import { routes as autoRoutes, handleHotUpdate } from "vue-router/auto-routes";
 
+import { ElMessage } from "element-plus";
 import { isConditionsSome } from "@ruan-cat/utils";
 
-const routes = [];
-routes.push(
+import { userStore } from "../stores/user";
+
+/**
+ * 项目原本就有的路由
+ * @description
+ * 这里预设的都是静态路由
+ */
+const originRoutes = [
 	{
 		path: "/:pathMatch(.*)*",
 		name: "NotFound",
@@ -21,25 +27,29 @@ routes.push(
 		name: "Error",
 		component: () => import("../views/status/500.vue"),
 	},
-);
+];
 
 // 读取login模块路由
 const loginRouter = import.meta.glob("./login/index.js", { eager: true });
 for (const path in loginRouter) {
-	routes.push(...loginRouter[path].default);
+	originRoutes.push(...loginRouter[path].default);
 }
 
 // 读取main模块路由
 const mainRouter = import.meta.glob("./main/index.js", { eager: true });
 for (const path in mainRouter) {
-	routes.push(...mainRouter[path].default);
+	originRoutes.push(...mainRouter[path].default);
 }
 
 // TODO[TEST_CODE]: 读取示例演示模块路由
 const sampleRouter = import.meta.glob("./sample/index.js", { eager: true });
 for (const path in sampleRouter) {
-	routes.push(...sampleRouter[path].default);
+	originRoutes.push(...sampleRouter[path].default);
 }
+
+const routes = [...originRoutes, ...autoRoutes];
+
+console.log(" 看看最终的路由生成了什么？ ", routes);
 
 // 定义一个路由对象
 const router = createRouter({
@@ -87,5 +97,10 @@ router.beforeEach(async function (to, from, next) {
 		ElMessage.warning("在未登录时，禁止访问其他页面！");
 	}
 });
+
+// This will update routes at runtime without reloading the page
+if (import.meta.hot) {
+	handleHotUpdate(router);
+}
 
 export default router;
