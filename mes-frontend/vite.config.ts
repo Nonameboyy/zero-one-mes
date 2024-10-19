@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
 
-import { defineConfig, loadEnv } from "vite";
+import { type UserConfig, type ConfigEnv, defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
@@ -12,15 +12,14 @@ import vueDevTools from "vite-plugin-vue-devtools";
 import { visualizer } from "rollup-plugin-visualizer";
 
 import { getRouteName } from "./src/plugins/unplugin-vue-router";
+import { ImportMetaEnv } from "./types/env.shim.d";
 
-// @ts-ignore
-const getViteEnv = (mode, target) => {
+const getViteEnv = (mode: ConfigEnv["mode"], target: keyof ImportMetaEnv) => {
 	return loadEnv(mode, process.cwd())[target];
 };
 
 // https://vitejs.dev/config/
-// @ts-ignore
-export default ({ mode }) =>
+export default ({ mode }: ConfigEnv) =>
 	defineConfig({
 		define: {
 			// 启用生产环境构建下激活不匹配的详细警告
@@ -29,6 +28,7 @@ export default ({ mode }) =>
 		server: {
 			host: "0.0.0.0",
 			port: 3000,
+			// @ts-ignore 暂不处理此类型报错
 			https: false,
 			proxy: {
 				"/api": {
