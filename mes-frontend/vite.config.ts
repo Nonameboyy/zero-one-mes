@@ -1,5 +1,8 @@
+import { dirname, resolve } from "node:path";
 import { fileURLToPath, URL } from "node:url";
+import * as fs from "node:fs";
 
+import { upperFirst } from "lodash-es";
 import { type UserConfig, type ConfigEnv, defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
@@ -10,9 +13,19 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { visualizer } from "rollup-plugin-visualizer";
+import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
 
 import { getRouteName } from "./src/plugins/unplugin-vue-router";
 import { ImportMetaEnv } from "./types/env.shim.d";
+
+const { autoImport } = createPlugin();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+function pathResolve(dir: string) {
+	const resPath = resolve(__dirname, ".", dir);
+	return resPath;
+}
 
 const getViteEnv = (mode: ConfigEnv["mode"], target: keyof ImportMetaEnv) => {
 	return loadEnv(mode, process.cwd())[target];
@@ -112,6 +125,44 @@ export default ({ mode }: ConfigEnv) =>
 
 			vue(),
 
+			/**
+			 * 自动生成类型声明文件插件
+			 */
+			autoImport([
+				{
+					pattern: ["**/*.vue"],
+
+					// 监听的文件夹
+					dir: pathResolve("src"),
+
+					// 生成的文件
+					// FIXME: 当不包含文件路径时，就出现错误 如果没有预先准备好文件夹，就会生成失败。
+					toFile: pathResolve("types/components-instance.d.ts"),
+
+					// 文件生成模板
+					template: fs.readFileSync(pathResolve("template/components.template.d.ts"), "utf-8"),
+
+					codeTemplates: [
+						{
+							key: "//typeCode",
+							template: 'type {{name}}Instance = InstanceType<typeof import("{{path}}")["default"]>;\n  ',
+						},
+					],
+
+					/**
+					 * 组件名命名规则支持字符串模板和函数
+					 * @description
+					 * 设置首字母为大写
+					 */
+					name(fileName) {
+						const resFileName = getName(fileName);
+						const upperFirstFileName = upperFirst(resFileName);
+						// console.log(" in name", upperFirstFileName);
+						return upperFirstFileName;
+					},
+				},
+			]),
+
 			AutoImport({
 				imports: [VueRouterAutoImports],
 				ignore: ["vue-router"],
@@ -121,8 +172,10 @@ export default ({ mode }: ConfigEnv) =>
 
 			Components({
 				version: 3,
-				resolvers: [ElementPlusResolver()],
+				dirs: ["src/components", "src/views"],
 				dts: "./types/components.d.ts",
+				directoryAsNamespace: true,
+				resolvers: [ElementPlusResolver()],
 			}),
 
 			/**
