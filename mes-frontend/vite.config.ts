@@ -2,16 +2,22 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
+import VueRouter from "unplugin-vue-router/vite";
+import { VueRouterAutoImports } from "unplugin-vue-router";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { fileURLToPath, URL } from "node:url";
 
+import { getRouteName } from "./src/plugins/unplugin-vue-router";
+
+// @ts-ignore
 const getViteEnv = (mode, target) => {
 	return loadEnv(mode, process.cwd())[target];
 };
 
 // https://vitejs.dev/config/
+// @ts-ignore
 export default ({ mode }) =>
 	defineConfig({
 		define: {
@@ -63,15 +69,49 @@ export default ({ mode }) =>
 				},
 			},
 		},
+
 		plugins: [
-			vue(),
-			AutoImport({
-				resolvers: [ElementPlusResolver()],
+			/**
+			 * 类型化路由插件
+			 * @description
+			 * 其定义位置必须在 `@vitejs/plugin-vue` 插件之前。
+			 *
+			 * @see https://uvr.esm.is/introduction.html#installation
+			 */
+			VueRouter({
+				dts: "./types/typed-router.d.ts",
+				routesFolder: [
+					{
+						/**
+						 * 在我们项目中，页面放在 views 文件夹下。
+						 *
+						 * 文档建议是写在pages内
+						 * src: "src/pages",
+						 */
+						src: "src/views",
+						// 下面的配置暂时不使用
+						// override globals
+						// exclude: (excluded) => excluded,
+						// filePatterns: (filePatterns) => filePatterns,
+						// extensions: (extensions) => extensions,
+					},
+				],
+				getRouteName,
 			}),
+
+			vue(),
+
+			AutoImport({
+				imports: [VueRouterAutoImports],
+				ignore: ["vue-router"],
+				resolvers: [ElementPlusResolver()],
+				dts: "./types/auto-imports.d.ts",
+			}),
+
 			Components({
-				dts: true,
 				version: 3,
 				resolvers: [ElementPlusResolver()],
+				dts: "./types/components.d.ts",
 			}),
 
 			/**

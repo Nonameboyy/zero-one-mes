@@ -63,12 +63,22 @@
 			"vite/client",
 			"node",
 			"qs",
+			"unplugin-auto-import",
+			/** https://uvr.esm.is/introduction.html#setup */
+			"unplugin-vue-router/client"
 		],
 		"allowJs": true
 	},
 	/** https://www.typescriptlang.org/tsconfig#include */
 	"include": [
 		"src",
+		// 导入全部的类型文件包括：
+		/** 
+			auto-imports.d.ts
+			components.d.ts
+			typed-router.d.ts
+		*/
+		"types",
 		"typings",
 		"src/**/*.ts",
 		"src/**/*.d.ts",
@@ -76,9 +86,6 @@
 		"src/**/*.vue",
 		// 测试文件集
 		"tests/**/*.ts",
-		// 导入自动生成的类型声明文件
-		"auto-imports.d.ts",
-		"components.d.ts",
 		"eslint.config.js"
 	],
 	"exclude": [

@@ -30,10 +30,13 @@ coverage
 *.sln
 *.sw?
 
-# Compile
+# 不提交仓库中的依赖包
+node_modules
+
+# 不提供自动生成的类型文件
 auto-imports.d.ts
 components.d.ts
-node_modules
+typed-router.d.ts
 
 # 忽略自动生成的依赖锁文件 不提供包管理器的依赖锁文件
 pnpm-lock.yaml
