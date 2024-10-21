@@ -22,6 +22,9 @@ export interface ImportMetaEnv {
 
 	/** 应用标题 */
 	VITE_APP_TITLE: string;
+
+	/** 是否开启mock开发服务器？ */
+	VITE_MOCK_DEV_SERVER: string;
 }
 
 export interface ImportMeta {

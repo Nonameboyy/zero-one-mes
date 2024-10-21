@@ -4,6 +4,53 @@ import http from "axios";
 import { isNull, merge } from "lodash-es";
 
 /**
+ * 创建axios实例
+ */
+export function createAxiosInstance() {
+	const instance = http.create(
+		// @ts-ignore 不考虑额外配置冗余的 多余的请求类型值了 很难受。
+		{
+			// baseURL: "https://pcapi-xiaotuxian-front-devtest.itheima.net",
+			// 请求超时时间
+			timeout: 10000,
+		},
+	);
+	return instance;
+}
+
+// axios 请求拦截器
+requestForUseAxios.interceptors.request.use(
+	(config) => {
+		const userStore = useUserStore();
+		// @ts-ignore
+		const token = userStore.userInfo.token;
+		if (token) {
+			config.headers.Authorization = `Bearer ${token}`;
+		}
+		return config;
+	},
+	(e) => Promise.reject(e),
+);
+
+// axios 响应拦截器
+requestForUseAxios.interceptors.response.use(
+	(res) => res,
+	(e) => {
+		const userStore = useUserStore();
+		console.warn(" 出现请求错误 错误如下： ", e);
+		ElMessage.warning(e.response.data.message);
+		if (e.response.status === 401) {
+			userStore.clearUserInfo();
+			router.push("/login");
+		}
+		return Promise.reject(e);
+	},
+);
+
+// 先配置 再导出
+export { requestForUseAxios };
+
+/**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
  */

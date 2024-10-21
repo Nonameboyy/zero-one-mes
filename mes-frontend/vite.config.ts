@@ -14,6 +14,7 @@ import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { visualizer } from "rollup-plugin-visualizer";
 import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
+import mockDevServerPlugin from "vite-plugin-mock-dev-server";
 
 import { getRouteName } from "./src/plugins/unplugin-vue-router";
 import { ImportMetaEnv } from "./types/env.shim.d";
@@ -44,15 +45,26 @@ export default ({ mode }: ConfigEnv) =>
 			// @ts-ignore 暂不处理此类型报错
 			https: false,
 			proxy: {
-				"/api": {
+				/**
+				 * env.VITE_APP_BASE_API: /api
+				 */
+				["^/api"]: {
 					changeOrigin: true,
-					// target: 'http://localhost:10100',
-					// rewrite: (path) => path.replace(/^\/api/, '')
-
-					//TODO[TEST_CODE]:使用ApiPost云MOCK
-					target: "https://console-mock.apipost.cn/mock/99738a62-8857-4bb2-8010-c92424b03584",
-					rewrite: (path) => path.replace(/^\/api/, ""),
+					target: "http://localhost:10100",
+					rewrite: (path) => path.replace(new RegExp("^" + "http://localhost:10100"), ""),
 				},
+
+				// 为了测试mock配置 暂时注释掉。
+				// "/api": {
+				// 	changeOrigin: true,
+				// 	// target: 'http://localhost:10100',
+				// 	// rewrite: (path) => path.replace(/^\/api/, '')
+
+				// 	//TODO[TEST_CODE]:使用ApiPost云MOCK
+				// 	target: "https://console-mock.apipost.cn/mock/99738a62-8857-4bb2-8010-c92424b03584",
+				// 	rewrite: (path) => path.replace(/^\/api/, ""),
+				// },
+
 				"/captcha": {
 					changeOrigin: true,
 					target: "http://localhost:10680",
@@ -164,7 +176,15 @@ export default ({ mode }: ConfigEnv) =>
 			]),
 
 			AutoImport({
-				imports: [VueRouterAutoImports],
+				imports: [
+					VueRouterAutoImports,
+					"vue",
+					"@vueuse/core",
+					"pinia",
+					{
+						"@vueuse/integrations/useAxios": ["useAxios"],
+					},
+				],
 				ignore: ["vue-router"],
 				dirs: ["src/**/*"],
 				dts: "./types/auto-imports.d.ts",
@@ -192,6 +212,14 @@ export default ({ mode }: ConfigEnv) =>
 					},
 				},
 			}),
+
+			/**
+			 * 本地 mock 服务接口插件
+			 */
+			getViteEnv(mode, "VITE_MOCK_DEV_SERVER") === "true" ? mockDevServerPlugin() : null,
+			// mockDevServerPlugin({
+			// 	build: true,
+			// }),
 		],
 
 		resolve: {

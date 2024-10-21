@@ -102,6 +102,8 @@ async function getlist() {
 			isLoading.value = false;
 		});
 }
+
+// table-list-use-demo-page
 </script>
 
 <template>
