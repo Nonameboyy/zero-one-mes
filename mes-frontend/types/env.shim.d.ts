@@ -25,6 +25,9 @@ export interface ImportMetaEnv {
 
 	/** 是否开启mock开发服务器？ */
 	VITE_MOCK_DEV_SERVER: string;
+
+	/** 反向代理的target目标 即真实的 有意义的接口地址。 */
+	VITE_app_target_url: string;
 }
 
 export interface ImportMeta {
