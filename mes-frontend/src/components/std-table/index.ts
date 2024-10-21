@@ -18,3 +18,5 @@ export {
 	TableInnerLayout,
 };
 export type { Operations, StdTableProps };
+
+export default StdTable;

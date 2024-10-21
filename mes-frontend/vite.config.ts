@@ -48,22 +48,21 @@ export default ({ mode }: ConfigEnv) =>
 				/**
 				 * env.VITE_APP_BASE_API: /api
 				 */
-				["^/api"]: {
-					changeOrigin: true,
-					target: "http://localhost:10100",
-					rewrite: (path) => path.replace(new RegExp("^" + "http://localhost:10100"), ""),
-				},
+				// ["^/api"]: {
+				// 	changeOrigin: true,
+				// 	target: "http://localhost:10100",
+				// 	rewrite: (path) => path.replace(new RegExp("^" + "http://localhost:10100"), ""),
+				// },
 
 				// 为了测试mock配置 暂时注释掉。
-				// "/api": {
-				// 	changeOrigin: true,
-				// 	// target: 'http://localhost:10100',
-				// 	// rewrite: (path) => path.replace(/^\/api/, '')
-
-				// 	//TODO[TEST_CODE]:使用ApiPost云MOCK
-				// 	target: "https://console-mock.apipost.cn/mock/99738a62-8857-4bb2-8010-c92424b03584",
-				// 	rewrite: (path) => path.replace(/^\/api/, ""),
-				// },
+				"/api": {
+					changeOrigin: true,
+					// target: 'http://localhost:10100',
+					// rewrite: (path) => path.replace(/^\/api/, '')
+					//TODO[TEST_CODE]:使用ApiPost云MOCK
+					target: "https://console-mock.apipost.cn/mock/99738a62-8857-4bb2-8010-c92424b03584",
+					rewrite: (path) => path.replace(/^\/api/, ""),
+				},
 
 				"/captcha": {
 					changeOrigin: true,

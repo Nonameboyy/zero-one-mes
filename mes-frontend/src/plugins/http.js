@@ -62,7 +62,9 @@ export default (router) => {
 			let store = userStore();
 			let token = store.getToken;
 			if (token) {
-				config.headers.common.Authorization = `Bearer ${token}`;
+				// 不理解 可能是 axios 1版本没有提供 common 属性
+				// config.headers.common.Authorization = `Bearer ${token}`;
+				config.headers.Authorization = `Bearer ${token}`;
 			}
 			// 处理提交方式参数序列化操作
 			if (config.upType === http.upType.json) {

@@ -3,6 +3,8 @@ import http from "axios";
 
 import { isNull, merge } from "lodash-es";
 
+export { http };
+
 /**
  * 创建axios实例
  */
@@ -18,37 +20,35 @@ export function createAxiosInstance() {
 	return instance;
 }
 
-// axios 请求拦截器
-requestForUseAxios.interceptors.request.use(
-	(config) => {
-		const userStore = useUserStore();
-		// @ts-ignore
-		const token = userStore.userInfo.token;
-		if (token) {
-			config.headers.Authorization = `Bearer ${token}`;
-		}
-		return config;
-	},
-	(e) => Promise.reject(e),
-);
-
-// axios 响应拦截器
-requestForUseAxios.interceptors.response.use(
-	(res) => res,
-	(e) => {
-		const userStore = useUserStore();
-		console.warn(" 出现请求错误 错误如下： ", e);
-		ElMessage.warning(e.response.data.message);
-		if (e.response.status === 401) {
-			userStore.clearUserInfo();
-			router.push("/login");
-		}
-		return Promise.reject(e);
-	},
-);
-
-// 先配置 再导出
-export { requestForUseAxios };
+// // axios 请求拦截器
+// requestForUseAxios.interceptors.request.use(
+// 	(config) => {
+// 		const userStore = useUserStore();
+// 		// @ts-ignore
+// 		const token = userStore.userInfo.token;
+// 		if (token) {
+// 			config.headers.Authorization = `Bearer ${token}`;
+// 		}
+// 		return config;
+// 	},
+// 	(e) => Promise.reject(e),
+// );
+// // axios 响应拦截器
+// requestForUseAxios.interceptors.response.use(
+// 	(res) => res,
+// 	(e) => {
+// 		const userStore = useUserStore();
+// 		console.warn(" 出现请求错误 错误如下： ", e);
+// 		ElMessage.warning(e.response.data.message);
+// 		if (e.response.status === 401) {
+// 			userStore.clearUserInfo();
+// 			router.push("/login");
+// 		}
+// 		return Promise.reject(e);
+// 	},
+// );
+// // 先配置 再导出
+// export { requestForUseAxios };
 
 /**
  * 封装一个Http请求工具类
