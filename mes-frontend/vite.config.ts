@@ -19,6 +19,8 @@ import mockDevServerPlugin from "vite-plugin-mock-dev-server";
 import { getRouteName } from "./src/plugins/unplugin-vue-router";
 import { ImportMetaEnv } from "./types/env.shim.d";
 
+import {} from "@ruan-cat/utils";
+
 const { autoImport } = createPlugin();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -33,8 +35,11 @@ const getViteEnv = (mode: ConfigEnv["mode"], target: keyof ImportMetaEnv) => {
 };
 
 // https://vitejs.dev/config/
-export default ({ mode }: ConfigEnv) =>
-	defineConfig({
+export default function ({ mode }: ConfigEnv) {
+	const VITE_app_target_url = getViteEnv(mode, "VITE_app_target_url");
+	const VITE_MOCK_DEV_SERVER = getViteEnv(mode, "VITE_MOCK_DEV_SERVER");
+
+	const res = defineConfig({
 		define: {
 			// 启用生产环境构建下激活不匹配的详细警告
 			__VUE_PROD_HYDRATION_MISMATCH_DETAILS__: "true",
@@ -183,6 +188,14 @@ export default ({ mode }: ConfigEnv) =>
 					{
 						"@vueuse/integrations/useAxios": ["useAxios"],
 					},
+					{
+						"@ruan-cat/utils": ["isConditionsEvery", "isConditionsSome"],
+					},
+					{
+						from: "@ruan-cat/utils",
+						imports: ["Prettify", "ToNumberLike"],
+						type: true,
+					},
 				],
 				ignore: ["vue-router"],
 				dirs: ["src/**/*"],
@@ -234,3 +247,6 @@ export default ({ mode }: ConfigEnv) =>
 			},
 		},
 	});
+
+	return res;
+}

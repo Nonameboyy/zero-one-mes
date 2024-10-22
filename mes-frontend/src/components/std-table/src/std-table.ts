@@ -1,5 +1,7 @@
 import type { ButtonProps, ComponentSize, TableProps } from "element-plus";
-import type { Prettify } from "utils/Prettify";
+
+import StdTable from "./std-table.vue";
+export { StdTable as default };
 
 /**
  * 通用的按钮配置

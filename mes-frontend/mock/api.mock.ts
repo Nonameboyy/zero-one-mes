@@ -1,5 +1,5 @@
-import { defineMock } from "./base";
-
+// import { defineMock } from "./base";
+import { defineMock } from "vite-plugin-mock-dev-server";
 export default defineMock([
 	{
 		url: "logs/page",
