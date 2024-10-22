@@ -2,8 +2,7 @@
 import http from "axios";
 
 import { isNull, merge } from "lodash-es";
-
-export { http };
+export { http as axiosStaticInstance };
 
 /**
  * 创建axios实例

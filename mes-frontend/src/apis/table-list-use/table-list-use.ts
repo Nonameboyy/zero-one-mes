@@ -5,5 +5,5 @@ const defOptions: UseAxiosOptions = {
 };
 
 export function getTableListUseApi(options = defOptions) {
-	return useAxios("", request, {}, options);
+	return useAxios("/logs/page", axiosStaticInstance, options);
 }

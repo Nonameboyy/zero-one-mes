@@ -1,8 +1,8 @@
-<script setup >
-import {onMounted, ref} from 'vue'
-import http from "axios"
-import  TableFrame  from 'components/std-table/src/table-frame.vue'  
-import Request  from '@/apis/request.js'
+<script setup>
+import { onMounted, ref } from "vue";
+import http from "axios";
+import TableFrame from "components/std-table/src/table-frame.vue";
+import Request from "@/apis/request.ts";
 
 const tableList = ref([
 	{
@@ -61,9 +61,9 @@ const getPageList = async (data) => {
 
 	loading.value = false;
 };
-onMounted(async ()=>{
-await	getPageList(null); //进来就加载一遍
-})
+onMounted(async () => {
+	await getPageList(null); //进来就加载一遍
+});
 
 //处理分页逻辑
 //改变大小
@@ -129,8 +129,8 @@ const onEditchannel = (row, $index) => {
 };
 
 const onSubmit = () => {
-	const Sub={teamCode:myInput,calendarType:unitName}
-	getPageList(Sub)
+	const Sub = { teamCode: myInput, calendarType: unitName };
+	getPageList(Sub);
 	console.log("查询提交");
 };
 
@@ -146,21 +146,25 @@ const reFresh = () => {
 const sels = ref([]); //当前选框中选择的值
 
 //获取选中的值
-function handleSelectionChange (sels) {
+function handleSelectionChange(sels) {
 	this.sels.value = sels;
-};
+}
 
-const arrDelet=async ()=>{
+const arrDelet = async () => {
 	let ids = this.sels.map((item) => item.teamId);
-    try {
-		const res= await Request.request(Request.DELETE,
-		 "/basicdata/md-unit-measure/delete-by-measureIds", {ids:ids}, http.upType.json);
-  if( res.code == '10000'){
-	ElMessage.success("删除成功");
-    getPageList(null);
-    }else{
-     ElMessage.warning("删除失败");
-	}
+	try {
+		const res = await Request.request(
+			Request.DELETE,
+			"/basicdata/md-unit-measure/delete-by-measureIds",
+			{ ids: ids },
+			http.upType.json,
+		);
+		if (res.code == "10000") {
+			ElMessage.success("删除成功");
+			getPageList(null);
+		} else {
+			ElMessage.warning("删除失败");
+		}
 	} catch (error) {
 		console.log("错误或者超时");
 	}
@@ -169,11 +173,11 @@ const arrDelet=async ()=>{
 //表单--------------------------
 const dialogTitle = ref("");
 const formModel = ref({
-    calendarType:"TNT",
-        remark:"炸弹",
-        teamCode:"Tx002",
-        teamId:2 ,
-        teamName:"爆破一组"
+	calendarType: "TNT",
+	remark: "炸弹",
+	teamCode: "Tx002",
+	teamId: 2,
+	teamName: "爆破一组",
 });
 const formRef = ref(null);
 const testDialogVisible = ref(false);

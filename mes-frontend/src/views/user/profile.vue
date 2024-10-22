@@ -125,7 +125,7 @@
 
 <script setup>
 import { reactive, ref } from "vue";
-import Request from "@/apis/request.js";
+import Request from "@/apis/request.ts";
 
 //tabs配置
 const activeName = ref("first");

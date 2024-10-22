@@ -2,8 +2,8 @@
 import { ref, watch } from "vue";
 import http from "axios";
 import { onMounted } from "vue";
-import  TableFrame  from 'components/std-table/src/table-frame.vue' 
-import Request from "@/apis/request.js";
+import TableFrame from "components/std-table/src/table-frame.vue";
+import Request from "@/apis/request.ts";
 
 const tableList = ref([
 	{
@@ -49,23 +49,22 @@ const parms = ref({
 	size: "",
 });
 
-const getPageList= async (data)=>{
-  //不知道跟着接口写的对不对，希望大佬看一看
-  loading.value=true
- try {
-  const res=await Request.request(Request.GET,'/mes/md/itemtype/{itemTypeId}',data,http.upType.json)
-  tableList.value=res.data.data
- } catch (error) {
-  console.log('错误或者超时');
- } 
+const getPageList = async (data) => {
+	//不知道跟着接口写的对不对，希望大佬看一看
+	loading.value = true;
+	try {
+		const res = await Request.request(Request.GET, "/mes/md/itemtype/{itemTypeId}", data, http.upType.json);
+		tableList.value = res.data.data;
+	} catch (error) {
+		console.log("错误或者超时");
+	}
 
 	loading.value = false;
 };
 
-onMounted(async ()=>{
-await	getPageList(null); //进来就加载一遍
-})
-
+onMounted(async () => {
+	await getPageList(null); //进来就加载一遍
+});
 
 //处理分页逻辑
 //改变大小
@@ -155,86 +154,92 @@ watch(filterText, (val) => {
 	this.$refs.treeRef.filter(val);
 });
 
-const data =ref([
-  {
-    id: 1,
-    label: '物料产品分类',
-    children: [
-      {
-        id: 4,
-        label: '原材料',
-        children: [
-          {
-            id: 9,
-            label: '金属',
-          },
-          {
-            id: 10,
-            label: '纸屑',
-          },
-        ]   
-      },
-      {
-        id:11,
-        label:'产品',
-        children:[
-          {
-            id:2,
-            label:'完美品'
-          },
-          {
-            id:3,
-            label:'瑕疵品'
-          },
-          {
-            id:5,
-            label:'普通品'
-          }
-        ]
-      },
-      {
-        id:6,
-        label:'其它'
-      }
-    ],
-  },
-  
-]) 
+const data = ref([
+	{
+		id: 1,
+		label: "物料产品分类",
+		children: [
+			{
+				id: 4,
+				label: "原材料",
+				children: [
+					{
+						id: 9,
+						label: "金属",
+					},
+					{
+						id: 10,
+						label: "纸屑",
+					},
+				],
+			},
+			{
+				id: 11,
+				label: "产品",
+				children: [
+					{
+						id: 2,
+						label: "完美品",
+					},
+					{
+						id: 3,
+						label: "瑕疵品",
+					},
+					{
+						id: 5,
+						label: "普通品",
+					},
+				],
+			},
+			{
+				id: 6,
+				label: "其它",
+			},
+		],
+	},
+]);
 //定义请求树形数据函数·1、
-const getTreeDate=async ()=>{
-  try {
-  const res=await Request.request(Request.GET,'/mes/md/itemtype/treeselect',{},http.upType.json)
-  data.value=res.data.data
- } catch (error) {
-  console.log('错误或者超时');
- } 
-}
+const getTreeDate = async () => {
+	try {
+		const res = await Request.request(Request.GET, "/mes/md/itemtype/treeselect", {}, http.upType.json);
+		data.value = res.data.data;
+	} catch (error) {
+		console.log("错误或者超时");
+	}
+};
 //-----------------多删
 const sels = ref([]); //当前选框中选择的值
 
 //获取选中的值
-function handleSelectionChange (sels) {
+function handleSelectionChange(sels) {
 	this.sels.value = sels;
-  console.log("选中的值",sels.map((item) => item.id));
-};
+	console.log(
+		"选中的值",
+		sels.map((item) => item.id),
+	);
+}
 
 //批量删除
-async function arrDelet(){
+async function arrDelet() {
 	let ids = this.sels.map((item) => item.itemTypeId);
-    try {
-		const res= await Request.request(Request.DELETE,
-		 "/basicdata/md-unit-measure/delete-by-measureIds", {itemTypeId:ids}, http.upType.json);
-  if( res.code == '10000'){
-	ElMessage.success("删除成功");
-    }else{
-     ElMessage.warning("删除失败");
-	}
+	try {
+		const res = await Request.request(
+			Request.DELETE,
+			"/basicdata/md-unit-measure/delete-by-measureIds",
+			{ itemTypeId: ids },
+			http.upType.json,
+		);
+		if (res.code == "10000") {
+			ElMessage.success("删除成功");
+		} else {
+			ElMessage.warning("删除失败");
+		}
 	} catch (error) {
 		console.log("错误或者超时");
 	}
 	//测试的
 	ElMessage.success("删除成功");
-};
+}
 
 //表单--------------------------
 const dialogTitle = ref("");

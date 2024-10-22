@@ -6,7 +6,7 @@ import { ElButton } from "element-plus";
 
 import { TableFrame, TableInnerLayout } from "components/std-table";
 import popUp from "components/std-table/src/pop-up.vue";
-import request from "@/apis/request.js"; //加入请求
+import request from "@/apis/request.ts"; //加入请求
 
 import type { Prettify } from "utils/Prettify.ts";
 import type { ComputedRef } from "vue";

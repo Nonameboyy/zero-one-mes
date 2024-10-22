@@ -5,7 +5,7 @@ import Request from "api/request";
 import type { SimpleBaseController } from "types/SimpleBaseController";
 import type { JsonVO } from "types/JsonVO";
 import type { PageDTO } from "types/PageDTO";
-// import Request from "@/apis/request.js";
+// import Request from "@/apis/request.ts";
 
 export interface UnitMeasureDTO {
 	/** 与主单位换算比例 */
