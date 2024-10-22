@@ -8,11 +8,10 @@ import { TableFrame, TableInnerLayout } from "components/std-table";
 import popUp from "components/std-table/src/pop-up.vue";
 import request from "@/apis/request.ts"; //加入请求
 
-import type { Prettify } from "utils/Prettify.ts";
 import type { ComputedRef } from "vue";
 import type { TableProps } from "element-plus";
 import type { RequiredPick } from "type-plus";
-import type { Operations, StdTableProps } from "./std-table.ts";
+import type { Operations, StdTableProps } from "./types.ts";
 
 defineOptions({
 	/** 表格组件 */

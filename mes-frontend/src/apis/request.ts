@@ -1,5 +1,6 @@
 // @ts-check
 import http from "axios";
+import { type AxiosRequestConfig } from "axios";
 
 import { isNull, merge } from "lodash-es";
 export { http as axiosStaticInstance };
@@ -74,24 +75,27 @@ export default class Request {
 		return 4;
 	}
 
+	//
 	/**
 	 * 发送请求
 	 * @param { import("types/request").RequestMethod } method  请求方式，如Request.GET
 	 * @param { string } url 请求地址
 	 * @param { unknown } data 上传数据
 	 * @param { import("types/request").UpType } upType 上传数据方式，如http.upType.form
-	 * @param options [可选]其他配置选项
+	 * @param options  [可选]其他配置选项
 	 * @returns 请求发送后的Promise对象
 	 */
+	// @ts-ignore
 	static request(method, url, data, upType, options = null) {
 		// 组装参数
 		/** @type { import("types/request").AxiosRequestConfigSimple } */
-		// @ts-ignore
-		const config = merge(
-			{
+		const config = merge<AxiosRequestConfig, AxiosRequestConfig>(
+			<AxiosRequestConfig>{
 				url,
 				upType,
 			},
+
+			// @ts-ignore
 			isNull(options) ? {} : options,
 		);
 
