@@ -2,7 +2,7 @@ import type { AxiosRequestConfig } from "axios";
 import type { PartialPick } from "type-plus";
 import type { Prettify } from "utils/Prettify";
 
-import type { HttpConfig } from "../../types/axios.shim";
+import type { HttpConfig } from "../../axios.shim";
 
 export type HttpConfigExtraKey = Prettify<keyof HttpConfig>;
 

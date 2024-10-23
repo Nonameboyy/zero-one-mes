@@ -79,20 +79,22 @@
 			typed-router.d.ts
 		*/
 		"types",
-		"typings",
 		"src/**/*.ts",
 		"src/**/*.d.ts",
 		"src/**/*.tsx",
 		"src/**/*.vue",
 		// 测试文件集
 		"tests/**/*.ts",
-		"eslint.config.js"
+		"eslint.config.js",
+		"axios.shim.d.ts"
 	],
 	"exclude": [
 		"node_modules",
 		"dist",
 		"public",
-		"src/assets"
+		"src/assets",
+		// 忽略这个配置 我们不考虑直接给axios直接添加属性了 这很糟糕。
+		"./axios.shim.d.ts"
 	],
 	"references": [
 		{

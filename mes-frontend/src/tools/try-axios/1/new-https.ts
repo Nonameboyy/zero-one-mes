@@ -1,5 +1,5 @@
 import axios from "axios";
-import serverConfig from "../config/index";
+import serverConfig from "./index";
 import qs from "qs";
 // https://zhuanlan.zhihu.com/p/509680724
 
