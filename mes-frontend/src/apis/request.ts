@@ -11,8 +11,10 @@
  */
 
 import axios from "axios";
-import { type AxiosRequestConfig, type Method, type AxiosInstance } from "axios";
+import type { AxiosRequestConfig, Method, AxiosInstance, AxiosResponse } from "axios";
 export { axios as axiosStaticInstance };
+
+import { type UseAxiosOptions, type StrictUseAxiosReturn, useAxios } from "@vueuse/integrations/useAxios";
 
 import { isNull, merge, isUndefined, isNil } from "lodash-es";
 import qs from "qs";
@@ -72,7 +74,11 @@ type ContentType = keyof typeof mapContentType_UpType;
 /**
  * url必填的axios请求配置
  */
-export type AxiosRequestConfigUrl<D = any> = RequiredPick<AxiosRequestConfig<D>, "url">;
+// export type AxiosRequestConfigUrl<D = any> = RequiredPick<AxiosRequestConfig<D>, "url">;
+export interface AxiosRequestConfigUrl<D = any> extends AxiosRequestConfig<D> {
+	/** 必填的url地址 */
+	url: string;
+}
 
 /**
  * 创建axios实例
@@ -138,11 +144,39 @@ export function handleHeadersByUpType(config: AxiosRequestConfig, upType: UpType
 	return config;
 }
 
+/** 针对 useAxios 传参的，接口请求函数的参数类型 */
+export interface RequestForUseAxiosParameter {
+	/** 必填url请求地址的 config 请求配置 */
+	config: AxiosRequestConfigUrl;
+	instance: AxiosInstance;
+	options?: UseAxiosOptions;
+}
+
+export type RequestForUseAxiosReturn<T = any, R = AxiosResponse<T>, D = any> = StrictUseAxiosReturn<T, R, D> &
+	Promise<StrictUseAxiosReturn<T, R, D>>;
+
 /**
  * 封装get请求方法
  * @description
  * 仅仅是为get请求和传参做了封装
  */
+export function get<T>(
+	/** url 请求地址 */
+	url: string,
+	/** params 请求参数 */
+	params?: string | object,
+	/** config 请求配置 */
+	config?: AxiosRequestConfig,
+): Promise<JsonVO<T>>;
+
+/**
+ * 封装get请求方法（带有响应式数据的）
+ * @description
+ * 对 useAxios 做封装
+ */
+export function get<T>(p: RequestForUseAxiosParameter): RequestForUseAxiosReturn<JsonVO<T>>;
+
+// TODO: 实现函数重载 匹配函数签名
 export function get<T>(
 	/** url 请求地址 */
 	url: string,
@@ -165,7 +199,7 @@ export function get<T>(
 		config.params = params;
 	}
 
-	return doAxiosRequest<JsonVO<T>>(config);
+	return doAxiosRequest<T>(config);
 }
 
 /**
@@ -191,7 +225,7 @@ export function post<T>(
 	if (data) {
 		config.data = data;
 	}
-	return doAxiosRequest<JsonVO<T>>(config);
+	return doAxiosRequest<T>(config);
 }
 
 /**
@@ -217,7 +251,7 @@ export function patch<T>(
 	if (data) {
 		config.data = data;
 	}
-	return doAxiosRequest<JsonVO<T>>(config);
+	return doAxiosRequest<T>(config);
 }
 
 /**
@@ -261,7 +295,7 @@ export function remove<T>(
 		config.params = params;
 	}
 
-	return doAxiosRequest<JsonVO<T>>(config);
+	return doAxiosRequest<T>(config);
 }
 
 /**
@@ -289,7 +323,7 @@ export function requestForm<T>(
 		...config,
 	};
 	config = handleHeadersByUpType(config, UpType.form);
-	return doAxiosRequest<JsonVO<T>>(config);
+	return doAxiosRequest<T>(config);
 }
 
 /**
@@ -297,18 +331,7 @@ export function requestForm<T>(
  * @type { import("types/request").Request }
  */
 export default class Request {
-	/**
-	 * 发送表单请求
-	 * @param { import("types/request").RequestMethod } method 请求方式，如Request.GET
-	 * @param { string } url 请求地址
-	 * @param { unknown } data 上传数据
-	 * @param options [可选]其他配置选项
-	 * @returns { Promise<unknown> } 请求发送后的Promise对象
-	 */
-	static requestForm(method, url, data, options = null) {
-		return Request.request(method, url, data, http.upType.form, options);
-	}
-
+	// TODO: 待封装迁移
 	/**
 	 * 发送JSON请求
 	 * @param { import("types/request").RequestMethod } method 请求方式，如Request.GET
@@ -321,6 +344,7 @@ export default class Request {
 		return Request.request(method, url, data, http.upType.json, options);
 	}
 
+	// TODO: 待封装迁移
 	/**
 	 * 发送带文件上传的请求，该方法会完成js数据对象转换成FormData对象操作
 	 * 请求方式以post方式发送
@@ -339,6 +363,7 @@ export default class Request {
 		return Request.request(Request.POST, url, formData, http.upType.file, options);
 	}
 
+	// TODO: 待封装迁移
 	/**
 	 * 以二进制的方式上传文件
 	 * @param { string } url 上传地址

@@ -5,9 +5,6 @@ import qs from "qs";
 import { ElMessage } from "element-plus";
 import { userStore } from "../stores/user";
 
-// 配置axios基本属性
-http.defaults.baseURL = import.meta.env.VITE_API_URL;
-
 // 使用qs序列化参数params参数
 http.defaults.paramsSerializer = function (params) {
 	return qs.stringify(params);
