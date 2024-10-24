@@ -11,11 +11,12 @@
  */
 
 import axios from "axios";
-import { type AxiosRequestConfig } from "axios";
+import { type AxiosRequestConfig, type Method, type AxiosInstance } from "axios";
 export { axios as axiosStaticInstance };
 
 import { isNull, merge, isUndefined, isNil } from "lodash-es";
 import qs from "qs";
+import { type RequiredPick } from "type-plus";
 
 import { type JsonVO } from "types/JsonVO";
 import { type PageDTO } from "types/PageDTO";
@@ -69,6 +70,11 @@ export enum mapContentType_UpType {
 type ContentType = keyof typeof mapContentType_UpType;
 
 /**
+ * url必填的axios请求配置
+ */
+export type AxiosRequestConfigUrl<D = any> = RequiredPick<AxiosRequestConfig<D>, "url">;
+
+/**
  * 创建axios实例
  */
 export function createAxiosInstance() {
@@ -105,8 +111,8 @@ export const request = axiosInstance;
  *
  * 不接受任何拓展
  */
-export function doAxiosRequest<T>(config: AxiosRequestConfig) {
-	return axiosInstance<any, JsonVO<T>>(config);
+export function doAxiosRequest<T>(config: AxiosRequestConfig, instance: AxiosInstance = axiosInstance) {
+	return instance<any, JsonVO<T>>(config);
 }
 
 /**
@@ -263,28 +269,28 @@ export function remove<T>(
  * @description
  * 仅仅是为form请求和传参做了封装
  */
-export function requestForm(
+export function requestForm<T>(
 	/** url 请求地址 */
 	url: string,
 
 	/** data 请求参数 */
-	data?: string | object,
+	data: string | object,
+
+	/** 请求方法 */
+	method: Method,
 
 	/** config 请求配置 */
 	config?: AxiosRequestConfig,
-) {}
-
-// /**
-//  * 发送表单请求
-//  * @param { import("types/request").RequestMethod } method 请求方式，如Request.GET
-//  * @param { string } url 请求地址
-//  * @param { unknown } data 上传数据
-//  * @param options [可选]其他配置选项
-//  * @returns { Promise<unknown> } 请求发送后的Promise对象
-//  */
-// static requestForm(method, url, data, options = null) {
-// 	return Request.request(method, url, data, http.upType.form, options);
-// }
+) {
+	config = {
+		method,
+		url,
+		data,
+		...config,
+	};
+	config = handleHeadersByUpType(config, UpType.form);
+	return doAxiosRequest<JsonVO<T>>(config);
+}
 
 /**
  * 封装一个Http请求工具类
