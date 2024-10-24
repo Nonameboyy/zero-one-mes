@@ -206,6 +206,20 @@ export function remove<T>(
 	};
 
 	if (params) {
+		/**
+		 * 有疑惑 在 https://sankeyangshu.top/posts/react-axios.html 中，
+		 * 用的是 params 参数，
+		 *
+		 * 但是我们08mes之前用的是 data 参数
+		 *
+		 * 这是否会有差异？
+		 *
+		 * TODO: 对于axios， delete请求到底是怎么传参的？是 params 还是 data ？
+		 */
+		// case Request.DELETE:
+		// 	config.method = "delete";
+		// 	config.data = data;
+		// 	break;
 		config.params = params;
 	}
 
@@ -217,26 +231,6 @@ export function remove<T>(
  * @type { import("types/request").Request }
  */
 export default class Request {
-	/** @returns { import("types/request").RequestMethods['GET'] } 返回具体数值 1 */
-	static get GET() {
-		return 1;
-	}
-
-	/** @returns { import("types/request").RequestMethods['POST'] } 返回具体数值 2 */
-	static get POST() {
-		return 2;
-	}
-
-	/** @returns { import("types/request").RequestMethods['PUT'] } 返回具体数值 3 */
-	static get PUT() {
-		return 3;
-	}
-
-	/** @returns { import("types/request").RequestMethods['DELETE'] } 返回具体数值 4 */
-	static get DELETE() {
-		return 4;
-	}
-
 	//
 	/**
 	 * 发送请求
