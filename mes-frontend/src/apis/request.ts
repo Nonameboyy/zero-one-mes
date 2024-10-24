@@ -59,18 +59,26 @@ export enum HttpCode {
 	SUCCESS = 10000,
 }
 
+export enum mapContentType_UpType {
+	"application/json;charset=UTF-8" = UpType.json,
+	"multipart/form-data" = UpType.file,
+	"application/octet-stream" = UpType.stream,
+	"application/x-www-form-urlencoded;charset=UTF-8" = UpType.form,
+}
+
+type ContentType = keyof typeof mapContentType_UpType;
+
 /**
  * 创建axios实例
  */
 export function createAxiosInstance() {
-	const instance = axios.create(
-		// @ts-ignore 不考虑额外配置冗余的 多余的请求类型值了 很难受。
-		{
-			// baseURL: "https://pcapi-xiaotuxian-front-devtest.itheima.net",
-			// 请求超时时间
-			timeout: 10000,
-		},
-	);
+	const instance = axios.create({
+		// TODO: 配置axios基本属性
+		// http.defaults.baseURL = import.meta.env.VITE_API_URL;
+		// baseURL: "https://pcapi-xiaotuxian-front-devtest.itheima.net",
+		// 请求超时时间
+		timeout: 10000,
+	});
 	return instance;
 }
 
@@ -107,26 +115,12 @@ export function doAxiosRequest<T>(config: AxiosRequestConfig) {
  * 不同的数据上传数据类型 要使用不同的接口请求方式
  */
 export function handleHeadersByUpType(config: AxiosRequestConfig, upType: UpType) {
-	if (upType === UpType.json) {
-		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
-			headers: {
-				"Content-Type": "application/json;charset=UTF-8",
-			},
-		});
-	}
+	const contentType = <ContentType>mapContentType_UpType[upType];
 
-	if (upType === UpType.file) {
+	if (contentType) {
 		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
 			headers: {
-				"Content-Type": "multipart/form-data",
-			},
-		});
-	}
-
-	if (upType === UpType.form) {
-		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
-			headers: {
-				"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+				"Content-Type": contentType,
 			},
 		});
 	}

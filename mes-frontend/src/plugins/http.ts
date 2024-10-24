@@ -7,7 +7,6 @@ import { userStore } from "../stores/user";
 
 // 配置axios基本属性
 http.defaults.baseURL = import.meta.env.VITE_API_URL;
-http.defaults.timeout = 10000;
 
 // 使用qs序列化参数params参数
 http.defaults.paramsSerializer = function (params) {
