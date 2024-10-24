@@ -132,6 +132,28 @@ export function get<T>(
 	return axiosInstance<any, JsonVO<T>>(config);
 }
 
+/** 封装post请求方法 */
+export function post<T>(
+	/** url 请求地址 */
+	url: string,
+
+	/** 请求参数 */
+	data?: string | object,
+
+	/** 请求配置 */
+	config?: AxiosRequestConfig,
+) {
+	config = {
+		method: "post",
+		url,
+		...config,
+	};
+	if (data) {
+		config.data = data;
+	}
+	return axiosInstance<any, JsonVO<T>>(config);
+}
+
 /**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
