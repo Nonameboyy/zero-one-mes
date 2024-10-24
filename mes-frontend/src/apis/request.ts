@@ -10,11 +10,14 @@
  * - 常见请求返回值的处理函数
  */
 
-import http from "axios";
+import axios from "axios";
 import { type AxiosRequestConfig } from "axios";
-export { http as axiosStaticInstance };
+export { axios as axiosStaticInstance };
 
 import { isNull, merge } from "lodash-es";
+
+import { type JsonVO } from "types/JsonVO";
+import { type PageDTO } from "types/PageDTO";
 
 /** 数据上传数据类型 */
 export enum UpType {
@@ -31,35 +34,35 @@ export enum UpType {
 	stream = 4,
 }
 
-// HTTP状态码
-http.httpcode = {
-	// 暂未登录或TOKEN已经过期
-	UNAUTHORIZED: 401,
-	// 没有相关权限
-	FORBIDDEN: 403,
-	// 访问页面未找到
-	NOT_FOUND: 404,
-	// 服务器错误
-	SERVER_ERROR: 9994,
-	// 上传参数异常
-	PARAMS_INVALID: 9995,
-	// ContentType错误
-	CONTENT_TYPE_ERR: 9996,
-	// 功能尚未实现
-	API_UN_IMPL: 9997,
-	// 服务器繁忙
-	SERVER_BUSY: 9998,
-	// 操作失败
-	FAIL: 9999,
-	// 操作成功
-	SUCCESS: 10000,
-};
+/** HTTP状态码 */
+export enum HttpCode {
+	/** 暂未登录或TOKEN已经过期 */
+	UNAUTHORIZED = 401,
+	/** 没有相关权限 */
+	FORBIDDEN = 403,
+	/** 访问页面未找到 */
+	NOT_FOUND = 404,
+	/** 服务器错误 */
+	SERVER_ERROR = 9994,
+	/** 上传参数异常 */
+	PARAMS_INVALID = 9995,
+	/** ContentType错误 */
+	CONTENT_TYPE_ERR = 9996,
+	/** 功能尚未实现 */
+	API_UN_IMPL = 9997,
+	/** 服务器繁忙 */
+	SERVER_BUSY = 9998,
+	/** 操作失败 */
+	FAIL = 9999,
+	/** 操作成功 */
+	SUCCESS = 10000,
+}
 
 /**
  * 创建axios实例
  */
 export function createAxiosInstance() {
-	const instance = http.create(
+	const instance = axios.create(
 		// @ts-ignore 不考虑额外配置冗余的 多余的请求类型值了 很难受。
 		{
 			// baseURL: "https://pcapi-xiaotuxian-front-devtest.itheima.net",
@@ -69,6 +72,9 @@ export function createAxiosInstance() {
 	);
 	return instance;
 }
+
+const axiosInstance = createAxiosInstance();
+const request = axiosInstance;
 
 // // axios 请求拦截器
 // requestForUseAxios.interceptors.request.use(
@@ -99,6 +105,32 @@ export function createAxiosInstance() {
 // );
 // // 先配置 再导出
 // export { requestForUseAxios };
+
+/** 封装get请求方法 */
+export function get<T>(
+	/** url 请求地址 */
+	url: string,
+
+	/** params 请求参数 */
+	params?: string | object,
+
+	/** config 请求配置 */
+	config?: AxiosRequestConfig,
+) {
+	config = {
+		// `method` 是创建请求时使用的方法
+		method: "get",
+		// `url` 是用于请求的服务器 URL
+		url,
+		...config,
+	};
+
+	if (params) {
+		config.params = params;
+	}
+
+	return axiosInstance<any, JsonVO<T>>(config);
+}
 
 /**
  * 封装一个Http请求工具类

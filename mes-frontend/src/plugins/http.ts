@@ -22,7 +22,7 @@ http.defaults.paramsSerializer = function (params) {
 export default (router) => {
 	// 请求拦截处理
 	http.interceptors.request.use(
-		(config) => {
+		function onFulfilled(config) {
 			// 提交的时候携带登录凭证
 			let store = userStore();
 			let token = store.getToken;
@@ -46,8 +46,9 @@ export default (router) => {
 			}
 			return config;
 		},
-		(error) => {
-			return Promise.error(error);
+		function onRejected(error) {
+			// return Promise.error(error);
+			return Promise.reject(error);
 		},
 	);
 
