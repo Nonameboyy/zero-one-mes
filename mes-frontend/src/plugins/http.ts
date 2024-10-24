@@ -1,4 +1,5 @@
-// @ts-check
+// TODO: 改造项目的 axios 请求方式
+
 import http from "axios";
 import qs from "qs";
 import { ElMessage } from "element-plus";
@@ -7,42 +8,6 @@ import { userStore } from "../stores/user";
 // 配置axios基本属性
 http.defaults.baseURL = import.meta.env.VITE_API_URL;
 http.defaults.timeout = 10000;
-
-// 数据上传数据类型
-http.upType = {
-	// 表单类型
-	form: 0,
-	// json类型
-	json: 1,
-	// 文件类型
-	file: 3,
-	// 文件流类型
-	stream: 4,
-};
-
-// HTTP状态码
-http.httpcode = {
-	// 暂未登录或TOKEN已经过期
-	UNAUTHORIZED: 401,
-	// 没有相关权限
-	FORBIDDEN: 403,
-	// 访问页面未找到
-	NOT_FOUND: 404,
-	// 服务器错误
-	SERVER_ERROR: 9994,
-	// 上传参数异常
-	PARAMS_INVALID: 9995,
-	// ContentType错误
-	CONTENT_TYPE_ERR: 9996,
-	// 功能尚未实现
-	API_UN_IMPL: 9997,
-	// 服务器繁忙
-	SERVER_BUSY: 9998,
-	// 操作失败
-	FAIL: 9999,
-	// 操作成功
-	SUCCESS: 10000,
-};
 
 // 使用qs序列化参数params参数
 http.defaults.paramsSerializer = function (params) {

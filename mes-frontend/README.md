@@ -81,3 +81,9 @@ npm run lint
 - [ ] 实现 vitest 测试运行直接写的接口请求。
 
 - （废弃，不使用）实现 vite-plugin-mock-dev-server ，mock 接口的配置与使用。
+
+## 改造项目的 axios 请求方式
+
+参考资料
+
+- https://sankeyangshu.top/posts/react-axios.html
