@@ -1,3 +1,7 @@
+
+let __unconfig_data;
+let __unconfig_stub = function (data = {}) { __unconfig_data = data };
+__unconfig_stub.default = (data = {}) => { __unconfig_data = data };
 import { dirname, resolve } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import * as fs from "node:fs";
@@ -35,7 +39,7 @@ const getViteEnv = (mode: ConfigEnv["mode"], target: keyof ImportMetaEnv) => {
 };
 
 // https://vitejs.dev/config/
-export default function ({ mode }: ConfigEnv) {
+const __unconfig_default =  function ({ mode }: ConfigEnv) {
 	const VITE_app_target_url = getViteEnv(mode, "VITE_app_target_url");
 	const VITE_MOCK_DEV_SERVER = getViteEnv(mode, "VITE_MOCK_DEV_SERVER");
 
@@ -250,3 +254,5 @@ export default function ({ mode }: ConfigEnv) {
 
 	return res;
 }
+
+if (typeof __unconfig_default === "function") __unconfig_default(...[{"command":"serve","mode":"development"}]);export default __unconfig_data;
