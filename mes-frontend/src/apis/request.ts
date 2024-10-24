@@ -183,6 +183,36 @@ export function patch<T>(
 }
 
 /**
+ * 封装delete请求方法
+ * @description
+ * 仅仅是为delete请求和传参做了封装
+ */
+export function remove<T>(
+	/** url 请求地址 */
+	url: string,
+
+	/** params 请求参数 */
+	params?: string | object,
+
+	/** config 请求配置 */
+	config?: AxiosRequestConfig,
+) {
+	config = {
+		// `method` 是创建请求时使用的方法
+		method: "delete",
+		// `url` 是用于请求的服务器 URL
+		url,
+		...config,
+	};
+
+	if (params) {
+		config.params = params;
+	}
+
+	return doAxiosRequest<JsonVO<T>>(config);
+}
+
+/**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
  */
