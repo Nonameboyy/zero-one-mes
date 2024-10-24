@@ -73,40 +73,38 @@ export function createAxiosInstance() {
 	return instance;
 }
 
-const axiosInstance = createAxiosInstance();
-const request = axiosInstance;
+/** 接口请求的默认实例 */
+export const axiosInstance = createAxiosInstance();
 
-// // axios 请求拦截器
-// requestForUseAxios.interceptors.request.use(
-// 	(config) => {
-// 		const userStore = useUserStore();
-// 		// @ts-ignore
-// 		const token = userStore.userInfo.token;
-// 		if (token) {
-// 			config.headers.Authorization = `Bearer ${token}`;
-// 		}
-// 		return config;
-// 	},
-// 	(e) => Promise.reject(e),
-// );
-// // axios 响应拦截器
-// requestForUseAxios.interceptors.response.use(
-// 	(res) => res,
-// 	(e) => {
-// 		const userStore = useUserStore();
-// 		console.warn(" 出现请求错误 错误如下： ", e);
-// 		ElMessage.warning(e.response.data.message);
-// 		if (e.response.status === 401) {
-// 			userStore.clearUserInfo();
-// 			router.push("/login");
-// 		}
-// 		return Promise.reject(e);
-// 	},
-// );
-// // 先配置 再导出
-// export { requestForUseAxios };
+/**
+ * 接口请求对象
+ * @description
+ * 仅仅只是 axiosInstance 的别名
+ *
+ * @alias axiosInstance
+ */
+export const request = axiosInstance;
 
-/** 封装get请求方法 */
+/**
+ * 执行axios请求
+ * @description
+ * 最纯粹的请求方法，只负责发送请求，不做任何处理
+ *
+ * 应该由其他的函数 整理好参数 交给此函数执行
+ *
+ * 这是细粒度最低最小的 单一职责的函数
+ *
+ * 不接受任何拓展
+ */
+export function doAxiosRequest<T>(config: AxiosRequestConfig) {
+	return axiosInstance<any, JsonVO<T>>(config);
+}
+
+/**
+ * 封装get请求方法
+ * @description
+ * 仅仅是为get请求和传参做了封装
+ */
 export function get<T>(
 	/** url 请求地址 */
 	url: string,
@@ -129,10 +127,14 @@ export function get<T>(
 		config.params = params;
 	}
 
-	return axiosInstance<any, JsonVO<T>>(config);
+	return doAxiosRequest<JsonVO<T>>(config);
 }
 
-/** 封装post请求方法 */
+/**
+ * 封装post请求方法
+ * @description
+ * 仅仅是为post请求和传参做了封装
+ */
 export function post<T>(
 	/** url 请求地址 */
 	url: string,
@@ -151,7 +153,33 @@ export function post<T>(
 	if (data) {
 		config.data = data;
 	}
-	return axiosInstance<any, JsonVO<T>>(config);
+	return doAxiosRequest<JsonVO<T>>(config);
+}
+
+/**
+ * 封装patch请求方法
+ * @description
+ * 仅仅是为patch请求和传参做了封装
+ */
+export function patch<T>(
+	/** url 请求地址 */
+	url: string,
+
+	/** 请求参数 */
+	data?: string | object,
+
+	/** 请求配置 */
+	config?: AxiosRequestConfig,
+) {
+	config = {
+		method: "patch",
+		url,
+		...config,
+	};
+	if (data) {
+		config.data = data;
+	}
+	return doAxiosRequest<JsonVO<T>>(config);
 }
 
 /**
