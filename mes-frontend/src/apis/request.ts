@@ -14,7 +14,8 @@ import axios from "axios";
 import { type AxiosRequestConfig } from "axios";
 export { axios as axiosStaticInstance };
 
-import { isNull, merge } from "lodash-es";
+import { isNull, merge, isUndefined, isNil } from "lodash-es";
+import qs from "qs";
 
 import { type JsonVO } from "types/JsonVO";
 import { type PageDTO } from "types/PageDTO";
@@ -98,6 +99,43 @@ export const request = axiosInstance;
  */
 export function doAxiosRequest<T>(config: AxiosRequestConfig) {
 	return axiosInstance<any, JsonVO<T>>(config);
+}
+
+/**
+ * 根据数据上传类型 重设请求头类型
+ * @description
+ * 不同的数据上传数据类型 要使用不同的接口请求方式
+ */
+export function handleHeadersByUpType(config: AxiosRequestConfig, upType: UpType) {
+	if (upType === UpType.json) {
+		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
+			headers: {
+				"Content-Type": "application/json;charset=UTF-8",
+			},
+		});
+	}
+
+	if (upType === UpType.file) {
+		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+			},
+		});
+	}
+
+	if (upType === UpType.form) {
+		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+			},
+		});
+	}
+
+	if (!isNil(config.data)) {
+		config.data = qs.stringify(config.data, { arrayFormat: "repeat" });
+	}
+
+	return config;
 }
 
 /**
@@ -227,57 +265,38 @@ export function remove<T>(
 }
 
 /**
+ * 发送表单请求
+ * @description
+ * 仅仅是为form请求和传参做了封装
+ */
+export function requestForm(
+	/** url 请求地址 */
+	url: string,
+
+	/** data 请求参数 */
+	data?: string | object,
+
+	/** config 请求配置 */
+	config?: AxiosRequestConfig,
+) {}
+
+// /**
+//  * 发送表单请求
+//  * @param { import("types/request").RequestMethod } method 请求方式，如Request.GET
+//  * @param { string } url 请求地址
+//  * @param { unknown } data 上传数据
+//  * @param options [可选]其他配置选项
+//  * @returns { Promise<unknown> } 请求发送后的Promise对象
+//  */
+// static requestForm(method, url, data, options = null) {
+// 	return Request.request(method, url, data, http.upType.form, options);
+// }
+
+/**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
  */
 export default class Request {
-	//
-	/**
-	 * 发送请求
-	 * @param { import("types/request").RequestMethod } method  请求方式，如Request.GET
-	 * @param { string } url 请求地址
-	 * @param { unknown } data 上传数据
-	 * @param { import("types/request").UpType } upType 上传数据方式，如http.upType.form
-	 * @param options  [可选]其他配置选项
-	 * @returns 请求发送后的Promise对象
-	 */
-	// @ts-ignore
-	static request(method, url, data, upType, options = null) {
-		// 组装参数
-		/** @type { import("types/request").AxiosRequestConfigSimple } */
-		const config = merge<AxiosRequestConfig, AxiosRequestConfig>(
-			<AxiosRequestConfig>{
-				url,
-				upType,
-			},
-
-			// @ts-ignore
-			isNull(options) ? {} : options,
-		);
-
-		switch (method) {
-			case Request.GET:
-				config.method = "get";
-				config.params = data;
-				break;
-			case Request.POST:
-				config.method = "post";
-				config.data = data;
-				break;
-			case Request.PUT:
-				config.method = "put";
-				config.data = data;
-				break;
-			case Request.DELETE:
-				config.method = "delete";
-				config.data = data;
-				break;
-		}
-
-		// @ts-ignore
-		return http.request(config);
-	}
-
 	/**
 	 * 发送表单请求
 	 * @param { import("types/request").RequestMethod } method 请求方式，如Request.GET
