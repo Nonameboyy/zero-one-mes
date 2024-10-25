@@ -180,10 +180,44 @@ export function isRequestForUseAxiosParameter(p: any): p is RequestForUseAxiosPa
 export type RequestForUseAxiosReturn<T = any, R = AxiosResponse<T>, D = any> = StrictUseAxiosReturn<T, R, D> &
 	Promise<StrictUseAxiosReturn<T, R, D>>;
 
+export function getSimple<T>(
+	/** url 请求地址 */
+	url: string,
+	/** params 请求参数 */
+	params?: string | object,
+	/** config 请求配置 */
+	config?: AxiosRequestConfig,
+) {
+	config = {
+		// `method` 是创建请求时使用的方法
+		method: "get",
+		// `url` 是用于请求的服务器 URL
+		url,
+		...config,
+	};
+	if (params) {
+		config.params = params;
+	}
+	return doAxiosRequest<T>(config);
+}
+
+export function getUseAxios<T>(requestForUseAxiosParameter: RequestForUseAxiosParameter) {
+	const {
+		config: { url },
+		config,
+		instance,
+		options,
+	} = requestForUseAxiosParameter;
+	config.method = "get";
+	return useAxios<JsonVO<T>>(url, config, instance, options);
+}
+
 /**
  * 封装get请求方法
  * @description
  * 仅仅是为get请求和传参做了封装
+ *
+ * @deprecated 硬着头皮做的函数重载 并不是一个好的设计
  */
 export function get<T>(
 	/** url 请求地址 */
@@ -198,41 +232,27 @@ export function get<T>(
  * 封装get请求方法（带有响应式数据的）
  * @description
  * 对 useAxios 做封装
+ *
+ * @deprecated 硬着头皮做的函数重载 并不是一个好的设计
  */
 export function get<T>(p: RequestForUseAxiosParameter): RequestForUseAxiosReturn<JsonVO<T>>;
 
-// 下次不要硬着头皮弄这个函数重载了 心智负担很重 代码也非常诡异混乱
+/**
+ * @description
+ * 下次不要硬着头皮弄这个函数重载了 心智负担很重 代码也非常诡异混乱
+ *
+ * @deprecated 硬着头皮做的函数重载 并不是一个好的设计
+ */
 export function get<T>(...args: any[]): RequestForUseAxiosReturn<JsonVO<T>> | Promise<JsonVO<T>> {
 	const p = args[0];
 	if (isRequestForUseAxiosParameter(p)) {
 		const requestForUseAxiosParameter = <RequestForUseAxiosParameter>args[0];
-
-		const {
-			config: { url },
-			config,
-			instance,
-			options,
-		} = requestForUseAxiosParameter;
-
-		return useAxios(url, config, instance, options);
+		return getUseAxios<T>(requestForUseAxiosParameter);
 	} else {
 		const url = <string>args[0];
 		const params = <string | object | undefined>args[1];
 		let config = <AxiosRequestConfig | undefined>args[2];
-
-		config = {
-			// `method` 是创建请求时使用的方法
-			method: "get",
-			// `url` 是用于请求的服务器 URL
-			url,
-			...config,
-		};
-
-		if (params) {
-			config.params = params;
-		}
-
-		return doAxiosRequest<T>(config);
+		return getSimple<T>(url, params, config);
 	}
 }
 
