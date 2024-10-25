@@ -42,6 +42,7 @@ export default (router) => {
 			}
 			return config;
 		},
+
 		function onRejected(error) {
 			// return Promise.error(error);
 			return Promise.reject(error);
@@ -50,7 +51,7 @@ export default (router) => {
 
 	// 响应拦截处理
 	http.interceptors.response.use(
-		async (response) => {
+		async function onFulfilled(response) {
 			// HTTP响应状态码正常
 			if (response.status === 200) {
 				if ("code" in response.data) {
@@ -103,7 +104,8 @@ export default (router) => {
 				return Promise.reject(response);
 			}
 		},
-		(error) => {
+
+		function onRejected(error) {
 			if (error.code === "ECONNABORTED" || error.code === "ERR_NETWORK") ElMessage.error("连接服务器失败!!!");
 			return Promise.reject(error);
 		},
