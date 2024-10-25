@@ -422,24 +422,32 @@ export function requestFormUseAxios<T>(p: RequestForUseAxiosParameter<AxiosReque
 	return useAxios<JsonVO<T>>(url, config, instance, options);
 }
 
+/** 发送JSON请求 */
+export function requestJson<T>(
+	/** url 请求地址 */
+	url: string,
+	/** data 请求参数 */
+	data: string | object,
+	/** 请求方法 */
+	method: Method,
+	/** config 请求配置 */
+	config?: AxiosRequestConfig,
+) {
+	config = {
+		method,
+		url,
+		data,
+		...config,
+	};
+	config = handleHeadersByUpType(config, UpType.json);
+	return doAxiosRequest<T>(config);
+}
+
 /**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
  */
 export default class Request {
-	// TODO: 待封装迁移
-	/**
-	 * 发送JSON请求
-	 * @param { import("types/request").RequestMethod } method 请求方式，如Request.GET
-	 * @param { string } url 请求地址
-	 * @param { unknown } data 上传数据
-	 * @param options [可选]其他配置选项
-	 * @returns { Promise<unknown> } 请求发送后的Promise对象
-	 */
-	static requestJson(method, url, data, options = null) {
-		return Request.request(method, url, data, http.upType.json, options);
-	}
-
 	// TODO: 待封装迁移
 	/**
 	 * 发送带文件上传的请求，该方法会完成js数据对象转换成FormData对象操作
