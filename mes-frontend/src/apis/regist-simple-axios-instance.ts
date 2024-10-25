@@ -1,19 +1,8 @@
 // TODO: 改造项目的 axios 请求方式
 
 import http from "axios";
-import qs from "qs";
 import { ElMessage } from "element-plus";
 import { userStore } from "../stores/user";
-
-// 使用qs序列化参数params参数
-http.defaults.paramsSerializer = function (params) {
-	return qs.stringify(params);
-};
-
-// 在发送前再次对参数进行qs序列化处理
-// http.defaults.transformRequest = [function (data) {
-//     return qs.stringify(data, {arrayFormat: 'repeat'});
-// }];
 
 export default (router) => {
 	// 请求拦截处理
@@ -27,24 +16,10 @@ export default (router) => {
 				// config.headers.common.Authorization = `Bearer ${token}`;
 				config.headers.Authorization = `Bearer ${token}`;
 			}
-			// 处理提交方式参数序列化操作
-			if (config.upType === http.upType.json) {
-				config.headers["Content-Type"] = "application/json;charset=UTF-8";
-			} else if (config.upType === http.upType.file) {
-				config.headers["Content-Type"] = "multipart/form-data";
-			} else if (config.upType === http.upType.stream) {
-				config.headers["Content-Type"] = "application/octet-stream";
-			} else {
-				config.headers["Content-Type"] = "application/x-www-form-urlencoded;charset=UTF-8";
-				if (config.data) {
-					config.data = qs.stringify(config.data, { arrayFormat: "repeat" });
-				}
-			}
 			return config;
 		},
 
 		function onRejected(error) {
-			// return Promise.error(error);
 			return Promise.reject(error);
 		},
 	);

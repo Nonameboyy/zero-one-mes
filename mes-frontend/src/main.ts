@@ -9,7 +9,7 @@ import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import "./assets/main.css";
 
 // 安装HTTP中间件
-import installHttp from "./plugins/http";
+import installHttp from "./apis/regist-simple-axios-instance";
 
 // 安装ElIcon
 import installElIcon from "./plugins/el-icon";

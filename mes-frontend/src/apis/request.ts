@@ -63,14 +63,14 @@ export enum HttpCode {
 	SUCCESS = 10000,
 }
 
-export enum mapContentType_UpType {
+export enum MapContentType_UpType {
 	"application/json;charset=UTF-8" = UpType.json,
 	"multipart/form-data" = UpType.file,
 	"application/octet-stream" = UpType.stream,
 	"application/x-www-form-urlencoded;charset=UTF-8" = UpType.form,
 }
 
-type ContentType = keyof typeof mapContentType_UpType;
+type ContentType = keyof typeof MapContentType_UpType;
 
 /**
  * url必填的axios请求配置
@@ -113,6 +113,12 @@ export function createAxiosInstance() {
 		// 请求超时时间
 		timeout: 10000,
 	});
+
+	// 使用qs序列化参数params参数
+	instance.defaults.paramsSerializer = function (params) {
+		return qs.stringify(params);
+	};
+
 	return instance;
 }
 
@@ -149,7 +155,7 @@ export function doAxiosRequest<T>(config: AxiosRequestConfig, instance: AxiosIns
  * 不同的数据上传数据类型 要使用不同的接口请求方式
  */
 export function handleHeadersByUpType(config: AxiosRequestConfig, upType: UpType) {
-	const contentType = <ContentType>mapContentType_UpType[upType];
+	const contentType = <ContentType>MapContentType_UpType[upType];
 
 	if (contentType) {
 		config = merge<AxiosRequestConfig, AxiosRequestConfig>(config, {
