@@ -443,6 +443,24 @@ export function requestJson<T>(
 	return doAxiosRequest<T>(config);
 }
 
+export type AxiosRequestConfig_requestJson<D = any> = AxiosRequestConfig_requestForm<D>;
+/**
+ * @description
+ * 传参要传递 config.data
+ */
+export function requestJsonUseAxios<T>(p: RequestForUseAxiosParameter<AxiosRequestConfig_requestJson>) {
+	const {
+		config: { url, data, method },
+		// 重命名为中间变量的配置对象
+		config: _config,
+		instance,
+		options,
+	} = p;
+	// 经过加工后最终参与的配置对象
+	const config = handleHeadersByUpType(_config, UpType.json);
+	return useAxios<JsonVO<T>>(url, config, instance, options);
+}
+
 /**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
