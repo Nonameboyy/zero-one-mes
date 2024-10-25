@@ -80,6 +80,27 @@ export interface AxiosRequestConfigUrl<D = any> extends AxiosRequestConfig<D> {
 	/** 必填的url地址 */
 	url: string;
 }
+// export interface AxiosRequestConfigUrlData<D = any> extends AxiosRequestConfigUrl<D> {
+// 	/** 必填的data传参对象 */
+// 	data: D;
+// }
+// export interface AxiosRequestConfigUrlData<D = any> extends AxiosRequestConfigUrl<D> {
+// 	/** 必填的data传参对象 */
+// 	data: D;
+// }
+
+/** 针对 useAxios 传参的，接口请求函数的参数类型 */
+export interface RequestForUseAxiosParameter<
+	Type_AxiosRequestConfig extends AxiosRequestConfigUrl = AxiosRequestConfigUrl,
+> {
+	/**
+	 * axios的配置类型
+	 * 默认为 必填url请求地址的 config 请求配置
+	 */
+	config: Type_AxiosRequestConfig;
+	instance: AxiosInstance;
+	options?: UseAxiosOptions;
+}
 
 /**
  * 创建axios实例
@@ -145,14 +166,6 @@ export function handleHeadersByUpType(config: AxiosRequestConfig, upType: UpType
 	return config;
 }
 
-/** 针对 useAxios 传参的，接口请求函数的参数类型 */
-export interface RequestForUseAxiosParameter {
-	/** 必填url请求地址的 config 请求配置 */
-	config: AxiosRequestConfigUrl;
-	instance: AxiosInstance;
-	options?: UseAxiosOptions;
-}
-
 /**
  * 是否是 axios的实例对象？
  * @see https://github.com/axios/axios/issues/737
@@ -201,6 +214,10 @@ export function getSimple<T>(
 	return doAxiosRequest<T>(config);
 }
 
+/**
+ * @description
+ * 传参要传递 config.params
+ */
 export function getUseAxios<T>(requestForUseAxiosParameter: RequestForUseAxiosParameter) {
 	const {
 		config: { url },
@@ -261,13 +278,11 @@ export function get<T>(...args: any[]): RequestForUseAxiosReturn<JsonVO<T>> | Pr
  * @description
  * 仅仅是为post请求和传参做了封装
  */
-export function post<T>(
+export function postSimple<T>(
 	/** url 请求地址 */
 	url: string,
-
 	/** 请求参数 */
 	data?: string | object,
-
 	/** 请求配置 */
 	config?: AxiosRequestConfig,
 ) {
@@ -283,6 +298,21 @@ export function post<T>(
 }
 
 /**
+ * @description
+ * 传参要传递 config.data
+ */
+export function postUseAxios<T>(requestForUseAxiosParameter: RequestForUseAxiosParameter) {
+	const {
+		config: { url },
+		config,
+		instance,
+		options,
+	} = requestForUseAxiosParameter;
+	config.method = "post";
+	return useAxios<JsonVO<T>>(url, config, instance, options);
+}
+
+/**
  * 封装patch请求方法
  * @description
  * 仅仅是为patch请求和传参做了封装
@@ -290,10 +320,8 @@ export function post<T>(
 export function patch<T>(
 	/** url 请求地址 */
 	url: string,
-
 	/** 请求参数 */
 	data?: string | object,
-
 	/** 请求配置 */
 	config?: AxiosRequestConfig,
 ) {
@@ -316,10 +344,8 @@ export function patch<T>(
 export function remove<T>(
 	/** url 请求地址 */
 	url: string,
-
 	/** params 请求参数 */
 	params?: string | object,
-
 	/** config 请求配置 */
 	config?: AxiosRequestConfig,
 ) {
@@ -360,13 +386,10 @@ export function remove<T>(
 export function requestForm<T>(
 	/** url 请求地址 */
 	url: string,
-
 	/** data 请求参数 */
 	data: string | object,
-
 	/** 请求方法 */
 	method: Method,
-
 	/** config 请求配置 */
 	config?: AxiosRequestConfig,
 ) {
@@ -378,6 +401,25 @@ export function requestForm<T>(
 	};
 	config = handleHeadersByUpType(config, UpType.form);
 	return doAxiosRequest<T>(config);
+}
+
+export type AxiosRequestConfig_requestForm<D = any> = RequiredPick<AxiosRequestConfig<D>, "url" | "method" | "data">;
+
+/**
+ * @description
+ * 传参要传递 config.params
+ */
+export function requestFormUseAxios<T>(p: RequestForUseAxiosParameter<AxiosRequestConfig_requestForm>) {
+	const {
+		config: { url, data, method },
+		// 重命名为中间变量的配置对象
+		config: _config,
+		instance,
+		options,
+	} = p;
+	// 经过加工后最终参与的配置对象
+	const config = handleHeadersByUpType(_config, UpType.form);
+	return useAxios<JsonVO<T>>(url, config, instance, options);
 }
 
 /**
