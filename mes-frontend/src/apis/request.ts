@@ -19,6 +19,7 @@ import { type UseAxiosOptions, type StrictUseAxiosReturn, useAxios } from "@vueu
 import { isNull, merge, isUndefined, isNil } from "lodash-es";
 import qs from "qs";
 import { type RequiredPick } from "type-plus";
+import { isConditionsEvery } from "@ruan-cat/utils";
 
 import { type JsonVO } from "types/JsonVO";
 import { type PageDTO } from "types/PageDTO";
@@ -152,6 +153,30 @@ export interface RequestForUseAxiosParameter {
 	options?: UseAxiosOptions;
 }
 
+/**
+ * 是否是 axios的实例对象？
+ * @see https://github.com/axios/axios/issues/737
+ */
+export function isAxiosInstance(p: any): p is AxiosInstance {
+	return !!p?.request;
+}
+
+/** 该对象是否是专用于 useAxios 的参数对象？ */
+export function isRequestForUseAxiosParameter(p: any): p is RequestForUseAxiosParameter {
+	const config = <AxiosRequestConfigUrl | undefined>p?.config;
+	const url = <AxiosRequestConfigUrl["url"] | undefined>config?.url;
+	const instance = <AxiosInstance | undefined>p?.instance;
+
+	return isConditionsEvery([
+		// 存在配置对象
+		() => !isUndefined(config),
+		// 必填的url地址
+		() => !isUndefined(url),
+		// 有填写axios实例
+		() => isAxiosInstance(instance),
+	]);
+}
+
 export type RequestForUseAxiosReturn<T = any, R = AxiosResponse<T>, D = any> = StrictUseAxiosReturn<T, R, D> &
 	Promise<StrictUseAxiosReturn<T, R, D>>;
 
@@ -176,30 +201,39 @@ export function get<T>(
  */
 export function get<T>(p: RequestForUseAxiosParameter): RequestForUseAxiosReturn<JsonVO<T>>;
 
-// TODO: 实现函数重载 匹配函数签名
-export function get<T>(
-	/** url 请求地址 */
-	url: string,
+// 下次不要硬着头皮弄这个函数重载了 心智负担很重 代码也非常诡异混乱
+export function get<T>(...args: any[]): RequestForUseAxiosReturn<JsonVO<T>> | Promise<JsonVO<T>> {
+	const p = args[0];
+	if (isRequestForUseAxiosParameter(p)) {
+		const requestForUseAxiosParameter = <RequestForUseAxiosParameter>args[0];
 
-	/** params 请求参数 */
-	params?: string | object,
+		const {
+			config: { url },
+			config,
+			instance,
+			options,
+		} = requestForUseAxiosParameter;
 
-	/** config 请求配置 */
-	config?: AxiosRequestConfig,
-) {
-	config = {
-		// `method` 是创建请求时使用的方法
-		method: "get",
-		// `url` 是用于请求的服务器 URL
-		url,
-		...config,
-	};
+		return useAxios(url, config, instance, options);
+	} else {
+		const url = <string>args[0];
+		const params = <string | object | undefined>args[1];
+		let config = <AxiosRequestConfig | undefined>args[2];
 
-	if (params) {
-		config.params = params;
+		config = {
+			// `method` 是创建请求时使用的方法
+			method: "get",
+			// `url` 是用于请求的服务器 URL
+			url,
+			...config,
+		};
+
+		if (params) {
+			config.params = params;
+		}
+
+		return doAxiosRequest<T>(config);
 	}
-
-	return doAxiosRequest<T>(config);
 }
 
 /**
