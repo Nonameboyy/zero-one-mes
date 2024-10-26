@@ -72,29 +72,15 @@ export default function ({ mode }: ConfigEnv) {
 		},
 		server: {
 			host: "0.0.0.0",
-			port: 3000,
+			port: Number(VITE_app_port),
 			// @ts-ignore 暂不处理此类型报错
 			https: false,
 			proxy: {
-				// TODO: 迁移成熟的，默认的反向代理配置
-				/**
-				 * env.VITE_APP_BASE_API: /api
-				 */
-				// ["^/api"]: {
-				// 	changeOrigin: true,
-				// 	target: "http://localhost:10100",
-				// 	rewrite: (path) => path.replace(new RegExp("^" + "http://localhost:10100"), ""),
-				// },
-
-				// TODO: 迁移成熟的，默认的反向代理配置
-				// 为了测试mock配置 暂时注释掉。
-				"/api": {
+				[VITE_proxy_prefix]: {
 					changeOrigin: true,
-					// target: 'http://localhost:10100',
-					// rewrite: (path) => path.replace(/^\/api/, '')
-					//TODO[TEST_CODE]:使用ApiPost云MOCK
-					target: "https://console-mock.apipost.cn/mock/99738a62-8857-4bb2-8010-c92424b03584",
-					rewrite: (path) => path.replace(/^\/api/, ""),
+					// 接口地址
+					target: VITE_APP_API_URL,
+					rewrite: (path) => path.replace(new RegExp("^" + VITE_proxy_prefix), ""),
 				},
 
 				"/captcha": {
