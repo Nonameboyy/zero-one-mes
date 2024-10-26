@@ -17,9 +17,17 @@ import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
 import mockDevServerPlugin from "vite-plugin-mock-dev-server";
 
 import { getRouteName } from "./src/plugins/unplugin-vue-router";
-import { ImportMetaEnv } from "./types/env.shim.d";
 
-import {} from "@ruan-cat/utils";
+/**
+ * 用全量导入的方式 获取类型
+ * 这些类型不能写成export导入的形式，会导致全局类型声明失效
+ *
+ * 也可以等效地用 三斜线表达式 实现全量导入
+ * <reference types="./types/env.shim.d.ts" />
+ */
+import "./types/env.shim.d.ts";
+
+// import {} from "@ruan-cat/utils";
 
 const { autoImport } = createPlugin();
 
@@ -30,14 +38,32 @@ function pathResolve(dir: string) {
 	return resPath;
 }
 
-const getViteEnv = (mode: ConfigEnv["mode"], target: keyof ImportMetaEnv) => {
+/**
+ * 获得环境变量
+ * @deprecated
+ * 不推荐 环境变量的类型声明文件 现在包含了vite的客户端拓展
+ *
+ * 客户端的拓展类型 包含一个索引类型
+ *
+ * 故无法准确推断key值的类型了
+ *
+ * 该函数效果不佳 故不推荐使用
+ */
+function getViteEnv(mode: ConfigEnv["mode"], target: keyof ImportMetaEnv) {
 	return loadEnv(mode, process.cwd())[target];
-};
+}
 
 // https://vitejs.dev/config/
 export default function ({ mode }: ConfigEnv) {
 	const VITE_app_target_url = getViteEnv(mode, "VITE_app_target_url");
 	const VITE_MOCK_DEV_SERVER = getViteEnv(mode, "VITE_MOCK_DEV_SERVER");
+
+	// 提供类型声明 便于得到使用提示
+	//
+	const env = loadEnv(mode, process.cwd()) as unknown as ImportMetaEnv;
+	const VITE_proxy_prefix = env.VITE_proxy_prefix;
+	const VITE_APP_API_URL = env.VITE_base_url;
+	const VITE_app_port = env.VITE_app_port;
 
 	const res = defineConfig({
 		define: {
@@ -50,6 +76,7 @@ export default function ({ mode }: ConfigEnv) {
 			// @ts-ignore 暂不处理此类型报错
 			https: false,
 			proxy: {
+				// TODO: 迁移成熟的，默认的反向代理配置
 				/**
 				 * env.VITE_APP_BASE_API: /api
 				 */
@@ -59,6 +86,7 @@ export default function ({ mode }: ConfigEnv) {
 				// 	rewrite: (path) => path.replace(new RegExp("^" + "http://localhost:10100"), ""),
 				// },
 
+				// TODO: 迁移成熟的，默认的反向代理配置
 				// 为了测试mock配置 暂时注释掉。
 				"/api": {
 					changeOrigin: true,

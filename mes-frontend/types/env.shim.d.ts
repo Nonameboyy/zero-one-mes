@@ -1,4 +1,13 @@
-export interface ImportMetaEnv {
+/// <reference types="vite/client" />
+
+/**
+ * 这个是之前01星球项目用的环境变量配置
+ * @description
+ * 不做进一步的拓展了 保留原有的配置
+ *
+ * 不做外部导出 要求外部以全量导入的形式使用本类型
+ */
+interface ImportMetaEnv {
 	/** 应用端口 */
 	VITE_APP_PORT: number;
 
@@ -30,6 +39,33 @@ export interface ImportMetaEnv {
 	VITE_app_target_url: string;
 }
 
-export interface ImportMeta {
+/** 在其他项目内 基本共享的拓展 */
+interface ImportMetaEnv {
+	/**
+	 * 应用端口
+	 * @example
+	 * "8080"
+	 */
+	VITE_app_port: `${number}`;
+
+	/**
+	 * API 基础路径(代理前缀)
+	 * @example
+	 * "/dev-api"
+	 */
+	VITE_proxy_prefix: string;
+
+	/**
+	 * API 地址。即接口请求最终的服务器地址。
+	 * @example
+	 * "https://pcapi-xiaotuxian-front-devtest.itheima.net"
+	 */
+	VITE_base_url: string;
+
+	/** 是否开启 Mock 服务 */
+	VITE_MOCK_DEV_SERVER: `${boolean}`;
+}
+
+interface ImportMeta {
 	readonly env: ImportMetaEnv;
 }
