@@ -496,6 +496,44 @@ export function postFileUseAxios<T>(p: RequestForUseAxiosParameter<AxiosRequestC
 	return useAxios<JsonVO<T>>(url, config, instance, options);
 }
 
+export type AxiosRequestConfig_postFileStream<D = any> = AxiosRequestConfig_postFile<D>;
+/**
+ * @description
+ * 传参要传递 config.data
+ */
+export function postFileStreamUseAxios<T>(p: RequestForUseAxiosParameter<AxiosRequestConfig_postFileStream>) {
+	const {
+		config: { url, data },
+		// 重命名为中间变量的配置对象
+		config: _config,
+		instance,
+		options,
+	} = p;
+
+	// 仅为post请求
+	_config.method = "post";
+
+	// 经过加工后最终参与的配置对象
+	const config = handleHeadersByUpType(_config, UpType.file);
+
+	// 读取文件
+	const reader = new FileReader();
+	reader.readAsArrayBuffer(data);
+
+	// 警告 这一段的封装有设计性的问题 这个回调不能很好的返回我们的 useAxios 。
+	reader.onloadend = function () {
+		// 读取文件失败
+		if (reader.error) {
+			fail("文件读取失败");
+			return;
+		}
+		// 上传文件
+		Request.request(Request.POST, url, reader.result, http.upType.stream, options);
+	};
+
+	return useAxios<JsonVO<T>>(url, config, instance, options);
+}
+
 /**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
