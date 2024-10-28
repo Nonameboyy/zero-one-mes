@@ -59,7 +59,6 @@ export default function ({ mode }: ConfigEnv) {
 	const VITE_MOCK_DEV_SERVER = getViteEnv(mode, "VITE_MOCK_DEV_SERVER");
 
 	// 提供类型声明 便于得到使用提示
-	//
 	const env = loadEnv(mode, process.cwd()) as unknown as ImportMetaEnv;
 	const VITE_proxy_prefix = env.VITE_proxy_prefix;
 	const VITE_APP_API_URL = env.VITE_base_url;
@@ -78,7 +77,6 @@ export default function ({ mode }: ConfigEnv) {
 			proxy: {
 				[VITE_proxy_prefix]: {
 					changeOrigin: true,
-					// 接口地址
 					target: VITE_APP_API_URL,
 					rewrite: (path) => path.replace(new RegExp("^" + VITE_proxy_prefix), ""),
 				},

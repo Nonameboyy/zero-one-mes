@@ -63,6 +63,7 @@ export enum HttpCode {
 	SUCCESS = 10000,
 }
 
+/** 上传类型-请求体类型 枚举 */
 export enum MapContentType_UpType {
 	"application/json;charset=UTF-8" = UpType.json,
 	"multipart/form-data" = UpType.file,
