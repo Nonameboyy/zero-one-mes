@@ -449,6 +449,7 @@ export function requestJson<T>(
 }
 
 export type AxiosRequestConfig_requestJson<D = any> = AxiosRequestConfig_requestForm<D>;
+
 /**
  * @description
  * 传参要传递 config.data
@@ -466,30 +467,40 @@ export function requestJsonUseAxios<T>(p: RequestForUseAxiosParameter<AxiosReque
 	return useAxios<JsonVO<T>>(url, config, instance, options);
 }
 
+export type AxiosRequestConfig_postFile<D = any> = RequiredPick<AxiosRequestConfig<D>, "url" | "data">;
+/**
+ * @description
+ * 传参要传递 config.data
+ */
+export function postFileUseAxios<T>(p: RequestForUseAxiosParameter<AxiosRequestConfig_postFile>) {
+	const {
+		config: { url, data },
+		// 重命名为中间变量的配置对象
+		config: _config,
+		instance,
+		options,
+	} = p;
+
+	// 将data转换成FormData对象
+	const formData = new FormData();
+	for (const key in data) {
+		formData.append(key, data[key]);
+	}
+	_config.data = formData;
+
+	// 仅为post请求
+	_config.method = "post";
+
+	// 经过加工后最终参与的配置对象
+	const config = handleHeadersByUpType(_config, UpType.file);
+	return useAxios<JsonVO<T>>(url, config, instance, options);
+}
+
 /**
  * 封装一个Http请求工具类
  * @type { import("types/request").Request }
  */
 export default class Request {
-	// TODO: 待封装迁移
-	/**
-	 * 发送带文件上传的请求，该方法会完成js数据对象转换成FormData对象操作
-	 * 请求方式以post方式发送
-	 * @param { string } url 请求地址
-	 * @param { any } data 包括file数据的js数据对象
-	 * @param options [可选]其他配置选项
-	 * @returns { Promise<unknown> } 请求发送后的Promise对象
-	 */
-	static postFile(url, data, options = null) {
-		// 将data转换成FormData对象
-		const formData = new FormData();
-		for (const key in data) {
-			formData.append(key, data[key]);
-		}
-		// 发送请求
-		return Request.request(Request.POST, url, formData, http.upType.file, options);
-	}
-
 	// TODO: 待封装迁移
 	/**
 	 * 以二进制的方式上传文件
