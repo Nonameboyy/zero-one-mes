@@ -108,10 +108,8 @@ export interface RequestForUseAxiosParameter<
  */
 export function createAxiosInstance() {
 	const instance = axios.create({
-		// TODO: 配置axios基本属性
-		// http.defaults.baseURL = import.meta.env.VITE_API_URL;
-		// baseURL: "https://pcapi-xiaotuxian-front-devtest.itheima.net",
-		// 请求超时时间
+		baseURL: import.meta.env.VITE_base_url,
+		/** 请求超时时间 */
 		timeout: 10000,
 	});
 
