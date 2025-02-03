@@ -1,1 +1,2 @@
-module.exports = require("@ruan-cat/commitlint-config").default;
+const config = require("@ruan-cat/commitlint-config").default;
+module.exports = config;

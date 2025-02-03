@@ -51,9 +51,8 @@
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^4.1.1",
-		"@ruan-cat/commitlint-config": "^0.1.2",
+		"@ruan-cat/commitlint-config": "^0.1.3",
 		"@ruan-cat/utils": "^1.3.5",
-		"@rushstack/eslint-patch": "^1.10.5",
 		"@types/eslint-config-prettier": "^6.11.3",
 		"@types/lodash": "^4.17.15",
 		"@types/lodash-es": "^4.17.12",
