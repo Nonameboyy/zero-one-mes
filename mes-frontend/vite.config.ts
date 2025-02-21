@@ -27,8 +27,6 @@ import { getRouteName } from "@ruan-cat/utils/dist/index.js";
  */
 import "./types/env.shim.d.ts";
 
-// import {} from "@ruan-cat/utils";
-
 const { autoImport } = createPlugin();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -217,7 +215,12 @@ export default function ({ mode }: ConfigEnv) {
 
 			Components({
 				version: 3,
-				dirs: ["src/components", "src/views"],
+				dirs: [
+					// 不生成 不负责。目前此文件夹下面的组件，交给其他的插件实现生成，生成特定的命名规则前缀
+					// "src/components",
+					// 也不负责具体的路由页面
+					// "src/views",
+				],
 				dts: "./types/components.d.ts",
 				directoryAsNamespace: true,
 				resolvers: [ElementPlusResolver()],
