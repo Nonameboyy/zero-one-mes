@@ -83,7 +83,7 @@
 		"vite": "^6.0.11",
 		"vite-plugin-autogeneration-import-file": "^3.0.0",
 		"vite-plugin-html": "^3.2.2",
-		"vite-plugin-mock-dev-server": "^1.8.3",
+		"vite-plugin-ts-alias": "^0.1.1",
 		"vite-plugin-vue-devtools": "^7.7.1",
 		"vitest": "^2.1.9",
 		"vue-tsc": "^2.2.0"

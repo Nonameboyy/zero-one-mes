@@ -14,7 +14,7 @@ import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { visualizer } from "rollup-plugin-visualizer";
 import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
-import mockDevServerPlugin from "vite-plugin-mock-dev-server";
+import tsAlias from "vite-plugin-ts-alias";
 
 import { getRouteName } from "@ruan-cat/utils/dist/index.js";
 
@@ -240,27 +240,14 @@ export default function ({ mode }: ConfigEnv) {
 				},
 			}),
 
-			/**
-			 * 本地 mock 服务接口插件
-			 */
-			getViteEnv(mode, "VITE_MOCK_DEV_SERVER") === "true" ? mockDevServerPlugin() : null,
-			// mockDevServerPlugin({
-			// 	build: true,
-			// }),
+			tsAlias({
+				/**
+				 * tsconfig name, optional.
+				 * @default 'tsconfig.json'
+				 */
+				tsConfigName: "tsconfig.app.json",
+			}),
 		],
-
-		resolve: {
-			alias: {
-				"@": fileURLToPath(new URL("./src", import.meta.url)),
-				components: fileURLToPath(new URL("./src/components", import.meta.url)),
-				types: fileURLToPath(new URL("./src/types", import.meta.url)),
-				views: fileURLToPath(new URL("./src/views", import.meta.url)),
-				apis: fileURLToPath(new URL("./src/apis", import.meta.url)),
-				stores: fileURLToPath(new URL("./src/stores", import.meta.url)),
-				router: fileURLToPath(new URL("./src/router", import.meta.url)),
-				utils: fileURLToPath(new URL("./src/utils", import.meta.url)),
-			},
-		},
 	});
 
 	return res;
