@@ -16,7 +16,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
 import mockDevServerPlugin from "vite-plugin-mock-dev-server";
 
-import { getRouteName } from "./src/plugins/unplugin-vue-router";
+import { getRouteName } from "@ruan-cat/utils/dist/index.js";
 
 /**
  * 用全量导入的方式 获取类型

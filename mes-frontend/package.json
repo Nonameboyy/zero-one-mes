@@ -19,12 +19,13 @@
 		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
 		"corepack:pnpm": "corepack enable && corepack install",
 		"git:fetch": "git fetch -p",
+		"up-ruan-cat": "pnpm up @ruan-cat/*@latest",
 		"dev": "vite --open",
 		"build": "vite build",
 		"build:vue-tsc": "vue-tsc && vite build",
 		"preview": "vite preview --port 4173",
-		"lint:eslint": "eslint . --fix",
-		"format:prettier": "prettier --write .",
+		"lint": "eslint . --fix",
+		"format": "prettier --write .",
 		"rm:node_modules": "rimraf node_modules pnpm-lock.yaml"
 	},
 	"dependencies": {
@@ -51,8 +52,8 @@
 	},
 	"devDependencies": {
 		"@antfu/eslint-config": "^4.1.1",
-		"@ruan-cat/commitlint-config": "^0.1.3",
-		"@ruan-cat/utils": "^1.3.5",
+		"@ruan-cat/commitlint-config": "^0.2.3",
+		"@ruan-cat/utils": "^1.7.0",
 		"@types/eslint-config-prettier": "^6.11.3",
 		"@types/lodash": "^4.17.15",
 		"@types/lodash-es": "^4.17.12",
