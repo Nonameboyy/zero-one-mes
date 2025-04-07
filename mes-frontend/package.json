@@ -10,11 +10,6 @@
 		"vscode": "^1.22.0",
 		"pnpm": ">=9.5.0"
 	},
-	"config": {
-		"commitizen": {
-			"path": "mes-frontend/node_modules/cz-git"
-		}
-	},
 	"scripts": {
 		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
 		"corepack:pnpm": "corepack enable && corepack install",

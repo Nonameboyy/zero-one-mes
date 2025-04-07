@@ -16,7 +16,8 @@ import { visualizer } from "rollup-plugin-visualizer";
 import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
 import tsAlias from "vite-plugin-ts-alias";
 
-import { getRouteName } from "@ruan-cat/utils/dist/index.js";
+import { getRouteName } from "@ruan-cat/utils/unplugin-vue-router";
+import { pathResolve } from "@ruan-cat/utils/vite-plugin-autogeneration-import-file";
 
 /**
  * 用全量导入的方式 获取类型
@@ -28,13 +29,6 @@ import { getRouteName } from "@ruan-cat/utils/dist/index.js";
 import "./types/env.shim.d.ts";
 
 const { autoImport } = createPlugin();
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-function pathResolve(dir: string) {
-	const resPath = resolve(__dirname, ".", dir);
-	return resPath;
-}
 
 /**
  * 获得环境变量
@@ -166,7 +160,6 @@ export default function ({ mode }: ConfigEnv) {
 					toFile: pathResolve("types/components-instance.d.ts"),
 
 					// 文件生成模板
-					template: fs.readFileSync(pathResolve("template/components.template.d.ts"), "utf-8"),
 
 					codeTemplates: [
 						{
@@ -174,18 +167,6 @@ export default function ({ mode }: ConfigEnv) {
 							template: 'type {{name}}Instance = InstanceType<typeof import("{{path}}")["default"]>;\n  ',
 						},
 					],
-
-					/**
-					 * 组件名命名规则支持字符串模板和函数
-					 * @description
-					 * 设置首字母为大写
-					 */
-					name(fileName) {
-						const resFileName = getName(fileName);
-						const upperFirstFileName = upperFirst(resFileName);
-						// console.log(" in name", upperFirstFileName);
-						return upperFirstFileName;
-					},
 				},
 			]),
 
