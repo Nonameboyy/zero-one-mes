@@ -13,11 +13,11 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { visualizer } from "rollup-plugin-visualizer";
-import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
 import tsAlias from "vite-plugin-ts-alias";
 
 import { getRouteName } from "@ruan-cat/utils/unplugin-vue-router";
-import { pathResolve } from "@ruan-cat/utils/vite-plugin-autogeneration-import-file";
+
+import autoImport from "./build/vite-plugin-autogeneration-import-file/index.ts";
 
 /**
  * 用全量导入的方式 获取类型
@@ -27,8 +27,6 @@ import { pathResolve } from "@ruan-cat/utils/vite-plugin-autogeneration-import-f
  * <reference types="./types/env.shim.d.ts" />
  */
 import "./types/env.shim.d.ts";
-
-const { autoImport } = createPlugin();
 
 /**
  * 获得环境变量
@@ -149,27 +147,7 @@ export default function ({ mode }: ConfigEnv) {
 			/**
 			 * 自动生成类型声明文件插件
 			 */
-			autoImport([
-				{
-					pattern: ["**/*.vue"],
-
-					// 监听的文件夹
-					dir: pathResolve("src/components"),
-
-					// 生成的文件
-					// FIXME: 当不包含文件路径时，就出现错误 如果没有预先准备好文件夹，就会生成失败。
-					toFile: pathResolve("types/components-instance.d.ts"),
-
-					// 文件生成模板
-
-					codeTemplates: [
-						{
-							key: "//typeCode",
-							template: 'type {{name}}Instance = InstanceType<typeof import("{{path}}")["default"]>;\n  ',
-						},
-					],
-				},
-			]),
+			autoImport,
 
 			AutoImport({
 				imports: [
@@ -177,12 +155,8 @@ export default function ({ mode }: ConfigEnv) {
 					"vue",
 					"@vueuse/core",
 					"pinia",
-					{
-						"@vueuse/integrations/useAxios": ["useAxios"],
-					},
-					{
-						"@ruan-cat/utils": ["isConditionsEvery", "isConditionsSome"],
-					},
+					{ "@vueuse/integrations/useAxios": ["useAxios"] },
+					{ "@ruan-cat/utils": ["isConditionsEvery", "isConditionsSome"] },
 					{
 						from: "@ruan-cat/utils",
 						imports: ["Prettify", "ToNumberLike"],

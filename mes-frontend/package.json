@@ -31,6 +31,7 @@
 		"@wangeditor/editor-for-vue": "^5.1.12",
 		"@zanmato/vue3-treeselect": "^0.4.1",
 		"axios": "^1.10.0",
+		"consola": "^3.4.2",
 		"crypto-js": "^4.2.0",
 		"element-plus": "^2.10.2",
 		"fuse.js": "^7.1.0",
