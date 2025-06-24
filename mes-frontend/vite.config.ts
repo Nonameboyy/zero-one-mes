@@ -63,6 +63,7 @@ export default function ({ mode }: ConfigEnv) {
 		},
 		server: {
 			host: "0.0.0.0",
+			open: true,
 			port: Number(VITE_app_port),
 			// @ts-ignore 暂不处理此类型报错
 			https: false,
