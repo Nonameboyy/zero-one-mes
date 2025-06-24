@@ -9,18 +9,18 @@
 		"node": ">=22.14.0"
 	},
 	"scripts": {
-		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
-		"corepack:pnpm": "corepack enable && corepack install",
-		"git:fetch": "git fetch -p",
-		"up-ruan-cat": "pnpm up @ruan-cat/*@latest",
 		"dev": "vite --configLoader runner",
 		"build": "vite build --configLoader runner",
-		"build:vue-tsc": "vue-tsc && vite build --configLoader runner",
-		"preview": "vite preview --port=4173 --configLoader runner",
-		"lint": "eslint . --fix",
+		"git:fetch": "git fetch -p",
+		"up-ruan-cat": "pnpm up @ruan-cat/*@latest",
 		"format": "prettier --write .",
 		"clear:cache": "rimraf -g '**/{dist,.turbo,.vercel,.cache,.temp}'",
-		"clear:deps": "rimraf -g '**/{node_modules,package-lock.json,pnpm-lock.yaml}'"
+		"clear:deps": "rimraf -g '**/{node_modules,package-lock.json,pnpm-lock.yaml}'",
+		"lint": "eslint . --fix",
+		"preview": "vite preview --port=4173 --configLoader runner",
+		"corepack:pnpm": "corepack enable && corepack install",
+		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
+		"build:vue-tsc": "vue-tsc && vite build --configLoader runner"
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.3.1",
