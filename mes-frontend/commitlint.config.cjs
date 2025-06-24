@@ -60,14 +60,4 @@ const otherScopesConfigs = [
 	},
 ];
 
-const scopesConfigs = [...otherScopesConfigs];
-
-/** @type {import("cz-git").ScopesType} */
-const userScopes = scopesConfigs.map((conf) => {
-	return {
-		name: `${conf.code} | ${conf.desc}`,
-		value: conf.value,
-	};
-});
-
-module.exports = require("@ruan-cat/commitlint-config").getUserConfig(userScopes);
+module.exports = require("@ruan-cat/commitlint-config").getUserConfig(otherScopesConfigs);
