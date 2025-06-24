@@ -75,12 +75,12 @@ npm run lint
 
 ## 待办路线图
 
-- [ ] 在本项目内，实现路径动态路由的匹配。实现基于文件的路由，学会基础的路由匹配。
-- [ ] 阅读关于 axios 的最佳实践。看看别人是怎么优雅地，洽当地封装 axios 的？
-- [ ] 实现 useAxios 的使用。
-- [ ] 实现 vitest 测试运行直接写的接口请求。
-
-- （废弃，不使用）实现 vite-plugin-mock-dev-server ，mock 接口的配置与使用。
+- [ ] 重构 vite 插件组织方式。改成 pure-admin 的写法。
+- [ ] 测试 npm:rolldown-vite@latest 加速方案。
+- [ ] 在本项目内，对接其他项目已经成功的，基于文件路由。
+- [x] 阅读关于 axios 的最佳实践。看看别人是怎么优雅地，洽当地封装 axios 的？
+- [x] 实现 useAxios 的使用。
+- [ ] 接入其他项目已经成功的 useAxios 请求工具。
 
 ## 改造项目的 axios 请求方式
 
