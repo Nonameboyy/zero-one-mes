@@ -1,4 +1,5 @@
 import { createPlugin, getName } from "vite-plugin-autogeneration-import-file";
+import { upperFirst } from "lodash-es";
 
 const { autoImport, resolver } = createPlugin();
 
@@ -27,15 +28,16 @@ export default autoImport([
 				if (idx === -1) return str;
 				return str.substring(0, idx);
 			}
-			const resFileName = cutStringByKeyword(fileNameOrigin, keyword);
+			const resFileName = upperFirst(cutStringByKeyword(fileNameOrigin, keyword));
 			return <const>`${resFileName}`;
 		},
+		// 在本项目内 不增加前缀
 		// name: createDirOptionNameFunction("Components"),
 		pattern: [
+			"**/*.vue",
 			// 忽略全部的test组件
 			"!**/*.test.vue",
 			"!**/*-example.vue",
-			"**/*.vue",
 		],
 		// 监听的文件夹
 		dir: pathResolve("./src/components"),
