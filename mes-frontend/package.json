@@ -13,7 +13,7 @@
 		"build": "vite build --configLoader runner",
 		"git:fetch": "git fetch -p",
 		"up-ruan-cat": "pnpm up '@ruan-cat/*@latest'",
-		"up": "pnpm up '!@wangeditor/'",
+		"up": "pnpm up '!@wangeditor/' '!@form-create/'",
 		"format": "prettier --write .",
 		"clear:cache": "rimraf -g '**/{dist,.turbo,.vercel,.cache,.temp}'",
 		"clear:deps": "rimraf -g '**/{node_modules,package-lock.json,pnpm-lock.yaml}'",
