@@ -1,9 +1,4 @@
 <script setup>
-defineOptions({
-	/** TODO: 更新组件的名称 重设成合适的名称 阮喵喵 */
-	name: "TableFrame",
-});
-
 defineProps({
 	title: {
 		//引入的表格名，显示在上面

@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import http from "axios";
 import { onMounted } from "vue";
-import TableFrame from "@/components/std-table/table-frame.vue";
+import TableFrame from "@/components/std-table/frame.vue";
 import popUp from "@/components/std-table/pop-up.vue";
 import Request from "@/apis/request.ts";
 // defineOptions();

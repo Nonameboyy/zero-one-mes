@@ -27,7 +27,6 @@
 
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { StdTable, TableText } from "components/std-table";
 
 // 定义数据
 const warehouseCode = ref("");

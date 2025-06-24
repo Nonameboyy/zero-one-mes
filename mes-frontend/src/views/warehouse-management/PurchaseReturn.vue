@@ -240,7 +240,7 @@ const selectedRow = ref(null);
 </script>
 
 <template>
-	<TableFrame title="采购退货管理">
+	<StdTableTableFrame title="采购退货管理">
 		<template #extra>
 			<el-button @click="handleExport"
 				>导出数据<el-icon :size="22"> <UploadFilled /> </el-icon
@@ -404,7 +404,7 @@ const selectedRow = ref(null);
 				<el-button type="primary" @click="submitForm">确定</el-button>
 			</template>
 		</el-dialog>
-	</TableFrame>
+	</StdTableTableFrame>
 </template>
 
 <style lang="scss" scoped>

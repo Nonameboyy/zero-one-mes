@@ -1,10 +1,7 @@
 <script setup>
 import { ref } from "vue";
 
-defineOptions({
-	/** TODO: 重命名为标准表单弹框 */
-	name: "StdFormDialog",
-});
+/** 重命名为标准表单弹框 */
 
 const dialogVisible = ref(false);
 // 定义表单内容，现在有点bug,

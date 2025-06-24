@@ -4,10 +4,10 @@ import { merge, isEmpty } from "lodash-es";
 import { reactify } from "@vueuse/core";
 import { ElButton } from "element-plus";
 
-import TableFrame from "./table-frame.vue";
-import TableInnerLayout from "./table-inner-layout.vue";
+import TableFrame from "./frame.vue";
+import TableInnerLayout from "./inner-layout.vue";
 import popUp from "@/components/std-table/pop-up.vue";
-import request from "@/apis/request.ts"; //加入请求
+import request from "@/apis/request.ts";
 
 import type { ComputedRef } from "vue";
 import type { TableProps } from "element-plus";
