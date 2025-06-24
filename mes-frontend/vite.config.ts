@@ -17,7 +17,7 @@ import tsAlias from "vite-plugin-ts-alias";
 
 import { getRouteName } from "@ruan-cat/utils/unplugin-vue-router";
 
-import autoImport from "./build/vite-plugin-autogeneration-import-file/index.ts";
+import autoImport, { resolver } from "./build/vite-plugin-autogeneration-import-file/index.ts";
 
 /**
  * 用全量导入的方式 获取类型
@@ -179,7 +179,7 @@ export default function ({ mode }: ConfigEnv) {
 				],
 				dts: "./types/components.d.ts",
 				directoryAsNamespace: true,
-				resolvers: [ElementPlusResolver()],
+				resolvers: [ElementPlusResolver(), resolver([0])],
 			}),
 
 			/**
