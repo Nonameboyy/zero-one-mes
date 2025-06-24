@@ -4,19 +4,15 @@ import { merge, isEmpty } from "lodash-es";
 import { reactify } from "@vueuse/core";
 import { ElButton } from "element-plus";
 
-import { TableFrame, TableInnerLayout } from "components/std-table";
-import popUp from "components/std-table/src/pop-up.vue";
+import TableFrame from "./table-frame.vue";
+import TableInnerLayout from "./table-inner-layout.vue";
+import popUp from "@/components/std-table/pop-up.vue";
 import request from "@/apis/request.ts"; //加入请求
 
 import type { ComputedRef } from "vue";
 import type { TableProps } from "element-plus";
 import type { RequiredPick } from "type-plus";
 import type { Operations, StdTableProps } from "./types.ts";
-
-defineOptions({
-	/** 表格组件 */
-	name: "StdTable",
-});
 
 // FIXME: [@vue/compiler-sfc] Failed to resolve index type into finite keys
 // 这里出现无限递归了

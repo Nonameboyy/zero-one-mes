@@ -18,7 +18,7 @@ import { reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
 
 // 引入公共表单组件
-import reform from "@/components/public-form/public-form.vue";
+import reform from "@/components/public-form/index.vue";
 
 const dialogVisible = ref(false);
 // 需要使用到的正则(仅为当前示例表单内进行自定义校验所需 实际开发过程中若不需要可去掉)

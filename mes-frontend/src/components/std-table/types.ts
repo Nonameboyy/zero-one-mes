@@ -1,6 +1,6 @@
 import type { ButtonProps, ComponentSize, TableProps } from "element-plus";
 
-import StdTable from "./std-table.vue";
+import StdTable from "./index.vue";
 export { StdTable as default };
 
 /**

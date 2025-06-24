@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import http from "axios";
 import { onMounted } from "vue";
-import TableFrame from "components/std-table/src/table-frame.vue";
+import TableFrame from "@/components/std-table/table-frame.vue";
 import Request from "@/apis/request.ts";
 
 const tableList = ref([
