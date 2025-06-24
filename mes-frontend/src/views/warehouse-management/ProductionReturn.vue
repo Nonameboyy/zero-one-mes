@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { StdTableFrame } from "components/std-table";
 import request from "@/apis/request.ts";
 
 // 搜索表单

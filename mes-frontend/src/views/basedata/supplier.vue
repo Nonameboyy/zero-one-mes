@@ -251,8 +251,6 @@
 
 <script setup>
 import { ref } from "vue";
-// import { StdTableFrame  } from "components/std-table";
-// import { constants } from "os";
 const supplierCode = ref("");
 const supplierName = ref("");
 const supplierForshort = ref("");

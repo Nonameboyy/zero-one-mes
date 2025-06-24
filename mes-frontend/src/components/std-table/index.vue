@@ -6,7 +6,7 @@ import { ElButton } from "element-plus";
 
 import TableFrame from "./frame.vue";
 import TableInnerLayout from "./inner-layout.vue";
-import popUp from "@/components/std-table/pop-up.vue";
+import popUp from "./pop-up.vue";
 import request from "@/apis/request.ts";
 
 import type { ComputedRef } from "vue";

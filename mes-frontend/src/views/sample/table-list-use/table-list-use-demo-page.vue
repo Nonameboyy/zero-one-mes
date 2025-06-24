@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from "vue";
 import { ElButton, ElCard } from "element-plus";
-import { StdTable, StdTableFrame } from "components/std-table";
-import type { StdTableProps } from "components/std-table";
-
 import { type UnitMeasureDTO, mdUnitMeasureController } from "views/sample/basic-data/tests/MdUnitMeasureController";
 
 defineOptions({

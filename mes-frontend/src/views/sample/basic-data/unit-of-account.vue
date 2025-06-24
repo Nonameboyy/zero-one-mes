@@ -2,10 +2,7 @@
 import { ref } from "vue";
 import http from "axios";
 import { onMounted } from "vue";
-import StdTableFrame from "@/components/std-table/frame.vue";
-import popUp from "@/components/std-table/pop-up.vue";
 import Request from "@/apis/request.ts";
-// defineOptions();
 
 //每一列数据，例子，后期接口对上再调整
 const tableList = ref([
