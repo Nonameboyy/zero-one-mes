@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { TableFrame } from "components/std-table";
+import { StdTableFrame } from "components/std-table";
 import request from "@/apis/request.ts";
 
 // 搜索表单
@@ -378,7 +378,7 @@ const refreshData = () => {
 </script>
 
 <template>
-	<TableFrame title="生产退料管理">
+	<StdTableFrame title="生产退料管理">
 		<template #extra>
 			<el-button @click="handleExport"
 				>导出数据<el-icon :size="22"><UploadFilled /></el-icon
@@ -565,7 +565,7 @@ const refreshData = () => {
 				<el-button type="primary" @click="submitForm">确定</el-button>
 			</template>
 		</el-dialog>
-	</TableFrame>
+	</StdTableFrame>
 </template>
 
 <style lang="scss" scoped>

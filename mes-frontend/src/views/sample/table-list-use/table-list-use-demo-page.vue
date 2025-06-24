@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref, watch } from "vue";
 import { ElButton, ElCard } from "element-plus";
-import { StdTable, TableFrame } from "components/std-table";
+import { StdTable, StdTableFrame } from "components/std-table";
 import type { StdTableProps } from "components/std-table";
 
 import { type UnitMeasureDTO, mdUnitMeasureController } from "views/sample/basic-data/tests/MdUnitMeasureController";
@@ -116,13 +116,13 @@ async function getlist() {
 			{{ tableRows }}
 		</ElCard>
 
-		<TableFrame :title="tableFrameTitle">
+		<StdTableFrame :title="tableFrameTitle">
 			<template #tableFrameMain>
 				<StdTable v-bind="stdTableProps">
 					<!-- <template #> </template> -->
 				</StdTable>
 			</template>
-		</TableFrame>
+		</StdTableFrame>
 	</section>
 </template>
 

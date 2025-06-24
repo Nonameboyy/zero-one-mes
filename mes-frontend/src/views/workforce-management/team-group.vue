@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import http from "axios";
 import { onMounted } from "vue";
-import TableFrame from "@/components/std-table/frame.vue";
+import StdTableFrame from "@/components/std-table/frame.vue";
 import Request from "@/apis/request.ts";
 
 const tableList = ref([
@@ -243,7 +243,7 @@ const cancelForm = () => {
 
 <template>
 	<!--分类，页面只有基本的表现，没有实现数据绑定-->
-	<TableFrame title="排班设计">
+	<StdTableFrame title="排班设计">
 		<template #extra>
 			<el-button @click="onSortChannel"
 				>导出数据
@@ -344,7 +344,7 @@ const cancelForm = () => {
 		<template #empty>
 			<el-empty description="没有数据"></el-empty>
 		</template>
-	</TableFrame>
+	</StdTableFrame>
 
 	<!-- 引入的弹窗
 	<pop-Up ref="dialog"> </pop-Up> -->

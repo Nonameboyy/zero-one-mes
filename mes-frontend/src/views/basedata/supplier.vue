@@ -80,8 +80,12 @@
 		<el-table-column prop="supplierTel" label="供应商电话" align="center"></el-table-column>
 		<el-table-column prop="enableFlag" label="是否启用" align="center">
 			<template #default="{ row }">
-				<el-tag :class="row.isEnabled ? 'status-enabled' : 'status-disabled'" @click="toggleStatus(row)"
-					style="cursor: pointer" class="status-tag">
+				<el-tag
+					:class="row.isEnabled ? 'status-enabled' : 'status-disabled'"
+					@click="toggleStatus(row)"
+					style="cursor: pointer"
+					class="status-tag"
+				>
 					{{ row.isEnabled ? "是" : "否" }}
 				</el-tag>
 			</template>
@@ -103,7 +107,7 @@
 		</el-table-column>
 	</el-table>
 
-	<!-- </TableFrame> -->
+	<!-- </StdTableFrame > -->
 	<!-- 对话框 -->
 	<el-dialog v-model="dialogFormVisible" :title="dialogTitle" style="width: 700px">
 		<el-form :model="formModel" :rules="rules" label-width="120px">
@@ -247,7 +251,7 @@
 
 <script setup>
 import { ref } from "vue";
-// import { TableFrame } from "components/std-table";
+// import { StdTableFrame  } from "components/std-table";
 // import { constants } from "os";
 const supplierCode = ref("");
 const supplierName = ref("");

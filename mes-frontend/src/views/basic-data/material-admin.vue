@@ -2,7 +2,7 @@
 import { ref, watch } from "vue";
 import http from "axios";
 import { onMounted } from "vue";
-import TableFrame from "@/components/std-table/frame.vue";
+import StdTableFrame from "@/components/std-table/frame.vue";
 import Request from "@/apis/request.ts";
 
 const tableList = ref([
@@ -321,7 +321,7 @@ const cancelForm = () => {
 		</el-aside>
 
 		<el-main>
-			<TableFrame title="物料产品管理">
+			<StdTableFrame title="物料产品管理">
 				<!--表单区域-->
 				<el-form :inline="true" class="demo-form-inline">
 					<el-form-item label="分类名称：" padding="50px">
@@ -412,7 +412,7 @@ const cancelForm = () => {
 				<template #empty>
 					<el-empty description="没有数据"></el-empty>
 				</template>
-			</TableFrame>
+			</StdTableFrame>
 			<!--引入的弹窗-->
 			<!-- <pop-Up ref="dialog"> </pop-Up> -->
 
