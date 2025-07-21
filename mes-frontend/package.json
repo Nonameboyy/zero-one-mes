@@ -4,7 +4,7 @@
 	"private": true,
 	"type": "module",
 	"description": "01星球大项目-08mes项目。这里是MES系统后台前端代码。",
-	"packageManager": "pnpm@9.15.9",
+	"packageManager": "pnpm@10.13.1",
 	"engines": {
 		"node": ">=22.14.0"
 	},
@@ -21,6 +21,15 @@
 		"corepack:pnpm": "corepack enable && corepack install",
 		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
 		"build:vue-tsc": "vue-tsc && vite build --configLoader runner"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"@parcel/watcher",
+			"core-js",
+			"es5-ext",
+			"esbuild",
+			"vue-demi"
+		]
 	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.3.1",
