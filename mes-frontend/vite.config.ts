@@ -13,7 +13,7 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { createHtmlPlugin } from "vite-plugin-html";
 import vueDevTools from "vite-plugin-vue-devtools";
 import { visualizer } from "rollup-plugin-visualizer";
-import tsAlias from "vite-plugin-ts-alias";
+import tsAlias from "@ruan-cat/vite-plugin-ts-alias";
 
 import { getRouteName } from "@ruan-cat/utils/unplugin-vue-router";
 
