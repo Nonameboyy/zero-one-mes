@@ -22,19 +22,10 @@
 		"preinstall": "npx only-allow pnpm && npm run corepack:pnpm",
 		"build:vue-tsc": "vue-tsc && vite build --configLoader runner"
 	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@parcel/watcher",
-			"core-js",
-			"es5-ext",
-			"esbuild",
-			"vue-demi"
-		]
-	},
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.3.2",
 		"@element-plus/locale": "^0.0.5",
-		"@ruan-cat/utils": "^4.9.2",
+		"@ruan-cat/utils": "^4.10.0",
 		"@vueuse/core": "^13.7.0",
 		"@vueuse/integrations": "^13.7.0",
 		"@wangeditor/editor": "^5.1.23",
