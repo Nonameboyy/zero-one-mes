@@ -32,18 +32,18 @@ export function importVendors({ MultipartFile, success = () => {}, fail = () => 
 }
 // 导出供应商
 export function exportVendor(vendorExcelSelectDTO, success = () => {}, fail = () => {}) {
-	return Request.get('/basicdata/md-vendor/download-vendor', {
+	return Request.get("/basicdata/md-vendor/download-vendor", {
 		params: vendorExcelSelectDTO,
-		responseType: 'arraybuffer' // 根据实际情况选择响应类型
+		responseType: "arraybuffer", // 根据实际情况选择响应类型
 	})
-		.then(res => {
+		.then((res) => {
 			if (res.status === 200) {
 				success(res);
 			} else {
-				fail('导出失败');
+				fail("导出失败");
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			fail(err);
 		});
 }
@@ -63,66 +63,66 @@ export function updateVendor({ vendorModifyDTO, success = () => {}, fail = () =>
 }
 // 供应商分页查询
 export function getVendorsPage(page = 1, pageSize = 10, success = () => {}, fail = () => {}) {
-	return Request.get('/basicdata/md-vendor/page', {
-		params: { page, pageSize }
+	return Request.get("/basicdata/md-vendor/page", {
+		params: { page, pageSize },
 	})
-		.then(res => {
+		.then((res) => {
 			if (res.status === 200) {
 				success(res);
 			} else {
-				fail('查询失败');
+				fail("查询失败");
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			fail(err);
 		});
 }
 
 // 查询供应商详情
 export function getVendorDetail(vendorId, success = () => {}, fail = () => {}) {
-	return Request.get(`/basicdata/md-vendor/`+vendorId)
-		.then(res => {
+	return Request.get(`/basicdata/md-vendor/` + vendorId)
+		.then((res) => {
 			if (res.status === 200) {
 				success(res);
 			} else {
-				fail('查询失败');
+				fail("查询失败");
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			fail(err);
 		});
 }
 
 // 批量删除供应商
 export function deleteVendors(ids, success = () => {}, fail = () => {}) {
-	return Request.delete('/basicdata/md-vendor', {
-		params: { ids }
+	return Request.delete("/basicdata/md-vendor", {
+		params: { ids },
 	})
-		.then(res => {
+		.then((res) => {
 			if (res.status === 200) {
 				success(res);
 			} else {
-				fail('删除失败');
+				fail("删除失败");
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			fail(err);
 		});
 }
 
 // 下载供应商导入模板
 export function downloadImportTemplate(success = () => {}, fail = () => {}) {
-	return Request.get('/basicdata/md-vendor/downloadImportTemplate', {
-		responseType: 'arraybuffer' // 根据实际情况选择响应类型
+	return Request.get("/basicdata/md-vendor/downloadImportTemplate", {
+		responseType: "arraybuffer", // 根据实际情况选择响应类型
 	})
-		.then(res => {
+		.then((res) => {
 			if (res.status === 200) {
 				success(res);
 			} else {
-				fail('下载失败');
+				fail("下载失败");
 			}
 		})
-		.catch(err => {
+		.catch((err) => {
 			fail(err);
 		});
 }

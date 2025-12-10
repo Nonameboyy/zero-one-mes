@@ -25,14 +25,8 @@ export function removeOperLog({ operIds, success = () => {}, fail = () => {} }) 
 }
 
 /** 导出操作日志。*/
-export function downloadOperLogExcel({  success = () => {}, fail = () => {} }) {
-	return Request.request(
-		Request.GET,
-		"/sys/operlog/export-operlog",
-		{
-		},
-		http.upType.file,
-	)
+export function downloadOperLogExcel({ success = () => {}, fail = () => {} }) {
+	return Request.request(Request.GET, "/sys/operlog/export-operlog", {}, http.upType.file)
 		.then((res) => {
 			if (res.status === 200) {
 				success(res);
@@ -91,13 +85,7 @@ export function getOperationLogPage({ operId, success = () => {}, fail = () => {
 
 /** 导出操作日志到dfs。*/
 export function exportToDfs({ success = () => {}, fail = () => {} }) {
-	return Request.request(
-		Request.GET,
-		"/sys/operlog/export-operlogtodfs",
-		{
-		},
-		http.upType.file,
-	)
+	return Request.request(Request.GET, "/sys/operlog/export-operlogtodfs", {}, http.upType.file)
 		.then((res) => {
 			if (res.status === 200) {
 				success(res);
@@ -109,6 +97,3 @@ export function exportToDfs({ success = () => {}, fail = () => {} }) {
 			fail(err);
 		});
 }
-
-
-

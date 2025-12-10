@@ -46,7 +46,6 @@ export function queryCodeRule({ ruleId, success = () => {}, fail = () => {} }) {
 		});
 }
 
-
 /** 分页查询 */
 export function queryCodeRules({ codeRuleQuery, success = () => {}, fail = () => {} }) {
 	return Request.request(
@@ -114,12 +113,13 @@ export function modifyCodeRule({ CodeRuleDTO, success = () => {}, fail = () => {
 }
 
 /** 获取唯一编码 */
-export function getAutoCode({ ruleCode,inputCharacter, success = () => {}, fail = () => {} }) {
+export function getAutoCode({ ruleCode, inputCharacter, success = () => {}, fail = () => {} }) {
 	return Request.request(
 		Request.GET,
 		"/sysmanagement/get-auto-code/{ruleCode}",
 		{
-			getAutoCode,inputCharacter,
+			getAutoCode,
+			inputCharacter,
 		},
 		http.upType.json,
 	)

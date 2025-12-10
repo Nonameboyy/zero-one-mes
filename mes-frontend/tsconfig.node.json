@@ -1,9 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ES2022",
-		"lib": [
-			"ES2023"
-		],
+		"lib": ["ES2023"],
 		"module": "ESNext",
 		"skipLibCheck": true,
 		/* Bundler mode */
@@ -18,10 +16,5 @@
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true
 	},
-	"include": [
-		"scripts",
-		"vite.config.ts",
-		"./src/plugins/**/*.ts",
-		"./types/env.shim.d.ts",
-	]
+	"include": ["scripts", "vite.config.ts", "./src/plugins/**/*.ts", "./types/env.shim.d.ts"]
 }

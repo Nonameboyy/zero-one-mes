@@ -23,4 +23,3 @@ export function querySysLoginInfos({ query, success = () => {}, fail = () => {} 
 			fail(err);
 		});
 }
-

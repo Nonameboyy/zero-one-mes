@@ -25,14 +25,8 @@ export function removeLoginLog({ ids, success = () => {}, fail = () => {} }) {
 }
 
 /** 清空登录日志列表 */
-export function clearLoginLog({  success = () => {}, fail = () => {} }) {
-	return Request.request(
-		Request.DELETE,
-		"/LoginInfo/clean-LoginLog",
-		{
-		},
-		http.upType.json,
-	)
+export function clearLoginLog({ success = () => {}, fail = () => {} }) {
+	return Request.request(Request.DELETE, "/LoginInfo/clean-LoginLog", {}, http.upType.json)
 		.then((res) => {
 			if (res.status === 200) {
 				success(res);
@@ -46,14 +40,8 @@ export function clearLoginLog({  success = () => {}, fail = () => {} }) {
 }
 
 /** 导出登录日志列表 */
-export function exportLoginLog({  success = () => {}, fail = () => {} }) {
-	return Request.request(
-		Request.GET,
-		"/LoginInfo/export-LoginLog",
-		{
-		},
-		http.upType.file,
-	)
+export function exportLoginLog({ success = () => {}, fail = () => {} }) {
+	return Request.request(Request.GET, "/LoginInfo/export-LoginLog", {}, http.upType.file)
 		.then((res) => {
 			if (res.status === 200) {
 				success(res);
