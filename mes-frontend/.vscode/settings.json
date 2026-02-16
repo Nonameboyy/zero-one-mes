@@ -91,5 +91,11 @@
 		"gql",
 		"graphql",
 		"astro"
-	]
+	],
+	/** 启用文件嵌套折叠功能 */
+	"explorer.fileNesting.enabled": true,
+	/** 折叠 AI大模型记忆文件 */
+	"explorer.fileNesting.patterns": {
+		"CLAUDE.md": "GEMINI.md,AGENTS.md"
+	}
 }
